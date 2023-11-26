@@ -1,5 +1,7 @@
 import React from 'react'
 import Input from '../elements/Input';
+import Button from '../elements/Button';
+import Checkbox from '../elements/Checkbox';
 const RegisterForm = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         // setFormData({
@@ -10,7 +12,7 @@ const RegisterForm = () => {
     }
     return (
         <form className='flex flex-col gap-y-4'>
-            <div className='flex'>
+            <div className='flex gap-x-2'>
                 <Input type='text' name='firstname' placeHolder="First Name"
                     handleChange={handleInputChange} />
                 <Input type='text' name='lastname' placeHolder="Last Name"
@@ -18,7 +20,7 @@ const RegisterForm = () => {
             </div>
             <Input type='email' name='email' placeHolder="Email"
                 handleChange={handleInputChange} />
-            <div className='flex'>
+            <div className='flex gap-x-2'>
                 <Input type='password' name='password' placeHolder="Password"
                     handleChange={handleInputChange} />
                 <Input type='password' name='confirmpassword' placeHolder="Confirm Password"
@@ -26,6 +28,13 @@ const RegisterForm = () => {
             </div>
             <Input type='number' name='number' placeHolder="Phone number"
                 handleChange={handleInputChange} />
+
+            <Checkbox>
+                <span className='text-xs md:text-base'>I agree to the <strong>TERMS & CONDITIONS!</strong> and privacy policy!</span>
+            </Checkbox>
+
+            <Button text='Signup' type='submit'/>
+
         </form>
     )
 }

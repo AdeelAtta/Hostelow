@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({ icon, type, name, placeHolder, handleChan
                     {icon}
                 </div>
             }
-            <input type={type} name={name} placeholder={placeHolder} className='w-full pl-10 py-2 rounded-full placeholder-black '
+            <input type={type} name={name} placeholder={placeHolder} className={`w-full py-2 rounded-full placeholder-black ${icon ? "pl-10" : "pl-4 "}`}
                 onChange={(e) => handleChange(e)} />
         </div>
     )
