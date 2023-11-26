@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsFillSuitHeartFill, BsHeart } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 // import { BsFillSuitHeartFill } from "react-icons/bs";
 
 const lovedHostelsList = () => {
