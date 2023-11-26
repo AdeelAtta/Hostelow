@@ -8,7 +8,7 @@ interface InputProps {
 }
 const Input: React.FC<InputProps> = ({ icon, type, name, placeHolder, handleChange }) => {
     return (
-        <div className='flex items-center gap-4 w-full border-2 border-gray-200  shadow-lg relative rounded-full'>
+        <div className='flex gap-4 w-full border-2 border-gray-200  shadow-lg relative rounded-full'>
             {
                 icon &&
                 <div className="absolute left-4">
