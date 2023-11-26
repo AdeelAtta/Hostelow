@@ -30,7 +30,7 @@ const RegisterForm = () => {
                 handleChange={handleInputChange} />
 
             <Checkbox>
-                <span className='text-xs md:text-sm'>I agree to the <strong>TERMS & CONDITIONS!</strong> and privacy policy!</span>
+                <span className='text-sm'>I agree to the <strong>TERMS & CONDITIONS!</strong> and privacy policy!</span>
             </Checkbox>
 
             <Button text='Signup' type='submit'/>
