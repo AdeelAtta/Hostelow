@@ -4,7 +4,7 @@ interface CircleProps {
 }
 const Circle: React.FC<CircleProps> = ({customeStyle}) => {
     return (
-        <div className={`absolute w-28 h-28 rounded-full z-[-1] ${customeStyle}`}>
+        <div className={`absolute w-36 h-36 opacity-80 rounded-full z-[-1] ${customeStyle}`}>
 
         </div>
     )
