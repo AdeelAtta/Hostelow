@@ -11,11 +11,11 @@ const Input: React.FC<InputProps> = ({ icon, type, name, placeHolder, handleChan
         <div className='flex gap-4 w-full border-2 border-gray-200  shadow-lg relative rounded-full'>
             {
                 icon &&
-                <div className="absolute left-4">
+                <div className="absolute left-5 top-[50%] translate-y-[-50%]">
                     {icon}
                 </div>
             }
-            <input type={type} name={name} placeholder={placeHolder} className={`w-full py-2 rounded-full placeholder-black ${icon ? "pl-10" : "pl-4 "}`}
+            <input type={type} name={name} placeholder={placeHolder} className={`w-full py-2 leading-7 rounded-full placeholder-gray ${icon ? "pl-12" : "pl-4 "}`}
                 onChange={(e) => handleChange(e)} />
         </div>
     )

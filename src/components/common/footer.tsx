@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '@/assets/common/HostelBazaar..svg'
+import Logo from '@/assets/common/HostelBazaar.svg'
 import Image from 'next/image'
 
 const Footer = () => {
