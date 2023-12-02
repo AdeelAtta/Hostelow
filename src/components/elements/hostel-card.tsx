@@ -3,7 +3,7 @@ import React from 'react'
 
 const HostelCard = () => {
     return (
-        <div className='relative card lg:flex max-w-screen-2xl p-4 border-2 border-gray-100 shadow-xl rounded-xl'>
+        <div className='relative card lg:flex lg:w-full p-4 border-2 border-gray-100 shadow-xl rounded-xl'>
             <div className=' hostel-image overflow-hidden max-w-[320px] h-auto'>
                 <img className=' rounded-e-xl ' src="/assets/welcome_banner.png" alt="alt" />
             </div>
