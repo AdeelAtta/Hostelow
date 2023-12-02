@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const HostelCard = () => {
@@ -34,7 +35,7 @@ const HostelCard = () => {
                     </div >
                     <div className='min-w-fit flex flex-col justify-end items-end gap-4 mt-5'>
                         <p className='font-bold  text-xl text-black'>Rs: 10,000 / month</p>
-                        <button className='w-full border-2 rounded-full font-medium text-xl text-white px-8 py-4 border-indigo-600 bg-indigo-500'>See booking Options</button>
+                        <button  className='w-full border-2 rounded-full font-medium text-xl text-white px-8 py-4 border-indigo-600 bg-indigo-500'><Link href={'/hostels/HostelDetail'}>See booking Options</Link></button>
                     </div>
                 </div>
             </div>
