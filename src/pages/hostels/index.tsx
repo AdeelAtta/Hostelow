@@ -88,7 +88,9 @@ const Hostels = () => {
             <div className="mx-auto max-w-screen-xl px-4  sm:px-6 sm:py-12 lg:px-8">
 
               <header>
-                <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">Search Hostels</h2>
+                <p className="mt-4 max-w-md text-gray-500">
+                 133 searches for </p>
+                <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">1 Room Hostels in Jamshoro, Sindh</h2>
               </header>
               <div className=" flex items-center justify-between">
                 <div className="flex rounded border border-gray-100">
