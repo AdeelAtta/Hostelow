@@ -5,8 +5,8 @@ interface ContentProps {
 }
 const Content:React.FC<ContentProps> =({children}) =>{
   return (
-    <div className="px-6 2xl:container my-10">
-    <div className="flex min-h-[90vh] justify-center overflow-hidden oveflow-y-scroll">
+    <div className="px-6 lg:container my-10 max-w-screen-2xl">
+    <div className="flex justify-center overflow-hidden oveflow-y-scroll">
 
 
     {children}
