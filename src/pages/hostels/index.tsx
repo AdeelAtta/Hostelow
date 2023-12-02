@@ -5,6 +5,7 @@ import LoginForm from '@/components/LoginForm'
 import SigninSignupForm from '@/components/sections/signin-signup-form';
 import Aside from '@/components/common/aside';
 import Content from '@/components/common/content';
+import HostelCard from '@/components/elements/hostel-card';
 
 const Hostels = () => {
   return (<>
@@ -82,9 +83,24 @@ const Hostels = () => {
 
       </Aside>
       <Content>
+        <div className="w-full h-full ">
+          <div className='top-bar'></div>
+          <div className=' hostel-cards flex flex-wrap gap-6'>
 
-        <h1>Content</h1>
-        
+            <HostelCard />
+            <HostelCard />
+            <HostelCard />
+            <HostelCard />
+            <HostelCard />
+
+
+
+
+          </div>
+          <div className='pagination'></div>
+
+        </div>
+
       </Content>
     </main>
   </>
