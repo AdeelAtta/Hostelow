@@ -45,12 +45,13 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <span
-                    className="text-stone-700 transition hover:text-gray-500/75"
-
-                  >
-                    Popular
-                  </span>
+                  <Link href={'/popular'}>
+                    <span
+                      className="text-stone-700 transition hover:text-gray-500/75"
+                    >
+                      Popular
+                    </span>
+                  </Link>
                 </li>
 
                 {/* <li>
