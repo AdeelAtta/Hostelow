@@ -7,6 +7,7 @@ import { LuParkingSquare } from "react-icons/lu";
 import { GrDirections } from "react-icons/gr";
 import { IoIosStopwatch } from "react-icons/io";
 import Button from '@/components/elements/Button';
+import Link from 'next/link';
 
 const HostelDetail = () => {
 
@@ -73,7 +74,7 @@ const HostelDetail = () => {
 
   return (
     <main>
-      <section className='max-w-screen-xl mx-auto p-4 xl:p-0 xl:py-6 '>
+      <section className='max-w-screen-xl mx-auto p-4 xl:p-0 xl:py-6'>
         {/* Hostel Gallery */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
           <div className="rounded-lg">
@@ -135,7 +136,9 @@ const HostelDetail = () => {
                 <h4 className='text-[#7D7D7D] text-base'>18 sqm</h4>
                 <h4 className='text-[#7D7D7D] text-base'>2 people</h4>
                 <h4 className='text-[#7D7D7D] text-base'>1 King bed or 2 separate beds</h4>
-                <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                <Link href={'/hostels/HostelBooking'}>
+                  <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                </Link>
               </div>
             </div>
             <div className="block rounded-lg p-4 shadow-lg shadow-indigo-100 bg-white">
@@ -149,7 +152,9 @@ const HostelDetail = () => {
                 <h4 className='text-[#7D7D7D] text-base'>18 sqm</h4>
                 <h4 className='text-[#7D7D7D] text-base'>2 people</h4>
                 <h4 className='text-[#7D7D7D] text-base'>1 King bed or 2 separate beds</h4>
-                <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                <Link href={'/hostels/HostelBooking'}>
+                  <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                </Link>
               </div>
             </div>
             <div className="block rounded-lg p-4 shadow-lg shadow-indigo-100 bg-white">
@@ -163,7 +168,9 @@ const HostelDetail = () => {
                 <h4 className='text-[#7D7D7D] text-base'>18 sqm</h4>
                 <h4 className='text-[#7D7D7D] text-base'>2 people</h4>
                 <h4 className='text-[#7D7D7D] text-base'>1 King bed or 2 separate beds</h4>
-                <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                <Link href={'/hostels/HostelBooking'}>
+                  <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                </Link>
               </div>
             </div>
             <div className="block rounded-lg p-4 shadow-lg shadow-indigo-100 bg-white">
@@ -177,7 +184,9 @@ const HostelDetail = () => {
                 <h4 className='text-[#7D7D7D] text-base'>18 sqm</h4>
                 <h4 className='text-[#7D7D7D] text-base'>2 people</h4>
                 <h4 className='text-[#7D7D7D] text-base'>1 King bed or 2 separate beds</h4>
-                <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                <Link href={'/hostels/HostelBooking'}>
+                  <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                </Link>
               </div>
             </div>
           </div>
