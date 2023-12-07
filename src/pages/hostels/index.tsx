@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 
-import LoginForm from '@/components/LoginForm'
+import LoginForm from '@/components/forms/login-form'
 import SigninSignupForm from '@/components/sections/signin-signup-form';
 import Aside from '@/components/common/aside';
 import Content from '@/components/common/content';

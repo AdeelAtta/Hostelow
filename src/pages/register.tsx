@@ -1,7 +1,7 @@
 import React from 'react'
 
 import SigninSignupForm from '@/components/sections/signin-signup-form';
-import RegisterForm from '@/components/RegisterForm';
+import RegisterForm from '@/components/forms/register-form';
 
 const register = () => {
   return (
