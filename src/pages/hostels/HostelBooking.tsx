@@ -4,9 +4,16 @@ import { WiSandstorm } from "react-icons/wi";
 import { FaAddressCard } from "react-icons/fa";
 import { LuParkingSquare } from "react-icons/lu";
 import Button from '@/components/elements/Button';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+
 const HostelBooking = () => {
-    
+
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push('/hostels/BookingConfirmed')
+    }
+
     return (
         <section className='max-w-screen-xl mx-auto text-black py-4 px-4 xl:px-0 xl:py-8'>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -171,7 +178,7 @@ const HostelBooking = () => {
                     </div>
 
                     <Button text='Book Now!' type='button' customeStyle='mt-auto'
-                    handleClick={()=> {}}
+                        handleClick={() => handleClick()}
                     />
                 </div>
             </div>
