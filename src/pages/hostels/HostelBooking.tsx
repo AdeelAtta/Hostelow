@@ -3,7 +3,10 @@ import { FaWifi } from "react-icons/fa";
 import { WiSandstorm } from "react-icons/wi";
 import { FaAddressCard } from "react-icons/fa";
 import { LuParkingSquare } from "react-icons/lu";
+import Button from '@/components/elements/Button';
+import { useRouter } from 'next/router';
 const HostelBooking = () => {
+    
     return (
         <section className='max-w-screen-xl mx-auto text-black py-4 px-4 xl:px-0 xl:py-8'>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -121,7 +124,7 @@ const HostelBooking = () => {
                             </div>
                             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
                                 <div>
-                                    <span>Allowed Till</span>
+                                    <span>Allowed Till </span>
                                 </div>
                                 <div className='lg:col-span-3 text-[#7D7D7D]'>Monday, 28th oct 2023</div>
                             </div>
@@ -167,7 +170,9 @@ const HostelBooking = () => {
                         <div className='lg:col-span-3'>RS. 8100/=</div>
                     </div>
 
-                    <button className='bg-[#5D64FF] rounded-full w-full p-2 md:p-4 text-white text-lg mt-auto'>Book Now!</button>
+                    <Button text='Book Now!' type='button' customeStyle='mt-auto'
+                    handleClick={()=> {}}
+                    />
                 </div>
             </div>
         </section>
