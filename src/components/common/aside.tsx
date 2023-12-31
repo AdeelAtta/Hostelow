@@ -60,7 +60,7 @@ export const Aside: React.FC<AsideProps> = ({ children }) => {
 
   return (<>
     <aside onMouseLeave={() => setHoverVisible(false)} 
-      className={`${hoverVisible ? ` min-w-fit max-w-[400px] `:`  fixed top-0 max-w-0 !-ml-[11%] md:!-ml-[6%] lg:!-ml-[1%]`} z-[1]  flex min-h-screen h-full w-full flex-col justify-between border-r bg-white px-6 pb-3 md:w-4/12 lg:ml-0 lg:px-2 lg:w-[26%] xl:w-[20%] 2xl:w-[16%] dark:bg-gray-800 dark:border-gray-700 transition-all  duration-400`}
+      className={`${hoverVisible ? ` min-w-fit max-w-[400px] `:`   max-w-0 !-ml-[11%] md:!-ml-[6%] lg:!-ml-[1%] `} z-[1]  flex min-h-screen h-full w-full flex-col fixed top-0 justify-between border-r bg-white px-6 pb-3 md:w-4/12 lg:ml-0 lg:px-2 lg:w-[26%] xl:w-[20%] 2xl:w-[16%] dark:bg-gray-800 dark:border-gray-700 transition-all  duration-400`}
     >
       <div className='max-w-fit min-h-[100%]' >
         <div className="py-6">
