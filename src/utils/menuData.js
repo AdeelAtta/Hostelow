@@ -3,7 +3,7 @@
 
 
 
-export const AdminMenu = [{
+export let AdminMenu = [{
     name: `Dashboard`,
     route: `dashboard`,
     icon: ``,
@@ -24,3 +24,16 @@ export const AdminMenu = [{
     icon: ``,
     displayComponent: `Display Das234`
   }]
+
+
+
+export function createMenu (text) {
+
+if(text == `admin`){
+  return AdminMenu;
+
+}
+
+return []
+
+}

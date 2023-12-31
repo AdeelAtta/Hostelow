@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import Image from 'next/image'
 import {AdminMenu} from '@/utils/menuData'
+import { createMenu } from '@/utils/menuData';
 
 
 interface MenuItem {
@@ -69,9 +70,14 @@ export const Aside: React.FC<AsideProps> = ({ handleRoute, currentRoute }) => {
 
   useEffect(()=>{
 
+    //
+    // Check if user exist  else reroute to login page
+
 
     const getMenu = async() => {
-      setDashboardMenu([...AdminMenu])
+    const response:any[] = createMenu(`admin`)
+
+      setDashboardMenu([...response])
     }
 
     getMenu()
@@ -108,7 +114,7 @@ export const Aside: React.FC<AsideProps> = ({ handleRoute, currentRoute }) => {
 
   return (<>
      {isWindow1024 || toggle ? <aside onMouseLeave={()=>setHoverVisible(false)}
-       className={`${toggle ? ` ` : ` ml-[-100%] `} max-w-fit fixed top-0 z-10  flex h-screen w-full flex-col justify-between border-r bg-white px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:px-2 lg:w-[26%] xl:w-[20%] 2xl:w-[16%] dark:bg-gray-800 dark:border-gray-700 `}
+       className={`${toggle ? ` ` : ` ml-[-100%] `} max-w-fit fixed top-0 z-[1]  flex h-screen w-full flex-col justify-between border-r bg-white px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:px-2 lg:w-[26%] xl:w-[20%] 2xl:w-[16%] dark:bg-gray-800 dark:border-gray-700 `}
      >
        <div className='max-w-fit' onMouseLeave={()=> setHoverVisible(false)}>
          <div className="-mx-6 px-6 py-4">
@@ -164,4 +170,8 @@ export const Aside: React.FC<AsideProps> = ({ handleRoute, currentRoute }) => {
 }
 
 export default Aside;
+
+function generateMenu(arg0: string) {
+  throw new Error('Function not implemented.');
+}
 
