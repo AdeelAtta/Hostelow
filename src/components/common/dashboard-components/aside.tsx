@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import Image from 'next/image'
-import {AdminMenu} from '@/utils/menuData'
+import {PropertyOwner} from '@/utils/menuData'
 import { createMenu } from '@/utils/menuData';
 
 
