@@ -98,8 +98,8 @@ export const Aside: React.FC<AsideProps> = ({ handleRoute, currentRoute }) => {
               aria-label={menuItem.route}
               className={`flex items-center rounded-lg transition-all  px-4 py-3 
               ${(currentRoute == menuItem.route) ? 
-                "relative text-white bg-gradient-to-r from-sky-600 to-cyan-400 cursor-default" 
-              : "group text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-sky-200 hover:to-cyan-100 dark:hover:bg-gradient-to-r dark:hover:from-sky-800 dark:hover:to-cyan-600 cursor-pointer "
+                "relative text-white bg-gradient-to-r from-yellow-600 to-yellow-400 cursor-default" 
+              : "group text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-yellow-200 hover:to-yellow-100 dark:hover:bg-gradient-to-r dark:hover:from-yellow-800 dark:hover:to-yellow-600 cursor-pointer "
               }`
             }
             >

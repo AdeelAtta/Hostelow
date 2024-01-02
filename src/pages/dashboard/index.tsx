@@ -29,7 +29,7 @@ const Dashboard = () => {
       <Aside handleRoute={handleRoute} currentRoute={currentPage ? currentPage.route : ''} />
 
       {/* Right side */}
-      <div className="ml-auto lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+      <div className="ml-auto lg:max-w-[92%] xl:max-w-[93%] 2xl:max-w-[94%]">      {/* Right side */}
       {/* <TopBar ActivePageName={currentPage ? currentPage.name : `Welcome`} /> */}
 
       <Content displayComponent={currentPage ? currentPage.displayComponent : <h1>No Data Found</h1>} />
