@@ -28,11 +28,10 @@ interface TaskForm {
 
 const TableRow: React.FC<TaskDataRowProps> = ({ indexKey, row, noOfColumns, disable = false }) => {
 
-
-    const [currentTask, setCurrentTask] = useState<any>({})
+    const initial = {}
+    const [currentTask, setCurrentTask] = useState<any>(initial)
     const [isDisabled, setIsDisabled] = useState(true);
     const [disableRowLength, setdisableRowLength] = useState(!disable)
-    // const [isDropDown, setIsDropDown] = useState<boolean>(false)
 
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -119,7 +118,7 @@ const ManageOptions: React.FC<ManageOptionsProps> = ({ features, indexKey, curre
     if (features && features.length == 1) {
         const { icon, text, button } = features[0];
         return <Td index={indexKey}  >
-            <span className={`flex items-center justify-center cursor-pointer hover:text-blue-800  text-lg transition`} onClick={button}>
+            <span className={`flex items-center justify-center cursor-pointer hover:text-blue-800  text-lg transition`} onClick={()=>button(currentTask)}>
                 {icon}
             </span>
         </Td>
@@ -127,13 +126,13 @@ const ManageOptions: React.FC<ManageOptionsProps> = ({ features, indexKey, curre
     }
 
     return <Td index={indexKey} >
-        <div className="relative " onMouseLeave={() => setIsDropDown(false)}>
+        <div className="relative" onMouseLeave={() => setIsDropDown(false)}>
             <BsThreeDotsVertical className="text-2xl  ml-auto mr-auto cursor-pointer" onClick={() => setIsDropDown(true)} />
             <div
-                className={`border-2 absolute end-5 z-[500] w-36 rounded-md  border-gray-100 bg-white shadow-lg dark:bg-gray-700 dark:border-gray-500 transition-all   ${!isDropDown && `hidden `}`}
+                className={`border-2 absolute end-5 !z-[500] w-36 rounded-md  border-gray-100 bg-white shadow-lg dark:bg-gray-700 dark:border-gray-500 transition-all   ${!isDropDown && `hidden `}`}
                 role="menu"
             >
-                <div className={` ${!isDropDown && ` border-2  `}`}>
+                <div className={`p-2  ${!isDropDown && `absolute border-2  `}`}>
                     {features && features.map((feature: feature, index: number) => {
                         return <div key={index}
                             onClick={() => { feature.button(currentTask); setIsDropDown(!isDropDown) }}
