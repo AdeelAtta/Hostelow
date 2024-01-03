@@ -129,10 +129,10 @@ const ManageOptions: React.FC<ManageOptionsProps> = ({ features, indexKey, curre
         <div className="relative" onMouseLeave={() => setIsDropDown(false)}>
             <BsThreeDotsVertical className="text-2xl  ml-auto mr-auto cursor-pointer" onClick={() => setIsDropDown(true)} />
             <div
-                className={`border-2 absolute end-5 !z-[500] w-36 rounded-md  border-gray-100 bg-white shadow-lg dark:bg-gray-700 dark:border-gray-500 transition-all   ${!isDropDown && `hidden `}`}
+                className={`border-2 absolute end-5 !z-[500] w-40 rounded-md  border-gray-100 bg-white shadow-lg dark:bg-gray-700 dark:border-gray-500 transition-all   ${!isDropDown && `hidden `}`}
                 role="menu"
             >
-                <div className={`p-2  ${!isDropDown && `absolute border-2  `}`}>
+                <div className={`p-2 w-40  ${!isDropDown && `absolute border-2  `}`}>
                     {features && features.map((feature: feature, index: number) => {
                         return <div key={index}
                             onClick={() => { feature.button(currentTask); setIsDropDown(!isDropDown) }}

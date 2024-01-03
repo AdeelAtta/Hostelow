@@ -33,8 +33,8 @@ const Table: React.FC<TableProps> = ({ tableData }) => {
     }
 
     return <>
-        <div className=" rounded-t-lg border-2 pb-[170px] overflow-auto md:overflow-visible w-full">
-            <table className="min-w-full divide-y-2 overflow-visible  shadow-lg shadow-orange-50">
+        <div className=" rounded-t-lg border-2 pb-[170px] overflow-auto w-full">
+            <table className="min-w-full divide-y-2  shadow-lg shadow-orange-50">
                 <thead className=" bg-gradient-to-r from-yellow-700 to-yellow-600 text-white">
                     {createHeader()}
                 </thead>
