@@ -1,6 +1,6 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import { VscSaveAs } from "react-icons/vsc";
-import { MdRoomPreferences } from "react-icons/md";
+import { IoImagesOutline } from "react-icons/io5";
 import { TbTournament } from "react-icons/tb";
 import { useEffect, useState } from "react";
 
@@ -71,7 +71,7 @@ const PropertyManagement = () => {
                             , text: `Update Data`, type: `button`, name: `Update`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `update`, data: property })); setIsModal(true) }
                         },
                         {
-                            icon: <MdRoomPreferences className={`hover:scale-110 transition-all`} />
+                            icon: <IoImagesOutline className={`hover:scale-110 transition-all`} />
                             , text: `Update Images`, type: `button`, name: `addRooms`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `Update Images`, data: property })); setIsModal(true) }
                         },
                         {
