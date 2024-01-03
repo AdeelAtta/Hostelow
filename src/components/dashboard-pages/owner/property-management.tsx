@@ -7,6 +7,7 @@ import { VscSaveAs } from "react-icons/vsc";
 import { MdRoomPreferences } from "react-icons/md";
 import { TbTournament } from "react-icons/tb";
 import SideModal from "@/components/common/side-modal";
+import Button from "@/components/forms/form-elements/button";
 
 
 
@@ -64,19 +65,19 @@ const PropertyManagement = () => {
                     text: ``, type: "Manage", features: [
                         {
                             icon: <VscSaveAs className={`hover:scale-110 transition-all`} />
-                            , text: `Update`, type: `button`, name: `Update`, button: () => {setCurrentModal((prev:any) => ({...prev, route: `update`, data: property }));setIsModal(true)}
+                            , text: `Update`, type: `button`, name: `Update`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `update`, data: property })); setIsModal(true) }
                         },
                         {
                             icon: <MdRoomPreferences className={`hover:scale-110 transition-all`} />
-                            , text: `Add Rooms`, type: `button`, name: `Amentities`, button: () => {setCurrentModal((prev:any) => ({...prev, route: `Add Room`, data: property }));setIsModal(true)}
+                            , text: `Add Rooms`, type: `button`, name: `Amentities`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `Add Room`, data: property })); setIsModal(true) }
                         },
                         {
                             icon: <TbTournament className={`hover:scale-110 transition-all`} />
-                            , text: `Add Amentities`, type: `button`, name: `Amentities`, button: () => {setCurrentModal((prev:any) => ({...prev, route: `Add Amentities`, data: property }));setIsModal(true)}
+                            , text: `Add Amentities`, type: `button`, name: `Amentities`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `Add Amentities`, data: property })); setIsModal(true) }
                         },
                         {
                             icon: <RiDeleteBinLine className={`hover:scale-110 transition-all`} />
-                            , text: `Delete`, type: `button`, name: `Delete`, button: () => {setCurrentModal((prev:any) => ({...prev, route: `delete`, data: property }));setIsModal(true)}
+                            , text: `Delete`, type: `button`, name: `Delete`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `delete`, data: property })); setIsModal(true) }
                         },
                     ]
                 },
@@ -105,7 +106,15 @@ const PropertyManagement = () => {
     }, [])
 
     return <>
+
+        <div className="w-full flex justify-end items-end">
+            <Button onClick={() => { }}>Add New Hostel + </Button>
+        </div>
+
+
         {tableData && <Table tableData={tableData} />}
+
+
         <SideModal
             closeModal={() => setIsModal(false)}
             isModal={isModal}
