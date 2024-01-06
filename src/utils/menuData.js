@@ -1,5 +1,8 @@
 import PropertyManagement from '@/components/dashboard-pages/owner/property-management'
+import ProfileSettings from '@/components/dashboard-pages/profile-settings'
+
 import { LuHotel } from "react-icons/lu";
+import { CgProfile } from "react-icons/cg";
 
 
 
@@ -11,7 +14,14 @@ let PropertyOwner = [{
   route: `manageProperty`,
   icon: <LuHotel />,
   displayComponent: <PropertyManagement />
-}]
+},
+{
+  name: `Profile Settings`,
+  route: `profileSetting`,
+  icon: <CgProfile />,
+  displayComponent: <ProfileSettings />
+}
+]
 
 
 

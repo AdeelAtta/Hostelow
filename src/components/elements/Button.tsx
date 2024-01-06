@@ -10,7 +10,7 @@ const Button: React.FC<buttonProps> = ({ text, handleClick, type, customeStyle }
         <button
             type={type}
             onClick={() => handleClick && handleClick()}
-            className={`bg-blue-500 rounded-full py-2 text-white flex items-center justify-center ${customeStyle}`}
+            className={` bg-blue-600 hover:bg-blue-500 rounded-full py-2 px-6 text-white flex items-center justify-center ${customeStyle}`}
         >
             {text}
         </button>
