@@ -1,8 +1,9 @@
 import React from 'react'
 interface CheckBoxProps {
     children: React.ReactNode,
+    otherProps?:any
 }
-const Checkbox: React.FC<CheckBoxProps> = ({children}) => {
+const Checkbox: React.FC<CheckBoxProps> = ({otherProps,children}) => {
     return (
         <div className='flex gap-x-4 px-4'>
             <input type="checkbox" name="" id="" />

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import Circle from '../elements/Circle'
+import { ToastContainer } from 'react-toastify'
 
 interface SigninSignupFormProps {
     children: ReactNode,
@@ -10,7 +11,8 @@ interface SigninSignupFormProps {
 const SigninSignupForm: React.FC<SigninSignupFormProps> = (
     { children, title, para }
 ) => {
-    return (
+    return (<>
+        <ToastContainer />
         <main className='relative max-w-screen-xl mx-auto px-8 py-4 md:py-12 text-black '>
             <div className=' flex flex-col md:flex-row min-h-[400px] max-w-screen-lg m-auto rounded-3xl shadow-xl'>
                 <div className={`min-h-[220px] flex flex-col justify-center items-center flex-1 bg-[url(/assets/welcome_banner.png)] bg-center bg-no-repeat bg-cover text-white rounded-t-3xl md:rounded-e-none md:rounded-s-3xl`}>
@@ -32,6 +34,7 @@ const SigninSignupForm: React.FC<SigninSignupFormProps> = (
             <Circle customeStyle='bg-[#FFDA56] left-4 md:left-48 bottom-0' />
             <Circle customeStyle='bg-[#A1F6DD] right-0 lg:right-28 bottom-24' />
         </main>
+    </>
     )
 }
 

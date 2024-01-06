@@ -4,14 +4,15 @@ import Button from '../elements/Button';
 import Checkbox from '../elements/Checkbox';
 import { postData } from '@/utils/api';
 import { toast } from 'react-toastify';
+import router, { Router } from 'next/router';
 
 const initialForm = {
-    firstName:``,
-    lastName:``,
-    email:``,
-    password:``,
+    firstName: ``,
+    lastName: ``,
+    email: ``,
+    password: ``,
     phoneNumber: undefined,
-    admin:true
+    admin: true
 
 }
 
@@ -19,18 +20,18 @@ const initialForm = {
 const RegisterForm = () => {
 
 
-    const [formData,setFormData] = useState<CreatePropertyOwnerAccountForm>(initialForm)
-    const [confirmPassword,setConfirmPassword] = useState(``);
+    const [formData, setFormData] = useState<CreatePropertyOwnerAccountForm>(initialForm)
+    const [confirmPassword, setConfirmPassword] = useState(``);
 
 
-    const isPasswordMatch = useMemo(()=> formData.password == confirmPassword,[formData.password,confirmPassword])
+
 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
-          })
+        })
     }
 
     const handleNewAccountFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,44 +39,84 @@ const RegisterForm = () => {
 
         const isFormFilled = Object.values(formData).every(value => value !== undefined && value !== null && value !== "")
 
-        try{
-            let response = await toast.promise(postData(`auth/register`,formData),{
+        try {
+            let response = await toast.promise(postData(`auth/register`, formData), {
                 pending: 'Creating Account...',
+                success:`Account Created Successfully`
             })
-            console.log(response);
-
-        }catch(err){
+                setFormData(initialForm);
+                router.push(`login`)
+        } catch (err) {
             console.error(err)
         }
 
 
     }
 
-    return (
-        <form onSubmit={(e)=>handleNewAccountFormSubmit(e)} className='flex flex-col gap-y-4'>
+    return (<>
+        <form onSubmit={(e) => handleNewAccountFormSubmit(e)} className='flex flex-col gap-y-4'>
             <div className='flex flex-col md:flex-row gap-4'>
-                <Input type='text' name='firstName' placeHolder="First Name" value={formData.firstName}
-                    handleChange={handleInputChange} />
-                <Input type='text' name='lastName' placeHolder="Last Name" value={formData.lastName}
-                    handleChange={handleInputChange} />
+                <Input
+                    type='text'
+                    name='firstName'
+                    placeHolder="First Name"
+                    value={formData.firstName}
+                    handleChange={handleInputChange}
+                    otherProps={{ required: true }}
+                />
+                <Input
+                    type='text' name='lastName'
+                    placeHolder="Last Name"
+                    value={formData.lastName}
+                    handleChange={handleInputChange}
+                    otherProps={{ required: true }}
+                />
             </div>
-            <Input type='email' name='email' placeHolder="Email" value={formData.email}
-                handleChange={handleInputChange} />
-            <div className='flex flex-col md:flex-row gap-4'>
-                <Input type='password' name='password' placeHolder="Password" value={formData.password}
-                    handleChange={handleInputChange} />
-                   
-                <Input type='password' name='confirmPassword' placeHolder="Confirm Password" value={confirmPassword}
-                    handleChange={(e:React.ChangeEvent<any>) => setConfirmPassword(e.target.value)} />
-            </div>
-            <Input type='number' name='phoneNumber' placeHolder="Phone number" value={formData.phoneNumber}
-                handleChange={handleInputChange} />
 
-            <Checkbox>
+            <Input
+                type='email'
+                name='email'
+                placeHolder="Email"
+                value={formData.email}
+                handleChange={handleInputChange}
+                otherProps={{ required: true }}
+            />
+
+            <div className='flex flex-col md:flex-row gap-4'>
+                <Input
+                    type='password'
+                    name='password'
+                    placeHolder="Password"
+                    value={formData.password}
+                    handleChange={handleInputChange}
+                    otherProps={{ required: true }}
+                />
+
+                <Input
+                    type='password'
+                    name='confirmPassword'
+                    placeHolder="Confirm Password"
+                    value={confirmPassword}
+                    handleChange={(e: React.ChangeEvent<any>) => setConfirmPassword(e.target.value)}
+                    otherProps={{ required: true }}
+                />
+            </div>
+
+            <Input
+                type='number'
+                name='phoneNumber'
+                placeHolder="Phone number"
+                value={formData.phoneNumber ? formData.phoneNumber : ``}
+                handleChange={handleInputChange}
+                otherProps={{ required: true }}
+            />
+
+            <Checkbox >
                 <span className='text-sm'>I agree to the <strong>TERMS & CONDITIONS!</strong> and privacy policy!</span>
             </Checkbox>
-            <Button text='Signup' type='submit'/>
+            <Button text='Signup' type='submit' />
         </form>
+    </>
     )
 }
 
@@ -86,12 +127,12 @@ export default RegisterForm
 
 interface CreatePropertyOwnerAccountForm {
 
-    firstName:string,
-    lastName:string,
-    email:string,
-    password:string,
-    phoneNumber:number | undefined,
-    admin?:boolean
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    phoneNumber: number | undefined,
+    admin?: boolean
 
 
 }

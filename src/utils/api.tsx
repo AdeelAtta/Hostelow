@@ -30,11 +30,12 @@ export async function postData(api: string, data: any, token?: string) {
             console.warn(`not OK`, response)
             const responseData = await response.json();
             // Show Error Codes;
-            const match = responseData.message.match(/"([^"]+)"/);
+            console.log(responseData)
+            const match = responseData.error.match(/"([^"]+)"/);
             if (match) {
                 toast.error(`${match[1]}`);
-            } else if (responseData.message) {
-                toast.error(`${responseData.message}`);
+            } else if (responseData.error) {
+                toast.error(`${responseData.error}`);
             }
 
 
