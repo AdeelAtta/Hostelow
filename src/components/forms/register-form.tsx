@@ -42,10 +42,11 @@ const RegisterForm = () => {
         try {
             let response = await toast.promise(postData(`auth/register`, formData), {
                 pending: 'Creating Account...',
-                success:`Account Created Successfully`
             })
                 setFormData(initialForm);
-                router.push(`login`)
+                setConfirmPassword(``)
+                // router.push(`login`)
+                toast.success(`Account Created Successfully`)
         } catch (err) {
             console.error(err)
         }
