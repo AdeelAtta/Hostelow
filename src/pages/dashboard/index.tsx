@@ -1,7 +1,10 @@
 import Aside from '@/components/common/dashboard-components/aside'
 import Content from '@/components/common/dashboard-components/content'
 import TopBar from '@/components/common/dashboard-components/top-bar'
-import React, { ReactElement, useState } from 'react'
+import { userData } from '@/redux/slices/user-slice'
+import React, { ReactElement, useEffect, useState } from 'react'
+import {useSelector} from 'react-redux'
+import router from 'next/router'
 
 interface MenuItem {
   name: string
@@ -14,12 +17,27 @@ const initialPage = null;
 
 const Dashboard = () => {
 
+  const user = useSelector(userData)
   const [currentPage, setCurrentPage] = useState<MenuItem | null>(initialPage);
 
+  useEffect(()=>{
+
+    if(!user){
+      router.push(`login`)
+    }
+    if(user.refresh.expires){
+      const expireDate = new Date(user.refresh.expires);
+      const now = new Date()
+      if(expireDate < now){
+        router.push(`login`)
+      }
+    }else{
+      router.push(`login`)
+    }
+  },[user])
 
   const handleRoute = (menuItem: MenuItem | null) => {
     setCurrentPage(menuItem);
-
   }
 
 
