@@ -6,7 +6,7 @@ import { LuHotel } from "react-icons/lu";
 
 
 
-export let PropertyOwner = [{
+let PropertyOwner = [{
   name: `Manage Hostels`,
   route: `manageProperty`,
   icon: <LuHotel />,

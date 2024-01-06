@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import Image from 'next/image'
 import {PropertyOwner} from '@/utils/menuData'
 import { createMenu } from '@/utils/menuData';
+import LogoutButton from '../logout-button';
 
 
 interface MenuItem {
@@ -128,7 +129,7 @@ export const Aside: React.FC<AsideProps> = ({ handleRoute, currentRoute }) => {
 
             />
            </span>
-           {toggle && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={4.5} stroke="currentColor" className="absolute w-7 h-7 shadow-lg rounded-md border border-red-600 rounder-sm hover:scale-[0.96]  cursor-pointer transition-all text-red-700 hover:text-red-900 top-6 right-2 " onClick={() => setToggle(false)}>
+           {toggle && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={4.5} stroke="currentColor" className="absolute w-7 h-7 shadow-lg rounded-md border border-red-600 rounder-sm hover:scale-[0.96]  cursor-pointer transition-all text-red-700 hover:text-red-900 top-3 right-3 " onClick={() => setToggle(false)}>
              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
            </svg>}
 
@@ -142,11 +143,11 @@ export const Aside: React.FC<AsideProps> = ({ handleRoute, currentRoute }) => {
       </div>
 
       <div className="-mx-6 flex items-center justify-between border-t px-6 pt-4 dark:border-gray-700">
-        {/* <LogoutButton /> */}
+        <LogoutButton />
       </div>
 
         </aside>
-      : <button className="fixed z-[8]  ml-3 h-16 w-12  lg:hidden dark:text-gray-300 text-gray-600" onClick={() => setToggle(true)}>
+      : <button className="bg-white sticky -top-1 p-2 z-[10] rounded-md lg:hidden dark:text-gray-300 text-gray-600" onClick={() => setToggle(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="my-auto h-10 w-10 "

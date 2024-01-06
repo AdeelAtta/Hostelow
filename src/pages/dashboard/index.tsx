@@ -24,15 +24,16 @@ const Dashboard = () => {
 
     if(!user){
       router.push(`login`)
-    }
-    if(user.refresh.expires){
-      const expireDate = new Date(user.refresh.expires);
-      const now = new Date()
-      if(expireDate < now){
+    }else{
+      if(user?.refresh && user.refresh?.expires){
+        const expireDate = new Date(user.refresh.expires);
+        const now = new Date()
+        if(expireDate < now){
+          router.push(`login`)
+        }
+      }else{
         router.push(`login`)
       }
-    }else{
-      router.push(`login`)
     }
   },[user])
 

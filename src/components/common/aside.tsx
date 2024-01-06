@@ -1,6 +1,10 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { FaSearchengin } from "react-icons/fa6";
-
+// 
+// 
+// client side hosteldata sidebar
+// 
+// 
 
 interface MenuItem {
   name: string
