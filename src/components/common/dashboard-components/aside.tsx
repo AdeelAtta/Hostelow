@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import Image from 'next/image'
-import {PropertyOwner} from '@/utils/menuData'
 import { createMenu } from '@/utils/menuData';
 import LogoutButton from '../logout-button';
 
