@@ -50,6 +50,10 @@ const userSlice = createSlice({
         cleanUserData: (state) => {
             state.user = null
             saveToLocalStorage(state)
+        },
+        verifyUser:(state)=>{
+            state.user.isVerified = true
+            saveToLocalStorage(state)
         }
     }
 
@@ -57,7 +61,7 @@ const userSlice = createSlice({
 
 
 
-export const { setUserData, cleanUserData} = userSlice.actions;
+export const { setUserData, cleanUserData,verifyUser} = userSlice.actions;
 
 export const userData = (state) => state.user.user;
 

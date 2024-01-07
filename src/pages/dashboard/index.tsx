@@ -5,6 +5,8 @@ import { userData } from '@/redux/slices/user-slice'
 import React, { ReactElement, useEffect, useState } from 'react'
 import {useSelector} from 'react-redux'
 import router from 'next/router'
+import Modal from '@/components/common/modals/modal'
+import VerifyEmail from '@/components/forms/verify-email'
 
 interface MenuItem {
   name: string
@@ -19,6 +21,7 @@ const Dashboard = () => {
 
   const user = useSelector(userData)
   const [currentPage, setCurrentPage] = useState<MenuItem | null>(initialPage);
+  const [isModal,setIsModal] = useState(false);
 
   useEffect(()=>{
 
@@ -39,10 +42,13 @@ const Dashboard = () => {
 
   const handleRoute = (menuItem: MenuItem | null) => {
     setCurrentPage(menuItem);
+    if(!user.isVerified){
+      setIsModal(true);
+    }
   }
 
 
-  return (
+  return (<>
     <div className="bg-gray-100 dark:bg-gray-900">
 
       <Aside handleRoute={handleRoute} currentRoute={currentPage ? currentPage.route : ''} />
@@ -55,6 +61,13 @@ const Dashboard = () => {
       </div>
 
     </div>
+    <Modal 
+    title={''} 
+    isModal={isModal} 
+    closeModal={()=>setIsModal(false)} >
+      <VerifyEmail closeModal={()=>setIsModal(false)}/>
+    </Modal>
+    </>
   )
 }
 
