@@ -3,28 +3,15 @@ import Button from "./form-elements/button";
 import Input from "./form-elements/input";
 import Select from "react-select";
 import { citiesData } from "@/utils/menuData";
+import { toast } from "react-toastify";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { postData } from "@/utils/api";
 
-type properyProps = {
-    title:string,
-    desc:string,
-    location:string,
-    price:string,
-    discountPrice:string
-}
-
-interface UpdatePropertyDataProps {
-    property:properyProps
-}
-
-const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property}) => {
+const AddNewProperty = () => {
 
     const user = useSelector(userData)
-    const initialFormData = { title: property.title, desc: property.desc, location: property.location, price: property.price, discountPrice: property.discountPrice }
-    const [formData, setFormData] = useState<any>(initialFormData)
+    const [formData, setFormData] = useState<any>({ title: ``, desc: ``, location: ``, price: undefined, discountPrice: undefined })
     const [citiesList, setCitiesList] = useState<any[]>([]);
     const handleChange = (e: ChangeEvent<any>) => {
         setFormData((prev: any) => ({ ...prev, [e.target.name]: `${e.target.value}` }))
@@ -35,7 +22,7 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property}) => {
         e.preventDefault()
         try {
 
-            //Update Hostel Form
+            //Add New Hostel Form
 
             // let response = await toast.promise(postData(`hostel/createhostel`, formData, `${user.access.token}`), {
             //     pending: `Creating...`,
@@ -62,7 +49,7 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property}) => {
 
     return <form onSubmit={(e: FormEvent) => handleSubmit(e)} className="space-y-4 mx-auto max-w-lg">
         <div className="mx-auto max-w-lg text-center">
-            <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Update Hostel Info</h1>
+            <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Add New Hostel</h1>
         </div>
         <div>
             <Input
@@ -79,7 +66,7 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property}) => {
         <div>
             <label htmlFor="location">Location:</label>
             <Select required={true}
-                defaultValue={[{id:formData.location,label:formData.location}]}
+                defaultValue={[]}
                 name="location"
                 id="location"
                 options={citiesList ?? []}
@@ -133,4 +120,4 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property}) => {
 
 }
 
-export default UpdatePropertyData;
+export default AddNewProperty;

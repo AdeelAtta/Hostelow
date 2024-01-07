@@ -5,28 +5,23 @@ import { toast } from "react-toastify";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 
-const AddUpdatePropertyImages = () => {
+
+type properyProps = {
+    title:string,
+    desc:string,
+    location:string,
+    price:string,
+    discountPrice:string
+}
+
+interface AddUpdatePropertyImagesProps {
+    property:properyProps
+}
+
+const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({property}) => {
 
     const user = useSelector(userData)
     const [images, setImages] = useState<any>({ image1: ``, image2: ``, image3: ``, image4: ``, image5: `` })
-
-
-    const handeReset = (key: string) => {
-
-        setImages((prev: any) => ({ ...prev, [key]: null }))
-
-    }
-
-    const handleFileChange = (e: ChangeEvent<any>) => {
-        let file = e.target.files[0];
-        let reader = new FileReader();
-        if (file) {
-            reader.onloadend = function () {
-                setImages((prev: any) => ({ ...prev, [e.target.name]: reader.result }))
-            }
-            reader?.readAsDataURL(file);
-        }
-    }
 
 
     const handleSubmit = async (e: FormEvent) => {
@@ -48,6 +43,24 @@ const AddUpdatePropertyImages = () => {
         // }
 
     }
+
+    const handleFileChange = (e: ChangeEvent<any>) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        if (file) {
+            reader.onloadend = function () {
+                setImages((prev: any) => ({ ...prev, [e.target.name]: reader.result }))
+            }
+            reader?.readAsDataURL(file);
+        }
+    }
+
+    const handeReset = (key: string) => {
+        setImages((prev: any) => ({ ...prev, [key]: null }))
+    }
+
+
+
 
     return <form onSubmit={(e: FormEvent) => handleSubmit(e)} action="" className="space-y-4 mx-auto max-w-lg">
         <div className="mx-auto max-w-lg text-center">

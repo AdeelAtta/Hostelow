@@ -12,6 +12,8 @@ import UpdatePropertyData from "@/components/forms/update-property-data";
 import { hostelsData } from '@/utils/menuData'
 import AddUpdatePropertyImages from "@/components/forms/add-update-property-images";
 import AddUpdatePropertyAmenities from "@/components/forms/add-update-property-amenities";
+import Modal from "@/components/common/modals/modal";
+import AddNewProperty from "@/components/forms/add-new-property";
 
 
 
@@ -20,16 +22,22 @@ const PropertyManagement = () => {
     const [tableData, setTableData] = useState<TableData | any>(null);
     const [propertyData, setPropertyData] = useState<any>(null);
 
-    const [isModal, setIsModal] = useState<boolean>(false);
-    const [currentModal, setCurrentModal] = useState<any>({ route: ``, data: null })
-
+    const [isSideModal, setIsSideModal] = useState<boolean>(false);
+    const [isModal,setIsModal] = useState<boolean>(false)
+    const [currentModalData, setCurrentModalData] = useState<any>({ route: ``, data: null })
 
 
     const renderModalData = () => {
-        switch (currentModal.route.toLowerCase()) {
-            case `update`: return <UpdatePropertyData />
-            case `update images`: return <AddUpdatePropertyImages />
-            case `add amenities`: return <AddUpdatePropertyAmenities />
+        switch(currentModalData.route.toLowerCase()){
+            case `add`: return <AddNewProperty />
+        }
+    }
+
+    const renderSideModalData = () => {
+        switch (currentModalData.route.toLowerCase()) {
+            case `update`: return <UpdatePropertyData property={currentModalData.data} />
+            case `update images`: return <AddUpdatePropertyImages property={currentModalData.data} />
+            case `add amenities`: return <AddUpdatePropertyAmenities property={currentModalData.data} />
             case `delete`: return <div>Delete</div>
         }
     }
@@ -68,19 +76,19 @@ const PropertyManagement = () => {
                     text: ``, type: "Manage", features: [
                         {
                             icon: <VscSaveAs className={`hover:scale-110 transition-all`} />
-                            , text: `Update Data`, type: `button`, name: `Update`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `update`, data: property })); setIsModal(true) }
+                            , text: `Update Data`, type: `button`, name: `Update`, button: () => { setCurrentModalData((prev: any) => ({ ...prev, route: `update`, data: property })); setIsSideModal(true) }
                         },
                         {
                             icon: <IoImagesOutline className={`hover:scale-110 transition-all`} />
-                            , text: `Update Images`, type: `button`, name: `addRooms`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `Update Images`, data: property })); setIsModal(true) }
+                            , text: `Update Images`, type: `button`, name: `addRooms`, button: () => { setCurrentModalData((prev: any) => ({ ...prev, route: `Update Images`, data: property })); setIsSideModal(true) }
                         },
                         {
                             icon: <TbTournament className={`hover:scale-110 transition-all`} />
-                            , text: `Add Amenities`, type: `button`, name: `Amenities`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `Add Amenities`, data: property })); setIsModal(true) }
+                            , text: `Add Amenities`, type: `button`, name: `Amenities`, button: () => { setCurrentModalData((prev: any) => ({ ...prev, route: `Add Amenities`, data: property })); setIsSideModal(true) }
                         },
                         {
                             icon: <RiDeleteBinLine className={`hover:scale-110 transition-all`} />
-                            , text: `Delete`, type: `button`, name: `Delete`, button: () => { setCurrentModal((prev: any) => ({ ...prev, route: `delete`, data: property })); setIsModal(true) }
+                            , text: `Delete`, type: `button`, name: `Delete`, button: () => { setCurrentModalData((prev: any) => ({ ...prev, route: `delete`, data: property })); setIsSideModal(true) }
                         },
                     ]
                 },
@@ -111,16 +119,20 @@ const PropertyManagement = () => {
     return <>
 
         <div className="w-full flex justify-end items-end">
-            <Button onClick={() => { }}>Add New Hostel + </Button>
+            <Button onClick={() => (setCurrentModalData({route:`add`,data:null}),setIsModal(true))}>Add New Hostel + </Button>
         </div>
 
 
         {tableData && <Table tableData={tableData} />}
 
 
-        <SideModal title={``} closeModal={() => setIsModal(false)} isModal={isModal}  >
-            {renderModalData()}
+        <SideModal title={``} closeModal={() => setIsSideModal(false)} isModal={isSideModal}  >
+            {renderSideModalData()}
         </SideModal>
+
+        <Modal title={``} closeModal={() => setIsModal(false)} isModal={isModal}>
+        {renderModalData()}
+        </Modal>
     </>
 
 }

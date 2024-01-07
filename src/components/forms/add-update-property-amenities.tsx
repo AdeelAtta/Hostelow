@@ -45,7 +45,19 @@ const initialAmenities = {
     geyser:false,
 }
 
-const AddUpdatePropertyAmenities = () => {
+type properyProps = {
+    title:string,
+    desc:string,
+    location:string,
+    price:string,
+    discountPrice:string
+}
+
+interface AddUpdatePropertyAmenitiesProps {
+    property:properyProps
+}
+
+const AddUpdatePropertyAmenities:React.FC<AddUpdatePropertyAmenitiesProps> = ({property}) => {
 
     const [amenitiesList, setAmenitiesList] = useState<any>(initialAmenities)
 
