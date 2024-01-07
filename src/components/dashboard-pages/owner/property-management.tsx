@@ -5,7 +5,7 @@ import { TbTournament } from "react-icons/tb";
 import { useEffect, useState } from "react";
 
 import Table from "@/components/common/table";
-import SideModal from "@/components/common/side-modal";
+import SideModal from "@/components/common/modals/side-modal";
 import Button from "@/components/forms/form-elements/button";
 
 import UpdatePropertyData from "@/components/forms/update-property-data";
