@@ -14,10 +14,15 @@ import AddUpdatePropertyImages from "@/components/forms/add-update-property-imag
 import AddUpdatePropertyAmenities from "@/components/forms/add-update-property-amenities";
 import Modal from "@/components/common/modals/modal";
 import AddNewProperty from "@/components/forms/add-new-property";
+import { userData } from "@/redux/slices/user-slice";
+import { useSelector } from "react-redux";
+import { getData } from "@/utils/api";
 
 
 
 const PropertyManagement = () => {
+
+    const user = useSelector(userData)
 
     const [tableData, setTableData] = useState<TableData | any>(null);
     const [propertyData, setPropertyData] = useState<any>(null);
@@ -104,9 +109,9 @@ const PropertyManagement = () => {
     useEffect(() => {
         const fetchHostelData = async () => {
             try {
-                let response = hostelsData;
-                setPropertyData(response);
-                const data = transformData(response);
+                let response = await getData(`hostel/gethostels`,`${user.access.token}`)
+                setPropertyData(response.hostels);
+                const data = transformData(response.hostels);
                 setTableData(data)
             } catch (err) {
                 console.error(err);
