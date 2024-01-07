@@ -113,7 +113,7 @@ const AddUpdatePropertyImages = () => {
         <Button
             otherProps={{ style: { width: `100%`, marginTop: `20px` } }}
             type="submit"
-        >Submit</Button>
+        >Save</Button>
     </form>
 }
 export default AddUpdatePropertyImages

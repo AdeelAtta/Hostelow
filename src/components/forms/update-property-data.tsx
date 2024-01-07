@@ -1,4 +1,4 @@
-import Button from "@/components/elements/Button"
+import Button from "./form-elements/button";
 import Input from "./form-elements/input";
 
 const UpdatePropertyData = () => {
@@ -34,7 +34,10 @@ const UpdatePropertyData = () => {
             ></textarea>
         </div>
         <div>
-            <Button text="save" type="submit" />
+        <Button
+                otherProps={{ style: { width: `100%`, marginTop: `20px` } }}
+                type="submit"
+            >Save</Button>
         </div>
     </form>
 

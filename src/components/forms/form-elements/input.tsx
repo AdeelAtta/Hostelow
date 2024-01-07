@@ -4,14 +4,15 @@ interface InputProps {
     placeholder?: string
     type: string
     name: string
-    value: string | number
+    value?: string | number
     onChange: (e: any) => void;
     otherProps?: any
     horizontal?: boolean
+    children?:any
 
 }
 
-const Input: React.FC<InputProps> = ({ title, placeholder, type, name, value, onChange, horizontal = false, otherProps }) => {
+const Input: React.FC<InputProps> = ({ title, placeholder, type, name, value, onChange, horizontal = false, otherProps,children }) => {
 
 
     return <>
@@ -24,10 +25,10 @@ const Input: React.FC<InputProps> = ({ title, placeholder, type, name, value, on
                 name={`${name}`}
                 id={`${name}`}
                 placeholder={`${placeholder}`}
-                className={`w-full rounded-lg border-2 border-gray-200 px-3 py-[0.65rem] text-sm dark:bg-gray-600 dark:text-gray-50 text-gray-900 dark:border-gray-800  ${otherProps?.disabled && ` cursor-not-allowed `}`}
+                className={`${!children ? `w-full `: ` scale-150` }  rounded-lg border-2 border-gray-200 px-3 py-[0.65rem] text-sm dark:bg-gray-600 dark:text-gray-50 text-gray-900 dark:border-gray-800  ${otherProps?.disabled && ` cursor-not-allowed `}`}
                 value={value}
                 onChange={(e) => onChange(e)}
-            />
+            />{children}
         </label>
 
     </>
