@@ -118,7 +118,7 @@ const PropertyManagement = () => {
         {tableData && <Table tableData={tableData} />}
 
 
-        <SideModal title={`${currentModal.route}`} closeModal={() => setIsModal(false)} isModal={isModal}  >
+        <SideModal title={``} closeModal={() => setIsModal(false)} isModal={isModal}  >
             {renderModalData()}
         </SideModal>
     </>

@@ -63,7 +63,7 @@ const ProfileSettings = () => {
         <div className="mx-auto max-w-lg text-center">
             <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Edit Your Profile</h1>
         </div>
-        <p className="max-w-xl text-lg">
+        <p className="max-w-xl text-lg text-center">
             Use the form Below to update your profile.
         </p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

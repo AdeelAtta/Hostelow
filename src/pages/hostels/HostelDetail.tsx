@@ -80,7 +80,7 @@ const HostelDetail = () => {
           <div className="rounded-lg">
             <img src="/assets/hostel_large.png" alt="Hostel Main Image" className='w-full' />
           </div>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-4 gap-4 md:grid-cols-2">
             <img src="/assets/hostel_large.png" alt="Hostel Main Image" className='w-full' />
             <img src="/assets/hostel_small.png" alt="Hostel Main Image" className='w-full' />
             <img src="/assets/hostel_small.png" alt="Hostel Main Image" className='w-full' />

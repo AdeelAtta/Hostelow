@@ -71,7 +71,7 @@ const LoginForm = (props: any) => {
             />
 
             <Link className='text-right text-blue-400 font-thin text-md' href={""}>Forgot Password ?</Link>
-            <Button text='button' type='submit' />
+            <Button text='Login' type='submit' />
         </form>
     )
 }
