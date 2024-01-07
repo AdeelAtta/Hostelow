@@ -112,7 +112,7 @@ const RegisterForm = () => {
                 otherProps={{ required: true }}
             />
 
-            <Checkbox >
+            <Checkbox name={'tick'}  >
                 <span className='text-sm'>I agree to the <strong>TERMS & CONDITIONS!</strong> and privacy policy!</span>
             </Checkbox>
             <Button text='Signup' type='submit' />
