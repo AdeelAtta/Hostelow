@@ -1,10 +1,67 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Aside from '@/components/common/aside';
 import HostelCard from '@/components/elements/hostel-card';
+import { getData } from '@/utils/api';
+
+type propertyProps = {
+  userId:string
+  _id:string,
+  thumbnail: string
+  title:string,
+  desc:string,
+  location:string,
+  price:number,
+  discountPrice:number
+  amentities:null | any
+  rating:number
+  reviews:null | any
+  rooms:null | any
+  date:string
+  isPublished:boolean
+
+}
+
 
 const Hostels = () => {
 
   const [listStyle, setListStyle] = useState(true);
+  const [properties,setProperties] = useState< propertyProps[] | null>(null);
+
+
+
+
+  useEffect(()=>{
+    
+    const getProperties = async() => {
+
+        try{
+
+          const response = await getData(`hostel/gethostels`);
+          setProperties(response.hostels);
+          console.log(response.hostels)
+
+        }catch(err){
+          console.error(err)
+        }
+
+    }
+
+    getProperties()
+  },[])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (<>
     <main className='flex border-t-2 border-gray-100 mt-2 max-w-screen-2xl'>
       <Aside>
@@ -144,12 +201,23 @@ const Hostels = () => {
           </div>
         </section>
 
-        <div className=' hostel-cards flex flex-wrap'>
-          <HostelCard listStyle={listStyle} />
-          <HostelCard listStyle={listStyle} />
-          <HostelCard listStyle={listStyle} />
-          <HostelCard listStyle={listStyle} />
-          <HostelCard listStyle={listStyle} />
+        <div className='w-full hostel-cards flex flex-wrap gap-5'>
+      {
+        properties && properties.map((property:propertyProps) => {
+          return <><HostelCard listStyle={listStyle} property={property} /></>
+        })
+
+
+        // <HostelCard listStyle={listStyle} property={} />
+        // <HostelCard listStyle={listStyle} property={} />
+        // <HostelCard listStyle={listStyle} property={} />
+        // <HostelCard listStyle={listStyle} property={} />
+
+      }
+
+
+     {/* <HostelCard listStyle={listStyle} property={{}} /> */}
+
         </div>
 
         <ol className="my-12 flex justify-center gap-1 text-xs font-medium">

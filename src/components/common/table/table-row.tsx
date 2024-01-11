@@ -3,7 +3,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 
 
 
-interface TaskDataRowProps {
+interface DataRowProps {
     indexKey: number,
     row: {
         icon?: ReactNode
@@ -26,7 +26,7 @@ interface TaskForm {
 }
 
 
-const TableRow: React.FC<TaskDataRowProps> = ({ indexKey, row, noOfColumns, disable = false }) => {
+const TableRow: React.FC<DataRowProps> = ({ indexKey, row, noOfColumns, disable = false }) => {
 
     const initial = {}
     const [currentTask, setCurrentTask] = useState<any>(initial)

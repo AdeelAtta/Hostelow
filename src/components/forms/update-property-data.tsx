@@ -8,19 +8,30 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { postData } from "@/utils/api";
 
-type properyProps = {
+type propertyProps = {
+    userId:string
+    _id:string,
+    thumbnail: string
     title:string,
     desc:string,
     location:string,
-    price:string,
-    discountPrice:string
+    price:number,
+    discountPrice:number
+    amentities:null | any
+    rating:number
+    reviews:null | any
+    rooms:null | any
+    date:string
+    isPublished:boolean
+
 }
 
 interface UpdatePropertyDataProps {
-    property:properyProps
+    property:propertyProps,
+    closeModal:()=>void
 }
 
-const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property}) => {
+const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property,closeModal}) => {
 
     const user = useSelector(userData)
     const initialFormData = { title: property.title, desc: property.desc, location: property.location, price: property.price, discountPrice: property.discountPrice }
@@ -37,11 +48,15 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property}) => {
 
             //Update Hostel Form
 
-            // let response = await toast.promise(postData(`hostel/createhostel`, formData, `${user.access.token}`), {
-            //     pending: `Creating...`,
-            //     success: `New Hostel Added`
+            let response = await toast.promise(postData(`hostel/createhostel`, formData, `${user.access.token}`), {
+                pending: `Creating...`,
+                success: `New Hostel updated`
 
-            // })
+            })
+
+            if(response.message){
+                closeModal()
+            }
 
 
 

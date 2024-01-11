@@ -52,7 +52,7 @@ export async function postData(api: string, data: any, token?: string) {
     }
 }
 
-export async function getData(api: string, token: string) {
+export async function getData(api: string, token?: string) {
     const APIURL = URL + api;
     try {
         const headers: Record<string, string> = {

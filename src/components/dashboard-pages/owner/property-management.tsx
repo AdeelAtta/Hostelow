@@ -9,7 +9,7 @@ import SideModal from "@/components/common/modals/side-modal";
 import Button from "@/components/forms/form-elements/button";
 
 import UpdatePropertyData from "@/components/forms/update-property-data";
-import { hostelsData } from '@/utils/menuData'
+// import { hostelsData } from '@/utils/menuData'
 import AddUpdatePropertyImages from "@/components/forms/add-update-property-images";
 import AddUpdatePropertyAmenities from "@/components/forms/add-update-property-amenities";
 import Modal from "@/components/common/modals/modal";
@@ -17,6 +17,7 @@ import AddNewProperty from "@/components/forms/add-new-property";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 import { getData } from "@/utils/api";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -31,18 +32,27 @@ const PropertyManagement = () => {
     const [isModal,setIsModal] = useState<boolean>(false)
     const [currentModalData, setCurrentModalData] = useState<any>({ route: ``, data: null })
 
+    const [isRefresh,setIsRefresh] = useState(false);
+
+
+
+
+
+
+
+
 
     const renderModalData = () => {
         switch(currentModalData.route.toLowerCase()){
-            case `add`: return <AddNewProperty />
+            case `add`: return <AddNewProperty closeModal={()=>{setIsRefresh(!isRefresh); setIsModal(false) }} />
         }
     }
 
     const renderSideModalData = () => {
         switch (currentModalData.route.toLowerCase()) {
-            case `update`: return <UpdatePropertyData property={currentModalData.data} />
-            case `update images`: return <AddUpdatePropertyImages property={currentModalData.data} />
-            case `add amenities`: return <AddUpdatePropertyAmenities property={currentModalData.data} />
+            case `update`: return <UpdatePropertyData property={currentModalData.data} closeModal={()=>{ setIsRefresh(!isRefresh) ;setIsSideModal(false)}} />
+            case `update images`: return <AddUpdatePropertyImages property={currentModalData.data} closeModal={()=>{ setIsRefresh(!isRefresh); setIsSideModal(false) }} />
+            case `add amenities`: return <AddUpdatePropertyAmenities property={currentModalData.data} closeModal={()=>{ setIsRefresh(!isRefresh); setIsSideModal(false) }} />
             case `delete`: return <div>Delete</div>
         }
     }
@@ -119,16 +129,30 @@ const PropertyManagement = () => {
 
         }
         fetchHostelData()
-    }, [])
+    }, [isRefresh])
 
     return <>
-
+        <ToastContainer/>
         <div className="w-full flex justify-end items-end">
             <Button onClick={() => (setCurrentModalData({route:`add`,data:null}),setIsModal(true))}>Add New Hostel + </Button>
         </div>
 
 
+
+
+
+
+
         {tableData && <Table tableData={tableData} />}
+
+
+
+
+
+
+
+
+
 
 
         <SideModal title={``} closeModal={() => setIsSideModal(false)} isModal={isSideModal}  >

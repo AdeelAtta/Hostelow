@@ -4,25 +4,46 @@ import Image from 'next/image'
 
 type HostelCardProps = {
     listStyle: boolean
+    property:propertyProps
 }
 
-const HostelCard: React.FC<HostelCardProps> = ({ listStyle }) => {
+type propertyProps = {
+    userId:string
+    _id:string,
+    thumbnail: string
+    title:string,
+    desc:string,
+    location:string,
+    price:number,
+    discountPrice:number
+    amentities:null | any
+    rating:number
+    reviews:null | any
+    rooms:null | any
+    date:string
+    isPublished:boolean
+
+}
+
+
+
+const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
     return (
         <div className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
             <div className=' hostel-image overflow-hidden max-w-[320px] h-auto '>
-                <Image
+                <Image 
                     width={300}
                     height={300}
-                    className=' rounded-e-xl w-full'
-                    src="/assets/welcome_banner.png"
-                    alt="alt"
+                    className=' rounded-e-xl w-full max-h-[300px] min-w-[300px]'
+                    src={property.thumbnail}
+                    alt={property.title}
                 />
             </div>
 
             <div className={`${listStyle ? ` lg:p-4 `:``} py-2 flex-1 details w-full flex flex-col  justify-between `}>
                 <div className={`${listStyle ? `flex-col lg:flex-row ` : ` flex-col `} w-full flex justify-between min-w-[320px]`}>
                     <div className='min-w-fit'>
-                        <h2 className='text-2xl lg:text-3xl font-bold'>Fatima Girls Hostel</h2>
+                        <h2 className='text-2xl lg:text-3xl font-bold'>{property.title}</h2>
                         <p className='font-md text-sm md:text-md lg:text-lg text-gray-500'>0.4 km from city center</p>
                         <p className='font-md text-sm md:text-md lg:text-lg text-gray-500'>Free Cancellation . Breakfast Included</p>
                     </div>
@@ -48,7 +69,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle }) => {
                         </div>
                     </div >
                     <div className='min-w-fit flex flex-col justify-end items-end gap-4 mt-5'>
-                        <p className='font-bold text-md lg:text-xl text-black'>Rs: 10,000 / month</p>
+                        <p className='font-bold text-md lg:text-xl text-black'>Rs: {property.price} / month</p>
                         <button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-3 py-3 border-indigo-600 bg-indigo-500'><Link href={'/hostels/HostelDetail'}>See Details</Link></button>
                     </div>
                 </div>

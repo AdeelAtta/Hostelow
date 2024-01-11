@@ -12,7 +12,8 @@ const initialForm = {
     email: ``,
     password: ``,
     phoneNumber: undefined,
-    admin: true
+    role: `admin`
+    // admin: true
 
 }
 
@@ -133,11 +134,6 @@ interface CreatePropertyOwnerAccountForm {
     email: string,
     password: string,
     phoneNumber: number | undefined,
-    admin?: boolean
-
-
-}
-
-function PostData(arg0: string, formData: CreatePropertyOwnerAccountForm) {
-    throw new Error('Function not implemented.');
+    // admin?: boolean
+    role:string
 }

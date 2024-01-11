@@ -8,29 +8,36 @@ import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 import { postData } from "@/utils/api";
 
-const AddNewProperty = () => {
+const AddNewProperty:React.FC<any> = ({closeModal}) => {
 
     const user = useSelector(userData)
-    const [formData, setFormData] = useState<any>({ title: ``, desc: ``, location: ``, price: undefined, discountPrice: undefined })
+    const [formData, setFormData] = useState<any>({ thumbnail:`thimbnail`, title: ``, desc: ``, location: ``, price: undefined, discountPrice: undefined })
     const [citiesList, setCitiesList] = useState<any[]>([]);
     const handleChange = (e: ChangeEvent<any>) => {
-        setFormData((prev: any) => ({ ...prev, [e.target.name]: `${e.target.value}` }))
+        setFormData((prev: any) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-
             //Add New Hostel Form
 
-            // let response = await toast.promise(postData(`hostel/createhostel`, formData, `${user.access.token}`), {
-            //     pending: `Creating...`,
-            //     success: `New Hostel Added`
-
-            // })
+                const data = {
+                    ...formData,price:+formData.price, discountPrice : +formData.discountPrice
+                }
 
 
+
+            let response = await toast.promise(postData(`hostel/createhostel`, data, `${user.access.token}`), {
+                pending: `Creating...`,
+
+            })
+
+
+            if(response.userId){
+                closeModal();
+            }
 
 
         } catch (err) {

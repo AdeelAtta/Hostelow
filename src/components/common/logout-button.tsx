@@ -11,12 +11,12 @@ const LogoutButton: React.FC<any> = ({ text }) => {
   const handleLogout = async () => {
 
     try {
-      let response = await toast.promise(postData(`auth/refreshToken`, {
-        refreshToken: `${user?.refresh?.token}`
-      }, `${user.access.token}`), {
-        pending: 'Signing out...',
-        error: 'Something Went Wrong: Network Error 🤯',
-      })
+      // let response = await toast.promise(postData(`auth/refreshToken`, {
+      //   refreshToken: `${user?.refresh?.token}`
+      // }, `${user.access.token}`), {
+      //   pending: 'Signing out...',
+      //   error: 'Something Went Wrong: Network Error 🤯',
+      // })
 
       dispatch(cleanUserData())
 
