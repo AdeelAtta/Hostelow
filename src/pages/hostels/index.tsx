@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import Aside from '@/components/common/aside';
 import HostelCard from '@/components/elements/hostel-card';
 import { getData } from '@/utils/api';
+import { citiesData } from '@/utils/menuData';
+import Select from "react-select";
+import Input from '@/components/forms/form-elements/input';
+import { FaStar } from "react-icons/fa";
+import { CiStar } from "react-icons/ci";
+
 
 type propertyProps = {
-  userId:string
-  _id:string,
+  userId: string
+  _id: string,
   thumbnail: string
-  title:string,
-  desc:string,
-  location:string,
-  price:number,
-  discountPrice:number
-  amentities:null | any
-  rating:number
-  reviews:null | any
-  rooms:null | any
-  date:string
-  isPublished:boolean
+  title: string,
+  desc: string,
+  location: string,
+  price: number,
+  discountPrice: number
+  amentities: null | any
+  rating: number
+  reviews: null | any
+  rooms: null | any
+  date: string
+  isPublished: boolean
 
 }
 
@@ -25,36 +31,50 @@ type propertyProps = {
 const Hostels = () => {
 
   const [listStyle, setListStyle] = useState(true);
-  const [properties,setProperties] = useState< propertyProps[] | null>(null);
+  const [properties, setProperties] = useState<propertyProps[] | null>(null);
+
+  const [citiesList, setCitiesList] = useState<any[]>([])
+  const [filterForm, setFilterForm] = useState<any>({})
+  const [starFill,setStarFill] = useState(<FaStar className="text-2xl fill-yellow-500 " />)
+  const [star,setStar] = useState(<CiStar className="text-2xl text-yellow-500 " /> )
+
+  const handleChange = (e:ChangeEvent<any>) =>{
+
+    setFilterForm((prev: any) => ({ ...prev, [e.target.name]: e.target.value }))
+
+  }
 
 
+  useEffect(() => {
 
+    const getProperties = async () => {
 
-  useEffect(()=>{
-    
-    const getProperties = async() => {
+      try {
 
-        try{
+        const response = await getData(`hostel/gethostels`);
+        setProperties(response.hostels);
+        console.log(response.hostels)
 
-          const response = await getData(`hostel/gethostels`);
-          setProperties(response.hostels);
-          console.log(response.hostels)
-
-        }catch(err){
-          console.error(err)
-        }
+      } catch (err) {
+        console.error(err)
+      }
 
     }
 
     getProperties()
-  },[])
+  }, [])
 
 
 
 
 
 
+  useEffect(() => {
 
+    const list = citiesData.map((city: any) => ({ value: `${city.name}`, label: `${city.name}` }))
+    setCitiesList(list);
+
+  }, [])
 
 
 
@@ -65,76 +85,59 @@ const Hostels = () => {
   return (<>
     <main className='flex border-t-2 border-gray-100 mt-2 max-w-screen-2xl'>
       <Aside>
-
-        <details
-          className="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
-        >    <summary
-          className="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition"
-        >
-            <span className="text-sm font-medium"> Popular Filters </span>
-
-            <span className="transition ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="h-4 w-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-            </span>
-          </summary>
-          <ul className="space-y-1 border-t border-gray-200 p-4">
-            <li>
-              <label htmlFor="FilterInStock" className="inline-flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="FilterInStock"
-                  className="h-5 w-5 rounded border-gray-300"
-                />
-
-                <span className="text-sm font-medium text-gray-700">
-                  Budget Rooms
-                </span>
-              </label>
-            </li>
-
-            <li>
-              <label htmlFor="FilterPreOrder" className="inline-flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="FilterPreOrder"
-                  className="h-5 w-5 rounded border-gray-300"
-                />
-
-                <span className="text-sm font-medium text-gray-700">
-                  Food Included
-                </span>
-              </label>
-            </li>
-
-            <li>
-              <label htmlFor="FilterOutOfStock" className="inline-flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="FilterOutOfStock"
-                  className="h-5 w-5 rounded border-gray-300"
-                />
-
-                <span className="text-sm font-medium text-gray-700">
-                  Free Laundry
-                </span>
-              </label>
-            </li>
-          </ul>
-        </details>
-
+        <div className='overflow-y-auto'>
+        <h4 className='text-2xl font-bold mb-5'>Filters</h4>
+        <div className='mb-5'>
+        <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Location</h4>
+          <Select
+            name="location"
+            id="location"
+            options={citiesList ?? []}
+            className="basic-multi-select w-full mt-3 "
+            classNamePrefix="select user"
+            onChange={(e: any) => setFilterForm((prev: any) => ({ ...prev, location: `${e.value}` }))}
+          />
+        </div>
+        <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Promotion & Services</h4>
+        <div className='my-5 flex flex-col items-start justify-start gap-2'>
+          <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Discounted</span>
+          <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Free Stay</span>
+          {/* <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Deals</span> */}
+        </div>
+        <h4 className='text-md font-semibold mb-3 border-b-2 border-gray-100'>Price</h4>
+        <div className='flex gap-2 max-w-[320px] mb-5'>
+        <Input 
+        title='Min'
+        type={`number`} 
+        name={'min'}
+        placeholder='Minimum price' 
+        value={filterForm.min}
+        onChange={handleChange}   
+        otherProps={{style:{maxWidth:`150px`}}}       
+        
+         />
+         <Input 
+        title='Max'
+        type={`number`} 
+        name={'max'} 
+        placeholder='Maximum price' 
+        value={filterForm.max}
+        onChange={handleChange}
+        otherProps={{style:{maxWidth:`150px`}}}        
+        
+         />
+        </div>
+        <h4 className='text-md font-semibold border-b-2 mb-3 border-gray-100'>Rating</h4>
+        <div className='mb-5'>
+        <ul className='flex flex-col gap-3'>
+        <li className='flex gap-2'>{starFill}{starFill}{starFill}{starFill}{starFill}</li>
+        <li className='flex gap-2'>{starFill}{starFill}{starFill}{starFill}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
+        <li className='flex gap-2'>{starFill}{starFill}{starFill}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
+        <li className='flex gap-2'>{starFill}{starFill}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
+        <li className='flex gap-2'>{starFill}{star}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
+        </ul>
+        </div>
+        </div>
       </Aside>
 
       <div className='w-full border-2'>
@@ -202,21 +205,21 @@ const Hostels = () => {
         </section>
 
         <div className=' hostel-cards flex flex-wrap gap-5'>
-      {
-        properties && properties.map((property:propertyProps) => {
-          return <><HostelCard listStyle={listStyle} property={property} /></>
-        })
+          {
+            properties && properties.map((property: propertyProps) => {
+              return <><HostelCard listStyle={listStyle} property={property} /></>
+            })
 
 
-        // <HostelCard listStyle={listStyle} property={} />
-        // <HostelCard listStyle={listStyle} property={} />
-        // <HostelCard listStyle={listStyle} property={} />
-        // <HostelCard listStyle={listStyle} property={} />
+            // <HostelCard listStyle={listStyle} property={} />
+            // <HostelCard listStyle={listStyle} property={} />
+            // <HostelCard listStyle={listStyle} property={} />
+            // <HostelCard listStyle={listStyle} property={} />
 
-      }
+          }
 
 
-     {/* <HostelCard listStyle={listStyle} property={{}} /> */}
+          {/* <HostelCard listStyle={listStyle} property={{}} /> */}
 
         </div>
 

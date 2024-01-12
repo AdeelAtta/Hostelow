@@ -26,16 +26,18 @@ const Header = () => {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-md">
                 <li>
-                  <span
-                    className="text-stone-700 transition hover:text-gray-500/75"
+                  <Link href={`/about`}>
+                    <span
+                      className="text-stone-700 transition hover:text-gray-500/75"
 
-                  >
-                    About
-                  </span>
+                    >
+                      About
+                    </span>
+                  </Link>
                 </li>
 
                 <li>
-                  <Link href={`hostels`}>
+                  <Link href={`/hostels`}>
                     <span
                       className="text-stone-700 transition hover:text-gray-500/75"
                     >

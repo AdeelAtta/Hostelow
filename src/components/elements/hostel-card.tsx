@@ -30,11 +30,11 @@ type propertyProps = {
 const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
     return (
         <div className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
-            <div className=' hostel-image overflow-hidden max-w-[320px] h-auto '>
+            <div className=' hostel-image overflow-hidden max-w-[320px] h-auto min-h-[300px]'>
                 <Image 
                     width={300}
                     height={300}
-                    className=' rounded-e-xl w-full max-h-[300px] min-w-[300px]'
+                    className=' rounded-e-xl w-full h-full min-w-[300px]'
                     src={property.thumbnail}
                     alt={property.title}
                 />
@@ -50,16 +50,16 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     <div className={`${listStyle ? `lg:static ml-20` : ` `} absolute z-[5] top-8 right-6  flex items-center justify-end lg:mr-5 gap-2 `}>
                         <span className='text-right min-w-fit'>
                             <p className='text-xl font-bold text-green-600'>Excellent</p>
-                            <p className={`${listStyle ? `lg:text-gray-500 `:`  `} text-white text-lg min-w-fit`}>1,400 reviews</p>
+                           {property.reviews && <p className={`${listStyle ? `lg:text-gray-500 `:`  `} text-white text-lg min-w-fit`}>{property.reviews} reviews</p>}
                         </span>
-                        <span className='text-lg py-3 px-5 rounded-full border-[1px] border-green-400 text-green-600 bg-green-300'>9.6</span>
+                        {(property.rating >= 0) && <span className='text-lg py-3 px-5 rounded-full border-[1px] border-green-400 text-green-600 bg-green-300'>{property.rating}</span>}
                     </div>
                 </div>
                 <div className={`${listStyle ? ` flex-col lg:flex-row ` : ` flex-col `} w-full flex  justify-between `}>
                     <div className='min-w-fit'>
                         <h4 className='hidden lg:flex text-xl font-bold'>Shared Room</h4>
                         <span className={`${!listStyle && `hidden` }`}>
-                            <p className='hidden lg:flex font-md text-sm md:text-md lg:text-lg text-gray-500'>3x per room</p>
+                            <p className='hidden lg:flex font-md text-sm md:text-md lg:text-lg text-gray-500'>meals per day</p>
                             <p className='hidden lg:flex font-md text-sm md:text-md lg:text-lg text-gray-500'>Fast Internet</p>
                             <p className='hidden lg:flex font-md text-sm md:text-md lg:text-lg text-gray-500'>1x attach bathroom</p>
                         </span>
@@ -70,7 +70,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     </div >
                     <div className='min-w-fit flex flex-col justify-end items-end gap-4 mt-5'>
                         <p className='font-bold text-md lg:text-xl text-black'>Rs: {property.price} / month</p>
-                        <button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-3 py-3 border-indigo-600 bg-indigo-500'><Link href={'/hostels/HostelDetail'}>See Details</Link></button>
+                        <button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-3 py-3 border-indigo-600 bg-indigo-500'><Link href={`/hostels/HostelDetail/${property?.slug ?? `HostelName`}`}>See Details</Link></button>
                     </div>
                 </div>
             </div>
