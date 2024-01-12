@@ -11,7 +11,8 @@ import { postData } from "@/utils/api";
 const AddNewProperty:React.FC<any> = ({closeModal}) => {
 
     const user = useSelector(userData)
-    const [formData, setFormData] = useState<any>({ thumbnail:``, title: ``, desc: ``, location: ``, price: undefined, discountPrice: undefined })
+    const [formData, setFormData] = useState<any>({ title: ``, desc: ``, location: ``, price: undefined, discountPrice: undefined })
+    const [thumbnail,setThumbnail] = useState(``);
     const [citiesList, setCitiesList] = useState<any[]>([]);
     const handleChange = (e: ChangeEvent<any>) => {
         setFormData((prev: any) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -26,7 +27,7 @@ const AddNewProperty:React.FC<any> = ({closeModal}) => {
             
 
                 const data = {
-                    ...formData
+                    ...formData,
                 }
 
                 if(formData.price){
@@ -35,6 +36,10 @@ const AddNewProperty:React.FC<any> = ({closeModal}) => {
 
                 if(formData.discountPrice){
                     data.discountPrice = formData.discountPrice
+                }
+
+                if(thumbnail){
+                    data.thumbnail = thumbnail;
                 }
 
 

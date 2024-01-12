@@ -23,13 +23,16 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState<MenuItem | null>(initialPage);
   const [isModal,setIsModal] = useState(false);
 
-  useEffect(()=>{
+  if(!user){
 
+  }
+
+  useEffect(()=>{
     if(!user){
-      router.push(`login`)
+      router.push(`/login`)
     }else{
-      if(user?.refresh && user.refresh?.expires){
-        const expireDate = new Date(user.refresh.expires);
+      if(user?.access && user.access?.expires){
+        const expireDate = new Date(user.access.expires);
         const now = new Date()
         if(expireDate < now){
           router.push(`login`)

@@ -7,6 +7,8 @@ import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { postData } from "@/utils/api";
+import Image from 'next/image'
+import { IoClose } from "react-icons/io5";
 
 type propertyProps = {
     userId:string
@@ -34,27 +36,56 @@ interface UpdatePropertyDataProps {
 const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property,closeModal}) => {
 
     const user = useSelector(userData)
-    const initialFormData = { title: property.title, desc: property.desc, location: property.location, price: property.price, discountPrice: property.discountPrice }
+    const initialFormData = { title: property.title, desc: property.desc, location: property.location, price: property.price, discountPrice: property.discountPrice,isPublished: property.isPublished }
     const [formData, setFormData] = useState<any>(initialFormData)
+    const [thumbnail,setThumbnail] = useState(`${property.thumbnail}`)
     const [citiesList, setCitiesList] = useState<any[]>([]);
+
+
+
     const handleChange = (e: ChangeEvent<any>) => {
-        setFormData((prev: any) => ({ ...prev, [e.target.name]: `${e.target.value}` }))
+        if(e.target.name == `isPublished`){
+            setFormData((prev: any) => ({ ...prev, [e.target.name]: !formData.isPublished }))
+        }else{
+            setFormData((prev: any) => ({ ...prev, [e.target.name]: e.target.value }))
+        }
     }
+
+    const handleFileChange = (e: ChangeEvent<any>) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        if (file) {
+            reader.onloadend = function () {
+                setThumbnail(`${reader.result}`)
+            }
+            reader?.readAsDataURL(file);
+        }
+    }
+
+    const handleReset = (key: string) => {
+        setThumbnail(``)
+    }
+
 
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
 
+            let data = {
+                ...formData,
+                hostelId:property._id,
+                thumbnail:thumbnail
+            }
             //Update Hostel Form
 
-            let response = await toast.promise(postData(`hostel/createhostel`, formData, `${user.access.token}`), {
+            let response = await toast.promise(postData(`hostel/updateHostel`, data, `${user.access.token}`), {
                 pending: `Creating...`,
                 success: `New Hostel updated`
 
             })
 
-            if(response.message){
+            if(response._id){
                 closeModal()
             }
 
@@ -79,6 +110,19 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property,closeMod
         <div className="mx-auto max-w-lg text-center">
             <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Update Hostel Info</h1>
         </div>
+        <div className=' hostel-image overflow-hidden max-w-[320px] h-auto '>
+            <label htmlFor="">Thumbnail :</label>
+            <div className="relative rounded-lg flex border-[1px] border-gray-300 hover:opacity-60 cursor-pointer">
+                {(thumbnail.length>0) && <IoClose className="z-[11] absolute right-0 text-red-600 text-3xl transition-all text-semibold" onClick={() => handleReset(`thumbnail`)} />}
+                <img src={thumbnail} alt={formData.name} className='w-full min-h-[200px]' />
+                <input
+                    className="z-[10] w-full absolute rounded-lg h-full text-center flex items-center pt-10 opacity-0 "
+                    type="file"
+                    name="img0"
+                    onChange={handleFileChange}
+                />
+            </div>
+            </div>
         <div>
             <Input
                 title="Hostel Name"
@@ -137,6 +181,18 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property,closeMod
                 value={formData.desc}
                 onChange={(e: ChangeEvent) => handleChange(e)}
             ></textarea>
+            <Input
+                
+                type="checkbox"
+                name={`isPublished`}
+                onChange={handleChange}
+                horizontal={true}
+                otherProps={{ checked: formData.isPublished }}
+                >
+                <li className='mt-3 ml-2 inline-flex items-center gap-x-2'>
+                    <span className='text-base'> Publish? </span>
+                </li>
+            </Input>
         </div>
         <div>
             <Button

@@ -75,7 +75,7 @@ const PropertyManagement = () => {
 
         data.map((property: any) => {
 
-            const { thumbnail, title, desc, price, location, rating, amenities, date, rooms } = property;
+            const { thumbnail, title, desc, price, location, rating, amenities, date, rooms,discountPrice } = property;
 
             rows.push([
                 // { imgUrl: thumbnail },
@@ -83,7 +83,7 @@ const PropertyManagement = () => {
                 // { text: `${desc}`, type: `none`, name: `desc` },
                 { text: `${rating}`, type: `none`, name: `rating` },
                 { text: `${price}`, type: `none`, name: `price` },
-                { text: `${price}`, type: `none`, name: `Discounted price` },
+                { text: `${discountPrice}`, type: `none`, name: `discountPrice` },
                 { text: `${location}`, type: `none`, name: `location` },
                 { text: `${rooms}`, type: `none`, name: `rooms` },
                 { text: `${date.slice(0, 10)}`, type: `none`, name: `date` },

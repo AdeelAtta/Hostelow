@@ -137,7 +137,7 @@ const Hostels = () => {
 
       </Aside>
 
-      <div className='xl:ml-40 border-2'>
+      <div className='w-full border-2'>
         <section>
           <div className="mx-auto max-w-screen-xl px-4  sm:px-6 sm:py-12 lg:px-8">
 
@@ -201,7 +201,7 @@ const Hostels = () => {
           </div>
         </section>
 
-        <div className='w-full hostel-cards flex flex-wrap gap-5'>
+        <div className=' hostel-cards flex flex-wrap gap-5'>
       {
         properties && properties.map((property:propertyProps) => {
           return <><HostelCard listStyle={listStyle} property={property} /></>
