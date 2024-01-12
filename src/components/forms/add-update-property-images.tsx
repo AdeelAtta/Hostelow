@@ -106,7 +106,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
 
     return <form onSubmit={(e: FormEvent) => handleSubmit(e)} action="" className="space-y-4 mx-auto max-w-lg">
         <div className="mx-auto max-w-lg text-center">
-            <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Update Hostel Images {property._id}</h1>
+            <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Update Hostel Images</h1>
         </div>
         <p className="max-w-xl text-lg text-center ">
             Click on any Image to upload new or change.
