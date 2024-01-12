@@ -30,16 +30,11 @@ export async function postData(api: string, data: any, token?: string) {
             console.warn(`not OK`, response)
             const responseData = await response.json();
             // Show Error Codes;
-            console.log(responseData)
-            const match = responseData.error.match(/"([^"]+)"/);
-            if (match) {
-                toast.error(`${match[1]}`);
-            } else if (responseData.error) {
+            if (responseData.error) {
                 toast.error(`${responseData.error}`);
+            }else{
+                console.log(responseData);
             }
-
-
-
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const responseData = await response.json(); // Parse the response JSON
@@ -73,13 +68,11 @@ export async function getData(api: string, token?: string) {
             const responseData = await response.json();
 
             // Show Error Codes;
-            const match = responseData?.message?.match(/"([^"]+)"/);
-            if (match) {
-                toast.error(`${match[1]}`);
-            } else if (responseData.message) {
-                toast.error(`${responseData.message}`);
+            if (responseData.error) {
+                toast.error(`${responseData.error}`);
+            }else{
+                console.log(responseData);
             }
-
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
@@ -92,7 +85,7 @@ export async function getData(api: string, token?: string) {
     }
 }
 
-export async function deleteData(api: string, token: string) {
+export async function deleteData(api: string, data: any, token: string) {
     const APIURL = URL + api;
     try {
         const headers: Record<string, string> = {
@@ -106,25 +99,25 @@ export async function deleteData(api: string, token: string) {
         const response = await fetch(APIURL, {
             method: 'DELETE', // Use the GET method
             headers,
+            body: JSON.stringify(data)
         });
 
         if (!response.ok) {
             const responseData = await response.json();
 
             // Show Error Codes;
-            const match = responseData.message.match(/"([^"]+)"/);
-            if (match) {
-                toast.error(`${match[1]}`);
-            } else if (responseData.message) {
-                toast.error(`${responseData.message}`);
+            if (responseData.error) {
+                toast.error(`${responseData.error}`);
+            }else{
+                console.log(responseData);
             }
 
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        // const responseData = await response?.json();
+        const responseData = await response?.json();
 
-        return response;
+        return responseData;
     } catch (error) {
         console.error('Error:', error);
         throw error;
@@ -155,19 +148,15 @@ export async function updateData(api: string, data: any, token: string) {
             console.warn(`not OK`, response)
             const responseData = await response.json();
             // Show Error Codes;
-            const match = responseData.message.match(/"([^"]+)"/);
-            if (match) {
-                toast.error(`${match[1]}`);
-            } else if (responseData.message) {
-                toast.error(`${responseData.message}`);
+            if (responseData.error) {
+                toast.error(`${responseData.error}`);
+            }else{
+                console.log(responseData);
             }
-
-
 
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const responseData = await response.json(); // Parse the response JSON
-        console.warn('OK Data', responseData)
 
         return responseData;
     } catch (error) {
@@ -204,11 +193,10 @@ export async function putData(api: string, data: any, token: string) {
             const responseData = await response.json();
 
             // Show Error Codes;
-            const match = responseData.message.match(/"([^"]+)"/);
-            if (match) {
-                toast.error(`${match[1]}`);
-            } else if (responseData.message) {
-                toast.error(`${responseData.message}`);
+            if (responseData.error) {
+                toast.error(`${responseData.error}`);
+            }else{
+                console.log(responseData);
             }
 
 
