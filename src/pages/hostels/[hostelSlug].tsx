@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FaWifi } from "react-icons/fa";
 import { WiSandstorm } from "react-icons/wi";
 import { FaShower } from "react-icons/fa";
@@ -8,60 +8,81 @@ import { GrDirections } from "react-icons/gr";
 import { IoIosStopwatch } from "react-icons/io";
 import Button from '@/components/elements/Button';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { getData } from '@/utils/api';
+import { AmenitiesInfo } from '@/utils/data';
 
 const HostelDetail = () => {
 
+  const router = useRouter();
+  const { hostelSlug } = router.query;
+  const [propertyData, setPropertyData] = useState<any>({});
+  const [gallery, setGallery] = useState<any>({ img0: ``, img1: ``, img2: ``, img3: ``, img4: `` })
+  const [reviews, setReviews] = useState<any>({})
+  const [amenities, setAmenities] = useState<any>([])
+
+  useEffect(() => {
+
+
+    const getHostelBySlug = async () => {
+
+      try {
+        let response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
+        if (response.hostels[0]) {
+          console.log(response.hostels[0]);
+          setPropertyData(response.hostels[0])
+          if (response.hostels[0].gallery) {
+            setGallery(response.hostels[0].gallery)
+          }
+          if (response.hostels[0].reviews) {
+            setReviews(response.hostels[0].reviews)
+          }
+          if (response.hostels[0].amentities) {
+            const entries = Object.entries(response.hostels[0].amentities);
+            const filteredAmenities = entries.filter(([key, value]) => value === true);
+            setAmenities(filteredAmenities.map(arr => arr[0]))
+          }
+
+
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    getHostelBySlug();
+
+  }, [hostelSlug])
+
+console.log(reviews)
   const [selectedTab, setSelectedTab] = useState(0);
   const firstBtnRef = useRef<HTMLButtonElement>(null);
   const items = [
     {
-      title: 'Overview',
+      title: 'Amenities',
       content: (
         <>
-          <h3 className='text-lg text-black font-bold leading-normal'>Property Overview</h3>
-          <ul className='max-w-sm mt-4 grid grid-cols-2 gap-2'>
-            <li className='w-full flex gap-2 md:gap-6 items-center text-black'>
-              <i><FaWifi /></i>
-              <h5 className='text-sm'>Free wifi</h5>
-            </li>
-            <li className='w-full flex gap-2 md:gap-6 items-center text-black'>
-              <i><WiSandstorm /></i>
-              <h5 className='text-sm'>Air Conditioning</h5>
-            </li>
-            <li className='w-full flex gap-2 md:gap-6 items-center text-black'>
-              <i><FaShower /></i>
-              <h5 className='text-sm'>Private bathroom</h5>
-            </li>
-            <li className='w-full flex gap-2 md:gap-6 items-center text-black'>
-              <i><FaAddressCard /></i>
-              <h5 className='text-sm'>Key Card Access</h5>
-            </li>
-            <li className='w-full flex gap-2 md:gap-6 items-center text-black'>
-              <i><LuParkingSquare /></i>
-              <h5 className='text-sm'>Free Parking</h5>
-            </li>
-            <li className='w-full flex gap-2 md:gap-6 items-center text-black'>
-              <i><GrDirections /></i>
-              <h5 className='text-sm'>Transport Facilitation</h5>
-            </li>
-            <li className='w-full flex gap-2 md:gap-6 items-center text-black '>
-              <i><IoIosStopwatch /></i>
-              <h5 className='text-sm'>24-hour front desk</h5>
-            </li>
+          {/* <h3 className='text-lg text-black font-bold leading-normal'>Facilities Provided by Hostel</h3> */}
+          <ul className='max-w-2xl mt-4 grid grid-cols-4 gap-2'>
+            {
+              amenities && amenities.map((amenity: string, index: number) => {
+                const field = AmenitiesInfo[amenity]
+                return <>
+                  <li key={index} className='w-full flex gap-2 md:gap-6 items-center text-black'>
+                    <i>{field.icon}</i>
+                    <h5 className='text-sm'>{field.text}</h5>
+                  </li>
+                </>
+              })
+            }
           </ul>
         </>
       ),
     },
     {
-      title: 'Rooms',
+      title: 'Description',
       content: (
-        <h3 className='text-lg text-black font-bold leading-normal'>Rooms</h3>
-      ),
-    },
-    {
-      title: 'Amentions',
-      content: (
-        <h3 className='text-lg text-black font-bold leading-normal'>Amentions</h3>
+        <h3 className='text-lg text-black font-bold leading-normal'>{propertyData.desc}</h3>
       ),
     },
     {
@@ -70,7 +91,14 @@ const HostelDetail = () => {
         <h3 className='text-lg text-black font-bold leading-normal'>Policies</h3>
       ),
     },
+    // {
+    //   title: 'Policies',
+    //   content: (
+    //     <h3 className='text-lg text-black font-bold leading-normal'>Policies</h3>
+    //   ),
+    // },
   ];
+
 
   return (
     <main>
@@ -78,18 +106,18 @@ const HostelDetail = () => {
         {/* Hostel Gallery */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
           <div className="rounded-lg">
-            <img src="/assets/hostel_large.png" alt="Hostel Main Image" className='w-full' />
+            <img src={gallery.img0 ? gallery.img0 : `/assets/hostel_large.png`} alt={propertyData.title} className='w-full h-full rounded-lg' />
           </div>
           <div className="grid grid-cols-4 gap-4 md:grid-cols-2">
-            <img src="/assets/hostel_large.png" alt="Hostel Main Image" className='w-full' />
-            <img src="/assets/hostel_small.png" alt="Hostel Main Image" className='w-full' />
-            <img src="/assets/hostel_small.png" alt="Hostel Main Image" className='w-full' />
-            <img src="/assets/hostel_large.png" alt="Hostel Main Image" className='w-full' />
+            <img src={gallery.img1 ? gallery.img1 : "/assets/hostel_large.png"} alt={propertyData.title} className='w-full h-full rounded-lg' />
+            <img src={gallery.img2 ? gallery.img2 : "/assets/hostel_small.png"} alt={propertyData.title} className='w-full h-full rounded-lg' />
+            <img src={gallery.img3 ? gallery.img3 : "/assets/hostel_small.png"} alt={propertyData.title} className='w-full h-full rounded-lg' />
+            <img src={gallery.img4 ? gallery.img4 : "/assets/hostel_large.png"} alt={propertyData.title} className='w-full h-full rounded-lg' />
           </div>
         </div>
         {/* Tabs Section */}
         <div className='relative my-4'>
-          <h3 className='text-black text-2xl font-bold'>Hostel Jamshoro</h3>
+          <h3 className='text-black text-2xl font-bold'>{propertyData.title + `(${propertyData.location})`}</h3>
           <div className='w-full flex justify-center items-center'>
             <div className='w-full flex flex-col gap-y-2'>
               <div className='grid grid-cols-2 gap-x-4 md:grid-cols-4 md:flex lg:gap-x-4 font-bold text-black'>
@@ -190,40 +218,47 @@ const HostelDetail = () => {
               </div>
             </div>
           </div>
-
-          {/* REVIEWS */}
-          <section className='py-4'>
-            <h3 className='text-black text-2xl font-bold mb-4'>Reviews</h3>
-            <div className='relative'>
-              <div className='flex flex-col gap-4 mt-4'>
-                <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Cleanliness</label>
-                <progress id="file" value="75" max="100"
-                  className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
-              </div>
-              <div className='flex flex-col gap-4 mt-4'>
-                <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Amenities</label>
-                <progress id="file" value="65" max="100"
-                  className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
-              </div>
-              <div className='flex flex-col gap-4 mt-4'>
-                <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Location</label>
-                <progress id="file" value="100" max="100"
-                  className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
-              </div>
-              <div className='flex flex-col gap-4 mt-4'>
-                <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Comfort</label>
-                <progress id="file" value="20" max="100"
-                  className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
-              </div>
-              <div className='flex flex-col gap-4 mt-4'>
-                <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Network & Wifi Connection</label>
-                <progress id="file" value="32" max="100"
-                  className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
-              </div>
-            </div>
-          </section>
         </div>
       </section>
+      {/* REVIEWS */}
+      <section className='py-4'>
+        <div className='max-w-screen-xl mx-auto  p-4 xl:p-0 xl:py-6'>
+          <h3 className='text-black text-2xl font-bold mb-4'>Reviews</h3>
+          <div className='relative grid grid-cols-3 gap-5'>
+
+
+
+            <div className='flex flex-col gap-4 mt-4'>
+              <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Cleanliness</label>
+              <progress id="file" value="75" max="100"
+                className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
+            </div>
+
+
+            <div className='flex flex-col gap-4 mt-4'>
+              <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Amenities</label>
+              <progress id="file" value="65" max="100"
+                className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
+            </div>
+            <div className='flex flex-col gap-4 mt-4'>
+              <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Location</label>
+              <progress id="file" value="100" max="100"
+                className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
+            </div>
+            <div className='flex flex-col gap-4 mt-4'>
+              <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Comfort</label>
+              <progress id="file" value="20" max="100"
+                className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
+            </div>
+            <div className='flex flex-col gap-4 mt-4'>
+              <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Network & Wifi Connection</label>
+              <progress id="file" value="32" max="100"
+                className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   )
 }

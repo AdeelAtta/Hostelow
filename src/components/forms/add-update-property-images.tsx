@@ -10,8 +10,9 @@ import { getData, postData, updateData } from "@/utils/api";
 type propertyProps = {
     userId:string
     _id:string,
-    thumbnail: string
     title:string,
+    slug:string
+    thumbnail: string
     desc:string,
     location:string,
     price:number,
@@ -84,13 +85,13 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
     useEffect(()=>{
 
 
-        const getHostelById = async()=>{
+        const getHostelBySlug = async()=>{
 
 
             try{
-                let response = await getData(`hostel/getHostelById?id=${property._id}`,`${user.access.token}`);
-                if(response.gallery){
-                    setImages(response.gallery);
+                let response = await getData(`hostel/getHostels?slug=${property.slug}`,`${user.access.token}`);
+                if(response.hostels[0].gallery){
+                    setImages(response.hostels[0].gallery);
                 }
 
             }catch(err){
@@ -98,7 +99,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
             }
         }
 
-        getHostelById();
+        getHostelBySlug();
 
     },[property._id])
 

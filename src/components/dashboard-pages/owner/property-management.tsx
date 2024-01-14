@@ -141,7 +141,7 @@ const PropertyManagement = () => {
     useEffect(() => {
         const fetchHostelData = async () => {
             try {
-                let response = await getData(`hostel/gethostels`, `${user.access.token}`)
+                let response = await getData(`hostel/gethostels?userId=${user._id}`, `${user.access.token}`)
                 setPropertyData(response.hostels);
                 const data = transformData(response.hostels);
                 setTableData(data)

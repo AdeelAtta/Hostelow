@@ -13,6 +13,7 @@ type propertyProps = {
   userId: string
   _id: string,
   thumbnail: string
+  slug:string
   title: string,
   desc: string,
   location: string,
@@ -35,10 +36,10 @@ const Hostels = () => {
 
   const [citiesList, setCitiesList] = useState<any[]>([])
   const [filterForm, setFilterForm] = useState<any>({})
-  const [starFill,setStarFill] = useState(<FaStar className="text-2xl fill-yellow-500 " />)
-  const [star,setStar] = useState(<CiStar className="text-2xl text-yellow-500 " /> )
+  const [starFill, setStarFill] = useState(<FaStar className="text-2xl fill-yellow-500 " />)
+  const [star, setStar] = useState(<CiStar className="text-2xl text-yellow-500 " />)
 
-  const handleChange = (e:ChangeEvent<any>) =>{
+  const handleChange = (e: ChangeEvent<any>) => {
 
     setFilterForm((prev: any) => ({ ...prev, [e.target.name]: e.target.value }))
 
@@ -50,8 +51,19 @@ const Hostels = () => {
     const getProperties = async () => {
 
       try {
+        let url = `hostel/gethostels?`
+        if (filterForm.location) {
+          url += `&location=${filterForm.location}`;
+        }
+        if (filterForm.min) {
+          url += `&min=${filterForm.min}`;
+        }
+        if (filterForm.max) {
+          url += `&max=${filterForm.max}`;
+        }
 
-        const response = await getData(`hostel/gethostels`);
+
+        const response = await getData(url);
         setProperties(response.hostels);
         console.log(response.hostels)
 
@@ -62,7 +74,7 @@ const Hostels = () => {
     }
 
     getProperties()
-  }, [])
+  },[])
 
 
 
@@ -86,57 +98,67 @@ const Hostels = () => {
     <main className='flex border-t-2 border-gray-100 mt-2 max-w-screen-2xl'>
       <Aside>
         <div className='overflow-y-auto'>
-        <h4 className='text-2xl font-bold mb-5'>Filters</h4>
-        <div className='mb-5'>
-        <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Location</h4>
-          <Select
-            name="location"
-            id="location"
-            options={citiesList ?? []}
-            className="basic-multi-select w-full mt-3 "
-            classNamePrefix="select user"
-            onChange={(e: any) => setFilterForm((prev: any) => ({ ...prev, location: `${e.value}` }))}
-          />
-        </div>
-        <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Promotion & Services</h4>
-        <div className='my-5 flex flex-col items-start justify-start gap-2'>
-          <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Discounted</span>
-          <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Free Stay</span>
-          {/* <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Deals</span> */}
-        </div>
-        <h4 className='text-md font-semibold mb-3 border-b-2 border-gray-100'>Price</h4>
-        <div className='flex gap-2 max-w-[320px] mb-5'>
-        <Input 
-        title='Min'
-        type={`number`} 
-        name={'min'}
-        placeholder='Minimum price' 
-        value={filterForm.min}
-        onChange={handleChange}   
-        otherProps={{style:{maxWidth:`150px`}}}       
-        
-         />
-         <Input 
-        title='Max'
-        type={`number`} 
-        name={'max'} 
-        placeholder='Maximum price' 
-        value={filterForm.max}
-        onChange={handleChange}
-        otherProps={{style:{maxWidth:`150px`}}}        
-        
-         />
-        </div>
-        <h4 className='text-md font-semibold border-b-2 mb-3 border-gray-100'>Rating</h4>
-        <div className='mb-5'>
-        <ul className='flex flex-col gap-3'>
-        <li className='flex gap-2'>{starFill}{starFill}{starFill}{starFill}{starFill}</li>
-        <li className='flex gap-2'>{starFill}{starFill}{starFill}{starFill}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
-        <li className='flex gap-2'>{starFill}{starFill}{starFill}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
-        <li className='flex gap-2'>{starFill}{starFill}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
-        <li className='flex gap-2'>{starFill}{star}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span></li>
-        </ul>
-        </div>
+          <h4 className='text-2xl font-bold mb-5'>Filters</h4>
+          <div className='mb-5'>
+            <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Location</h4>
+            <Select
+              name="location"
+              id="location"
+              options={citiesList ?? []}
+              className="basic-multi-select w-full mt-3 "
+              classNamePrefix="select user"
+              onChange={(e: any) => setFilterForm((prev: any) => ({ ...prev, location: `${e.value}` }))}
+            />
+          </div>
+          <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Promotion & Services</h4>
+          <div className='my-5 flex flex-col items-start justify-start gap-2'>
+            <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Discounted</span>
+            <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Free Stay</span>
+            {/* <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Deals</span> */}
+          </div>
+          <h4 className='text-md font-semibold mb-3 border-b-2 border-gray-100'>Price</h4>
+          <div className='flex gap-2 max-w-[320px] mb-5'>
+            <Input
+              title='Min'
+              type={`number`}
+              name={'min'}
+              placeholder='Minimum price'
+              value={filterForm.min}
+              onChange={handleChange}
+              otherProps={{ min: 0, style: { maxWidth: `150px` } }}
+
+            />
+            <Input
+              title='Max'
+              type={`number`}
+              name={'max'}
+              placeholder='Maximum price'
+              value={filterForm.max}
+              onChange={handleChange}
+              otherProps={{ min: `${filterForm.min ?? 0}`, style: { maxWidth: `150px` } }}
+
+            />
+          </div>
+          <h4 className='text-md font-semibold border-b-2 mb-3 border-gray-100'>Rating</h4>
+          <div className='mb-5'>
+            <ul className='flex flex-col gap-3'>
+              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 5 }))}>
+                {starFill}{starFill}{starFill}{starFill}{starFill}
+              </li>
+              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 4 }))}>
+                {starFill}{starFill}{starFill}{starFill}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+              </li>
+              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 3 }))}>
+                {starFill}{starFill}{starFill}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+              </li>
+              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 2 }))}>
+                {starFill}{starFill}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+              </li>
+              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 1 }))}>
+                {starFill}{star}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </Aside>
 

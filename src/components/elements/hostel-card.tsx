@@ -10,7 +10,8 @@ type HostelCardProps = {
 type propertyProps = {
     userId:string
     _id:string,
-    thumbnail: string
+    slug:string,
+    thumbnail: string,
     title:string,
     desc:string,
     location:string,
@@ -28,14 +29,18 @@ type propertyProps = {
 
 
 const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
+
+
+
     return (
-        <div className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
+        <div key={property._id} className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
             <div className=' hostel-image overflow-hidden max-w-[320px] h-auto min-h-[300px]'>
+                
                 <Image 
                     width={300}
                     height={300}
                     className=' rounded-e-xl w-full h-full min-w-[300px]'
-                    src={property.thumbnail}
+                    src={``}
                     alt={property.title}
                 />
             </div>
@@ -47,10 +52,10 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                         <p className='font-md text-sm md:text-md lg:text-lg text-gray-500'>0.4 km from city center</p>
                         <p className='font-md text-sm md:text-md lg:text-lg text-gray-500'>Free Cancellation . Breakfast Included</p>
                     </div>
-                    <div className={`${listStyle ? `lg:static ml-20` : ` `} absolute z-[5] top-8 right-6  flex items-center justify-end lg:mr-5 gap-2 `}>
+                    <div className={`${listStyle ? `lg:static ml-20` : ` `} absolute z-[0] top-8 right-6  flex items-center justify-end lg:mr-5 gap-2 `}>
                         <span className='text-right min-w-fit'>
                             <p className='text-xl font-bold text-green-600'>Excellent</p>
-                           {property.reviews && <p className={`${listStyle ? `lg:text-gray-500 `:`  `} text-white text-lg min-w-fit`}>{property.reviews} reviews</p>}
+                           {/* {property.reviews && <p className={`${listStyle ? `lg:text-gray-500 `:`  `} text-white text-lg min-w-fit`}>{property.reviews} reviews</p>} */}
                         </span>
                         {(property.rating >= 0) && <span className='text-lg py-3 px-5 rounded-full border-[1px] border-green-400 text-green-600 bg-green-300'>{property.rating}</span>}
                     </div>
@@ -70,7 +75,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     </div >
                     <div className='min-w-fit flex flex-col justify-end items-end gap-4 mt-5'>
                         <p className='font-bold text-md lg:text-xl text-black'>Rs: {property.price} / month</p>
-                        <button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-3 py-3 border-indigo-600 bg-indigo-500'><Link href={`/hostels/HostelDetail/`}>See Details</Link></button>
+                        <button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-3 py-3 border-indigo-600 bg-indigo-500'><Link href={`/hostels/${property.slug}`}>See Details</Link></button>
                     </div>
                 </div>
             </div>
