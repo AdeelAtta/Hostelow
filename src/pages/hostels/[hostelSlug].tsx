@@ -25,17 +25,17 @@ const HostelDetail = () => {
 
 
     const getHostelBySlug = async () => {
-
       try {
         let response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
         if (response.hostels[0]) {
-          console.log(response.hostels[0]);
           setPropertyData(response.hostels[0])
           if (response.hostels[0].gallery) {
             setGallery(response.hostels[0].gallery)
           }
           if (response.hostels[0].reviews) {
-            setReviews(response.hostels[0].reviews)
+            const entries = Object.entries(response.hostels[0].reviews);
+            
+            setReviews(entries)
           }
           if (response.hostels[0].amentities) {
             const entries = Object.entries(response.hostels[0].amentities);
@@ -46,7 +46,7 @@ const HostelDetail = () => {
 
         }
       } catch (err) {
-        console.log(err)
+        console.error(err)
       }
     }
 
@@ -54,7 +54,6 @@ const HostelDetail = () => {
 
   }, [hostelSlug])
 
-console.log(reviews)
   const [selectedTab, setSelectedTab] = useState(0);
   const firstBtnRef = useRef<HTMLButtonElement>(null);
   const items = [
@@ -227,7 +226,19 @@ console.log(reviews)
           <div className='relative grid grid-cols-3 gap-5'>
 
 
+          {
+            reviews && reviews.map((review:any,index:number) => {
 
+              return <>
+              <div className='flex flex-col gap-4 mt-4'>
+              <label htmlFor="file" className='text-[#7D7D7D] font-lg'>{review[0]}</label>
+              <progress id="file" value={`${review[1]}`} max="10"
+                className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> {review[1]*10 }% </progress>
+            </div>
+            </>
+
+            })
+          }
             <div className='flex flex-col gap-4 mt-4'>
               <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Cleanliness</label>
               <progress id="file" value="75" max="100"
