@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   const handleRoute = (menuItem: MenuItem | null) => {
     setCurrentPage(menuItem);
-    if(!user.isVerified){
+    if(!user?.isVerified){
       setIsModal(true);
     }
   }

@@ -135,7 +135,6 @@ const Hostels = () => {
               value={filterForm.max}
               onChange={handleChange}
               otherProps={{ min: `${filterForm.min ?? 0}`, style: { maxWidth: `150px` } }}
-
             />
           </div>
           <h4 className='text-md font-semibold border-b-2 mb-3 border-gray-100'>Rating</h4>

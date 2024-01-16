@@ -20,6 +20,7 @@ const HostelDetail = () => {
   const [gallery, setGallery] = useState<any>({ img0: ``, img1: ``, img2: ``, img3: ``, img4: `` })
   const [reviews, setReviews] = useState<any>({})
   const [amenities, setAmenities] = useState<any>([])
+  const [rooms, setRooms] = useState<any>([])
 
   useEffect(() => {
 
@@ -34,13 +35,15 @@ const HostelDetail = () => {
           }
           if (response.hostels[0].reviews) {
             const entries = Object.entries(response.hostels[0].reviews);
-            
             setReviews(entries)
           }
           if (response.hostels[0].amentities) {
             const entries = Object.entries(response.hostels[0].amentities);
             const filteredAmenities = entries.filter(([key, value]) => value === true);
             setAmenities(filteredAmenities.map(arr => arr[0]))
+          }
+          if (response.hostels[0].rooms) {
+            setRooms(response.hostels[0].rooms)
           }
 
 
@@ -152,7 +155,36 @@ const HostelDetail = () => {
           <h3 className='text-black text-2xl font-bold mb-4'>Rooms</h3>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8'>
             {/* CARD */}
-            <div className="block rounded-lg p-4 shadow-lg shadow-indigo-100 bg-white">
+            {
+              rooms && rooms.length > 0 && rooms.map((room: any) => {
+
+
+                return <><div className="block rounded-lg p-4 shadow-lg shadow-indigo-100 bg-white">
+                  <img
+                    alt="Home"
+                    src={room?.images[0]}
+                    className="h-48 w-full rounded-md object-cover"
+                  />
+                  <div className="mt-2">
+                    <h3 className='text-2xl font-bold'>{room.type} room</h3>
+                    <h4 className='text-[#7D7D7D] text-base'>18 sqm</h4>
+                    <h4 className='text-[#7D7D7D] text-base'>{room.availability} people</h4>
+                    <h4 className='text-[#7D7D7D] text-base'>Remaining: {room.availability - room.occupancy}</h4>
+                    <Link href={'/hostels/HostelBooking'}>
+                      <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
+                    </Link>
+                  </div>
+                </div>
+                </>
+
+
+
+              })
+
+            }
+
+
+            {/* <div className="block rounded-lg p-4 shadow-lg shadow-indigo-100 bg-white">
               <img
                 alt="Home"
                 src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -199,23 +231,7 @@ const HostelDetail = () => {
                   <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
                 </Link>
               </div>
-            </div>
-            <div className="block rounded-lg p-4 shadow-lg shadow-indigo-100 bg-white">
-              <img
-                alt="Home"
-                src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                className="h-32 w-full rounded-md object-cover"
-              />
-              <div className="mt-2">
-                <h3 className='text-2xl font-bold'>Double standard room</h3>
-                <h4 className='text-[#7D7D7D] text-base'>18 sqm</h4>
-                <h4 className='text-[#7D7D7D] text-base'>2 people</h4>
-                <h4 className='text-[#7D7D7D] text-base'>1 King bed or 2 separate beds</h4>
-                <Link href={'/hostels/HostelBooking'}>
-                  <Button text='Book Now!' type='button' customeStyle='w-full mt-4' />
-                </Link>
-              </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -226,20 +242,20 @@ const HostelDetail = () => {
           <div className='relative grid grid-cols-3 gap-5'>
 
 
-          {
-            reviews && reviews.map((review:any,index:number) => {
+            {
+              reviews && reviews.length > 0 && reviews.map((review: any, index: number) => {
+                const amentity = AmenitiesInfo[review[0]]
+                return <>
+                  <div className='flex flex-col gap-4 mt-4'>
+                    <label htmlFor="file" className='text-[#7D7D7D] text-xl font-md flex items-center gap-2'>{amentity.icon}{amentity.text}</label>
+                    <progress id="file" value={`${review[1]}`} max="10"
+                      className={`w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 ${review[1] < 3.3 ? `[&::-webkit-progress-value]:bg-red-500` : review[1] < 6.6 ? `[&::-webkit-progress-value]:bg-yellow-500` : `[&::-webkit-progress-value]:bg-green-500`}  [&::-moz-progress-bar]:bg-violet-400 `}> {review[1] * 10}% </progress>
+                  </div>
+                </>
 
-              return <>
-              <div className='flex flex-col gap-4 mt-4'>
-              <label htmlFor="file" className='text-[#7D7D7D] font-lg'>{review[0]}</label>
-              <progress id="file" value={`${review[1]}`} max="10"
-                className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> {review[1]*10 }% </progress>
-            </div>
-            </>
-
-            })
-          }
-            <div className='flex flex-col gap-4 mt-4'>
+              })
+            }
+            {/* <div className='flex flex-col gap-4 mt-4'>
               <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Cleanliness</label>
               <progress id="file" value="75" max="100"
                 className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
@@ -265,7 +281,7 @@ const HostelDetail = () => {
               <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Network & Wifi Connection</label>
               <progress id="file" value="32" max="100"
                 className="w-full [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg  [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-500 [&::-moz-progress-bar]:bg-violet-400"> 32% </progress>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

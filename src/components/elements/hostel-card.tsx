@@ -30,7 +30,7 @@ type propertyProps = {
 
 const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
 
-
+console.log(property)
 
     return (
         <div key={property._id} className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
@@ -40,7 +40,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     width={300}
                     height={300}
                     className=' rounded-e-xl w-full h-full min-w-[300px]'
-                    src={``}
+                    src={`${property.thumbnail}`}
                     alt={property.title}
                 />
             </div>
