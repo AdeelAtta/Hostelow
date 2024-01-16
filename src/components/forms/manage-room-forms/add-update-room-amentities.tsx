@@ -72,7 +72,6 @@ const AddUpdateRoomAmenities: React.FC<AddUpdatePropertyAmenitiesProps> = ({ roo
             }
         })
 
-        console.log({ amenitities:data, roomId: `${room._id}` })
         try {
             let response = await toast.promise(postData(`hostel/updateRoom`, { amenitities:data, roomId: `${room._id}` }, `${user.access.token}`), {
 

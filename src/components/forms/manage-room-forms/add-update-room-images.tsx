@@ -32,7 +32,6 @@ const AddUpdateRoomImages:React.FC<AddUpdatePropertyImagesProps> = ({room,closeM
         }
 
         try{
-            console.log(data)
             let response = await toast.promise(postData(`hostel/updateRoom`,data,`${user.access.token}`),{
                 pending:`Updating Images...`
             })
@@ -78,12 +77,11 @@ const AddUpdateRoomImages:React.FC<AddUpdatePropertyImagesProps> = ({room,closeM
                         let key = `img${index}`
                         data[key] = img;
                     })
-                    console.log(data)
                     setImages(data);
                 }
 
             }catch(err){
-                console.log(err)
+                console.error(err)
             }
         }
 

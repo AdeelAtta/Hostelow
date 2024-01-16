@@ -95,7 +95,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
                 }
 
             }catch(err){
-                console.log(err)
+                console.error(err)
             }
         }
 

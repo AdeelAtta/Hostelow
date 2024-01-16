@@ -48,7 +48,6 @@ const UpdateRoomData: React.FC<any> = ({ closeModal, hostelList,room }) => {
                 data.occupancy = +formData.occupancy
             }
             
-            console.log(data)
 
             let response = await toast.promise(postData(`hostel/updateRoom`, data, `${user.access.token}`), {
                 pending: `Updating...`,
@@ -56,7 +55,8 @@ const UpdateRoomData: React.FC<any> = ({ closeModal, hostelList,room }) => {
             })
 
 
-            if (response.userId) {
+            if (response.message) {
+                toast.success(response.message)
                 closeModal();
             }
 
