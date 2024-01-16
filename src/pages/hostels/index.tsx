@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import Aside from '@/components/common/aside';
 import HostelCard from '@/components/elements/hostel-card';
 import { getData } from '@/utils/api';
-import { citiesData } from '@/utils/menuData';
+import { citiesData } from '@/utils/data';
 import Select from "react-select";
 import Input from '@/components/forms/form-elements/input';
 import { FaStar } from "react-icons/fa";
@@ -65,7 +65,6 @@ const Hostels = () => {
 
         const response = await getData(url);
         setProperties(response.hostels);
-        console.log(response.hostels)
 
       } catch (err) {
         console.error(err)
@@ -106,7 +105,7 @@ const Hostels = () => {
               id="location"
               options={citiesList ?? []}
               className="basic-multi-select w-full mt-3 "
-              classNamePrefix="select user"
+              classNamePrefix="select city"
               onChange={(e: any) => setFilterForm((prev: any) => ({ ...prev, location: `${e.value}` }))}
             />
           </div>

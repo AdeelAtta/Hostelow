@@ -1,6 +1,6 @@
-import Button from "./form-elements/button";
-import Input from "./form-elements/input";
-import { FormEvent, useState } from "react";
+import Button from "../form-elements/button";
+import Input from "../form-elements/input";
+import { FormEvent, useEffect, useState } from "react";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 import { postData } from "@/utils/api";
@@ -9,27 +9,19 @@ import { AmenitiesInfo } from "@/utils/data";
 
 
 
-const initialAmenities = {
-    wifi: false,
-    bikeParking: false,
-    helpDesk: false,
+const initialRoomAmenities: any = {
     airCondition: false,
-    carParking: false,
     furnishedRooms: false,
-    cctv: false,
     keyAccess: false,
-    CommonAreas: false,
     studyArea: false,
-    laundry: false,
-    CleaningServices: false,
+    cleaningServices: false,
     privateBathroom: false,
-    internet: false,
     bed: false,
     mattress: false,
     lunch: false,
     dinner: false,
     breakfast: false,
-    Generator: false,
+    generator: false,
     ups: false,
     geyser: false,
 }
@@ -53,15 +45,14 @@ type propertyProps = {
 }
 
 interface AddUpdatePropertyAmenitiesProps {
-    property: propertyProps
+    room: any
     closeModal: () => void
 }
 
-const AddUpdatePropertyAmenities: React.FC<AddUpdatePropertyAmenitiesProps> = ({ property, closeModal }) => {
+const AddUpdateRoomAmenities: React.FC<AddUpdatePropertyAmenitiesProps> = ({ room, closeModal }) => {
 
     const user = useSelector(userData);
-
-    const initial = (property && property?.amentities) ? property.amentities : initialAmenities
+    const initial = initialRoomAmenities
     const [amenitiesList, setAmenitiesList] = useState<any>(initial);
 
 
@@ -73,9 +64,17 @@ const AddUpdatePropertyAmenities: React.FC<AddUpdatePropertyAmenitiesProps> = ({
     const handleSubmit = async (e: FormEvent) => {
 
         e.preventDefault();
+        let keysArray = Object.keys(amenitiesList);
+        const data:string[] = []
+        keysArray.forEach(key => {
+            if(amenitiesList[key] == true){
+                data.push(key)
+            }
+        })
 
+        console.log({ amenitities:data, roomId: `${room._id}` })
         try {
-            let response = await toast.promise(postData(`hostel/addAmenities`, { ...amenitiesList, hostelId: `${property._id}` }, `${user.access.token}`), {
+            let response = await toast.promise(postData(`hostel/updateRoom`, { amenitities:data, roomId: `${room._id}` }, `${user.access.token}`), {
 
             })
 
@@ -88,30 +87,30 @@ const AddUpdatePropertyAmenities: React.FC<AddUpdatePropertyAmenitiesProps> = ({
         }
     }
 
-
+    useEffect(() => {
+        if (room && room.amenitities && room.amenitities.length > 0) {
+            let amenits:any = initialRoomAmenities;
+            Object.keys(amenits).forEach(key => { if (room.amenitities.includes(key)) { amenits[key] = true } })
+            setAmenitiesList(amenits)
+        }
+    }, [room, room.amenitities])
 
 
 
     return <form onSubmit={(e: FormEvent) => handleSubmit(e)} action="" className="space-y-4 mx-auto max-w-lg">
-        <div className="mx-auto max-w-lg text-center">
-            <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Add Amenities</h1>
+        <div className="mx-auto max-w-lg text-center mb-5">
+            <h1 className="text-2xl font-bold sm:text-3xl text-black dark:text-gray-300">Add Room Amenities</h1>
         </div>
         <div className='flex flex-col gap-y-3 md:gap-y-4'>
-            <label>Property amenities</label>
             <ul className='grid grid-cols-1 gap-3 md:gap-4  sm:grid-cols-2'>
 
 
                 {
-                    // AmenitiesInfo.every(amenity => {
 
-                    //     return amenity
-                    // } )
-
-                    Object.keys(AmenitiesInfo).map((key: any, index) => {
+                    Object.keys(amenitiesList).map((key: any, index) => {
 
 
                         const amenity = AmenitiesInfo[key];
-
 
                         return <><Input
                             type="checkbox"
@@ -143,4 +142,4 @@ const AddUpdatePropertyAmenities: React.FC<AddUpdatePropertyAmenitiesProps> = ({
 }
 
 
-export default AddUpdatePropertyAmenities;
+export default AddUpdateRoomAmenities;

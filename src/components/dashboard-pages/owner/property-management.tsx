@@ -9,7 +9,6 @@ import SideModal from "@/components/common/modals/side-modal";
 import Button from "@/components/forms/form-elements/button";
 
 import UpdatePropertyData from "@/components/forms/update-property-data";
-// import { hostelsData } from '@/utils/menuData'
 import AddUpdatePropertyImages from "@/components/forms/add-update-property-images";
 import AddUpdatePropertyAmenities from "@/components/forms/add-update-property-amenities";
 import Modal from "@/components/common/modals/modal";
@@ -19,6 +18,7 @@ import { useSelector } from "react-redux";
 import { deleteData, getData } from "@/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import Confirmation from "@/components/common/modals/confirmation";
+import RoomsManagement from "./rooms-management";
 
 
 
@@ -28,6 +28,7 @@ const PropertyManagement = () => {
 
     const [tableData, setTableData] = useState<TableData | any>(null);
     const [propertyData, setPropertyData] = useState<any>(null);
+    const [hostelList,setHostelList] = useState<any>([])
 
     const [isSideModal, setIsSideModal] = useState<boolean>(false);
     const [isModal, setIsModal] = useState<boolean>(false)
@@ -143,6 +144,10 @@ const PropertyManagement = () => {
             try {
                 let response = await getData(`hostel/gethostels?userId=${user._id}`, `${user.access.token}`)
                 setPropertyData(response.hostels);
+                setHostelList(response.hostels.map((hostel:any) => {
+                    return {value:`${hostel._id}`,label:`${hostel.title}`}
+                }
+                    ))
                 const data = transformData(response.hostels);
                 setTableData(data)
             } catch (err) {
@@ -166,6 +171,13 @@ const PropertyManagement = () => {
 
 
         {tableData && <Table tableData={tableData} />}
+
+
+
+
+        {/* Rooms setting */}
+
+        <RoomsManagement hostelList={hostelList} />
 
 
 
