@@ -56,7 +56,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     <div className='min-w-fit'>
                         {/* <h4 className='hidden lg:flex text-xl font-bold'>Shared Room</h4> */}
                         <ul className={`flex justify-start items-center pb-4`}>
-                            {showAmenities.slice(0,5).map((key, index) => <li title={`${AmenitiesInfo[key].text}`} className='text-2xl m-2 font-thin '>{AmenitiesInfo[key].icon}</li>)}
+                            {showAmenities.slice(0,5).map((key:string, index:number) => <li key={key} title={`${AmenitiesInfo[key].text}`} className='text-2xl m-2 font-thin '>{AmenitiesInfo[key].icon}</li>)}
                             {(showAmenities.length > 5) && <li className='text-lg font-md' >+{showAmenities.length - 6}</li>}
                         </ul>
                         <div className='mt-2'>
