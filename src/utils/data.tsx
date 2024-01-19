@@ -1,6 +1,19 @@
-import { FaWifi } from "react-icons/fa6";
-import { LuParkingSquare } from "react-icons/lu";
+import { FaParking } from "react-icons/fa";
+import { FaBed, FaBowlRice, FaKey, FaPeopleRoof, FaShower, FaWifi } from "react-icons/fa6";
+import { LuParkingSquare, LuUtensils } from "react-icons/lu";
+import { MdCellWifi, MdOutlineFreeBreakfast, MdOutlineLocalLaundryService } from "react-icons/md";
+import { TbAirConditioning } from "react-icons/tb";
 import { WiSandstorm } from "react-icons/wi";
+import { BiSolidCctv } from "react-icons/bi";
+import { GiBroom, GiMagicBroom, GiPowerGenerator } from "react-icons/gi";
+import { LiaSolarPanelSolid } from "react-icons/lia";
+import { CgSmartHomeBoiler } from "react-icons/cg";
+import { IoMdChatboxes } from "react-icons/io";
+import { ImBooks } from "react-icons/im";
+
+
+
+
 
 export const AmenitiesInfo: any = {
     wifi: {
@@ -9,72 +22,72 @@ export const AmenitiesInfo: any = {
         slug: `wifi`
     },
     airCondition: {
-        icon: <WiSandstorm />,
+        icon: <TbAirConditioning />,
         text: `Air Conditioning`,
         slug: `airCondition`
     },
     helpDesk: {
-        icon: <WiSandstorm />,
+        icon: <IoMdChatboxes />,
         text: `Help Desk`,
         slug: `helpDesk`
     },
     bikeParking: {
-        icon: <LuParkingSquare />,
+        icon: <FaParking />,
         text: `Bike Parking`,
         slug: `bikeParking`
     },
     carParking: {
-        icon: <LuParkingSquare />,
+        icon: <FaParking />,
         text: `Car Parking`,
         slug: `carParking`
     },
     furnishedRooms: {
-        icon: <LuParkingSquare />,
+        icon: <GiMagicBroom />,
         text: `Furnished Rooms`,
         slug: `furnishedRooms`
     },
     cctv: {
-        icon: <LuParkingSquare />,
+        icon: <BiSolidCctv />,
         text: `CCTV`,
         slug: `cctv`
     },
     keyAccess: {
-        icon: <LuParkingSquare />,
+        icon: <FaKey />,
         text: `Key Access`,
         slug: `keyAccess`
     },
     commonAreas: {
-        icon: <LuParkingSquare />,
+        icon: <FaPeopleRoof />,
         text: `Common Areas`,
         slug: `commonAreas`
     },
     studyArea: {
-        icon: <LuParkingSquare />,
+        icon: <ImBooks />,
         text: `Study Area`,
         slug: `studyArea`
     },
     laundry: {
-        icon: <LuParkingSquare />,
+        icon: <MdOutlineLocalLaundryService /> ,
         text: `Laundry`,
         slug: `laundry`
     },
     cleaningServices: {
-        icon: <LuParkingSquare />,
+        icon: <GiBroom />,
         text: `Cleaning Services`,
         slug: `cleaningServices`
     },
     privateBathroom: {
-        icon: <LuParkingSquare />,
+        icon: <FaShower /> ,
         text: `Private Bathroom`,
         slug: `privateBathroom`
     },
     internet: {
-        icon: <LuParkingSquare />,
+        icon: <MdCellWifi />,
         text: `Internet`,
         slug: `internet`
     },
     bed: {
-        icon: <LuParkingSquare />,
+        icon: <FaBed />,
         text: `Bed`,
         slug: `bed`
     },
@@ -84,32 +97,32 @@ export const AmenitiesInfo: any = {
         slug: `mattress`
     },
     lunch: {
-        icon: <LuParkingSquare />,
+        icon: <FaBowlRice />,
         text: `Lunch`,
         slug: `lunch`
     },
     dinner: {
-        icon: <LuParkingSquare />,
+        icon: <LuUtensils />,
         text: `Dinner`,
         slug: `dinner`
     },
     breakfast: {
-        icon: <LuParkingSquare />,
+        icon: <MdOutlineFreeBreakfast />,
         text: `Breakfast`,
         slug: `breakfast`
     },
     generator: {
-        icon: <LuParkingSquare />,
+        icon: <GiPowerGenerator />,
         text: `Generator`,
         slug: `generator`
     },
     ups: {
-        icon: <LuParkingSquare />,
+        icon: <LiaSolarPanelSolid />,
         text: `UPS`,
         slug: `ups`
     },
     geyser: {
-        icon: <LuParkingSquare />,
+        icon: <CgSmartHomeBoiler />        ,
         text: `Geyser`,
         slug: `geyser`
     },
