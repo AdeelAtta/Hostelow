@@ -33,7 +33,8 @@ type propertyProps = {
 const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
 
     const { _id, thumbnail, title, rating, price, slug, reviewCount, amentities } = property;
-    console.log(property)
+
+    const showAmenities = Object.keys(AmenitiesInfo).filter((key: string) => amentities && amentities[key] == true)
 
     return (
         <div key={_id} className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
@@ -70,9 +71,10 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                 </div>
                 <div className={`${listStyle ? ` flex-col lg:flex-row ` : ` flex-col `} w-full flex  justify-between `}>
                     <div className='min-w-fit'>
-                        <h4 className='hidden lg:flex text-xl font-bold'>Shared Room</h4>
-                        <ul className={`flex ${!listStyle && `hidden`} `}>
-                            {Object.keys(AmenitiesInfo).filter((key: string) => amentities && amentities[key] == true).map((key, index) => <li title={`${AmenitiesInfo[key].text}`} className='text-3xl m-2 font-thin '>{AmenitiesInfo[key].icon}</li>)}
+                        {/* <h4 className='hidden lg:flex text-xl font-bold'>Shared Room</h4> */}
+                        <ul className={`flex justify-start items-center pb-4`}>
+                            {showAmenities.slice(0,5).map((key, index) => <li title={`${AmenitiesInfo[key].text}`} className='text-2xl m-2 font-thin '>{AmenitiesInfo[key].icon}</li>)}
+                            {(showAmenities.length > 5) && <li className='text-lg font-md' >+{showAmenities.length - 6}</li>}
                         </ul>
                         <div className='mt-2'>
                             <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#Hot deals</span>
@@ -81,7 +83,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     </div >
                     <div className='min-w-fit flex flex-col justify-end items-end gap-4 mt-5'>
                         <p className='font-bold text-md lg:text-xl text-black'>Rs: {price} / month</p>
-                        <Link href={`/hostels/${slug}`}><button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-3 py-3 border-indigo-600 bg-indigo-500'>See Details</button></Link>
+                        <Link href={`/hostels/${slug}`}><button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-6 py-3 border-indigo-600 bg-indigo-500'>See Details</button></Link>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,8 @@
 import { FaParking } from "react-icons/fa";
-import { FaBed, FaBowlRice, FaKey, FaPeopleRoof, FaShower, FaWifi } from "react-icons/fa6";
+import { FaBed, FaBowlRice, FaCouch, FaKey, FaShower, FaWifi } from "react-icons/fa6";
 import { LuParkingSquare, LuUtensils } from "react-icons/lu";
 import { MdCellWifi, MdOutlineFreeBreakfast, MdOutlineLocalLaundryService } from "react-icons/md";
 import { TbAirConditioning } from "react-icons/tb";
-import { WiSandstorm } from "react-icons/wi";
 import { BiSolidCctv } from "react-icons/bi";
 import { GiBroom, GiMagicBroom, GiPowerGenerator } from "react-icons/gi";
 import { LiaSolarPanelSolid } from "react-icons/lia";
@@ -57,7 +56,7 @@ export const AmenitiesInfo: any = {
         slug: `keyAccess`
     },
     commonAreas: {
-        icon: <FaPeopleRoof />,
+        icon: <FaCouch />,
         text: `Common Areas`,
         slug: `commonAreas`
     },
