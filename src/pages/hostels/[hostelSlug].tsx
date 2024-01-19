@@ -35,7 +35,7 @@ const HostelDetail:React.FC<HostelDetailProps> = ({hostelData}) => {
     const getHostelBySlug = async () => {
       try {
         // let response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
-        if (hostelData) {
+        if (hostelData && hostelData != null) {
           setPropertyData(hostelData)
           if (hostelData.gallery) {
             setGallery(hostelData.gallery)
@@ -305,7 +305,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ params }) =>
 
   try {
     const response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
-    const hostelData: propertyProps= response.hostels[0] || null;
+    const hostelData: propertyProps= response.hostels[0] || {};
 
     return {
       props: {
