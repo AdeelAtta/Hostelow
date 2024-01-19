@@ -8,6 +8,7 @@ import AddUpdateRoomAmenities from "@/components/forms/manage-room-forms/add-upd
 import AddUpdateRoomImages from "@/components/forms/manage-room-forms/add-update-room-images";
 import UpdateRoomData from "@/components/forms/manage-room-forms/update-room-data";
 import { userData } from "@/redux/slices/user-slice";
+import { TableData } from "@/types/types";
 import { deleteData, getData } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { IoImagesOutline } from "react-icons/io5";

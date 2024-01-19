@@ -19,6 +19,7 @@ import { deleteData, getData } from "@/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import Confirmation from "@/components/common/modals/confirmation";
 import RoomsManagement from "./rooms-management";
+import { TableData } from "@/types/types";
 
 
 

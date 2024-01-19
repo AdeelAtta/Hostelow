@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { postData } from "@/utils/api";
 import { toast } from "react-toastify";
 import { AmenitiesInfo } from "@/utils/data";
+import { propertyProps } from "@/types/types";
 
 
 
@@ -34,23 +35,7 @@ const initialAmenities = {
     geyser: false,
 }
 
-type propertyProps = {
-    userId: string
-    _id: string,
-    thumbnail: string
-    title: string,
-    desc: string,
-    location: string,
-    price: number,
-    discountPrice: number
-    amentities: null | any
-    rating: number
-    reviews: null | any
-    rooms: null | any
-    date: string
-    isPublished: boolean
 
-}
 
 interface AddUpdatePropertyAmenitiesProps {
     property: propertyProps

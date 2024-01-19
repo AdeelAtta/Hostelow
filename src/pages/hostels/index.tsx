@@ -7,32 +7,19 @@ import Select from "react-select";
 import Input from '@/components/forms/form-elements/input';
 import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
+import { propertyProps } from '@/types/types';
+import { GetServerSideProps } from 'next';
 
 
-type propertyProps = {
-  userId: string
-  _id: string,
-  thumbnail: string
-  slug:string
-  title: string,
-  desc: string,
-  location: string,
-  price: number,
-  discountPrice: number
-  amentities: null | any
-  rating: number
-  reviews: null | any
-  rooms: null | any
-  date: string
-  isPublished: boolean
-
+type HostelsProps = {
+  hostels:propertyProps[]
+  error?:string
 }
 
-
-const Hostels = () => {
+const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
 
   const [listStyle, setListStyle] = useState(true);
-  const [properties, setProperties] = useState<propertyProps[] | null>(null);
+  const [properties, setProperties] = useState<propertyProps[] | null>(hostels);
 
   const [citiesList, setCitiesList] = useState<any[]>([])
   const [filterForm, setFilterForm] = useState<any>({})
@@ -46,34 +33,34 @@ const Hostels = () => {
   }
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const getProperties = async () => {
+  //   const getProperties = async () => {
 
-      try {
-        let url = `hostel/gethostels?`
-        if (filterForm.location) {
-          url += `&location=${filterForm.location}`;
-        }
-        if (filterForm.min) {
-          url += `&min=${filterForm.min}`;
-        }
-        if (filterForm.max) {
-          url += `&max=${filterForm.max}`;
-        }
+  //     try {
+  //       let url = `hostel/gethostels?`
+  //       if (filterForm.location) {
+  //         url += `&location=${filterForm.location}`;
+  //       }
+  //       if (filterForm.min) {
+  //         url += `&min=${filterForm.min}`;
+  //       }
+  //       if (filterForm.max) {
+  //         url += `&max=${filterForm.max}`;
+  //       }
 
 
-        const response = await getData(url);
-        setProperties(response.hostels);
+  //       const response = await getData(url);
+  //       setProperties(response.hostels);
 
-      } catch (err) {
-        console.error(err)
-      }
+  //     } catch (err) {
+  //       console.error(err)
+  //     }
 
-    }
+  //   }
 
-    getProperties()
-  },[])
+  //   getProperties()
+  // },[])
 
 
 
@@ -226,20 +213,12 @@ const Hostels = () => {
 
         <div className=' hostel-cards flex flex-wrap gap-5'>
           {
-            properties && properties.map((property: propertyProps) => {
-              return <><HostelCard listStyle={listStyle} property={property} /></>
+            properties && properties.map((property: propertyProps,index) => {
+              return <HostelCard key={property.slug} listStyle={listStyle} property={property} />
             })
-
-
-            // <HostelCard listStyle={listStyle} property={} />
-            // <HostelCard listStyle={listStyle} property={} />
-            // <HostelCard listStyle={listStyle} property={} />
-            // <HostelCard listStyle={listStyle} property={} />
 
           }
 
-
-          {/* <HostelCard listStyle={listStyle} property={{}} /> */}
 
         </div>
 
@@ -324,3 +303,44 @@ const Hostels = () => {
 }
 
 export default Hostels
+
+
+export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => {
+
+  let url = `hostel/gethostels?`;
+
+  if (query.location) {
+    url += `&location=${query.location}`;
+  }
+  if (query.min) {
+    url += `&min=${query.min}`;
+  }
+  if (query.max) {
+    url += `&max=${query.max}`;
+  }
+
+  let hostels:propertyProps[]  = [];
+
+  try{
+    const response = await getData(url);
+    hostels = response.hostels || [];
+
+    return {
+      props: {
+        hostels,
+      },
+    };
+
+  }catch(err){
+
+    return {
+      props: {
+        hostels: [],
+        error: 'An unexpected error occurred.',
+      },
+    };
+
+  }
+
+
+};

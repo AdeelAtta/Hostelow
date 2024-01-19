@@ -11,8 +11,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { getData } from '@/utils/api';
 import { AmenitiesInfo } from '@/utils/data';
+import { GetServerSideProps } from 'next/types';
+import { propertyProps } from '@/types/types';
 
-const HostelDetail = () => {
+
+type HostelDetailProps = {
+  hostelData:propertyProps
+}
+
+const HostelDetail:React.FC<HostelDetailProps> = ({hostelData}) => {
 
   const router = useRouter();
   const { hostelSlug } = router.query;
@@ -27,23 +34,23 @@ const HostelDetail = () => {
 
     const getHostelBySlug = async () => {
       try {
-        let response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
-        if (response.hostels[0]) {
-          setPropertyData(response.hostels[0])
-          if (response.hostels[0].gallery) {
-            setGallery(response.hostels[0].gallery)
+        // let response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
+        if (hostelData) {
+          setPropertyData(hostelData)
+          if (hostelData.gallery) {
+            setGallery(hostelData.gallery)
           }
-          if (response.hostels[0].reviews) {
-            const entries = Object.entries(response.hostels[0].reviews);
+          if (hostelData.reviews) {
+            const entries = Object.entries(hostelData.reviews);
             setReviews(entries)
           }
-          if (response.hostels[0].amentities) {
-            const entries = Object.entries(response.hostels[0].amentities);
+          if (hostelData.amentities) {
+            const entries = Object.entries(hostelData.amentities);
             const filteredAmenities = entries.filter(([key, value]) => value === true);
             setAmenities(filteredAmenities.map(arr => arr[0]))
           }
-          if (response.hostels[0].rooms) {
-            setRooms(response.hostels[0].rooms)
+          if (hostelData.rooms) {
+            setRooms(hostelData.rooms)
           }
 
 
@@ -55,7 +62,7 @@ const HostelDetail = () => {
 
     getHostelBySlug();
 
-  }, [hostelSlug])
+  }, [hostelData])
 
   const [selectedTab, setSelectedTab] = useState(0);
   const firstBtnRef = useRef<HTMLButtonElement>(null);
@@ -291,3 +298,24 @@ const HostelDetail = () => {
 }
 
 export default HostelDetail
+
+
+export const getServerSideProps: GetServerSideProps<any> = async ({ params }) => {
+  const hostelSlug = params?.hostelSlug as string;
+
+  try {
+    const response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
+    const hostelData: propertyProps= response.hostels[0] || null;
+
+    return {
+      props: {
+        hostelData,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      notFound: true,
+    };
+  }
+};

@@ -1,3 +1,4 @@
+import { TableColumn, TableData } from "@/types/types";
 import Header from "./header";
 import TableRow from "./table/table-row";
 

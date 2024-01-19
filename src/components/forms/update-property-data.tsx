@@ -9,24 +9,8 @@ import { toast } from "react-toastify";
 import { postData } from "@/utils/api";
 import Image from 'next/image'
 import { IoClose } from "react-icons/io5";
+import { propertyProps } from "@/types/types";
 
-type propertyProps = {
-    userId:string
-    _id:string,
-    thumbnail: string
-    title:string,
-    desc:string,
-    location:string,
-    price:number,
-    discountPrice:number
-    amentities:null | any
-    rating:number
-    reviews:null | any
-    rooms:null | any
-    date:string
-    isPublished:boolean
-
-}
 
 interface UpdatePropertyDataProps {
     property:propertyProps,

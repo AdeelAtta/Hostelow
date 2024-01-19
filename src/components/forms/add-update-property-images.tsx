@@ -5,26 +5,10 @@ import { toast } from "react-toastify";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 import { getData, postData, updateData } from "@/utils/api";
+import { propertyProps } from "@/types/types";
 
 
-type propertyProps = {
-    userId:string
-    _id:string,
-    title:string,
-    slug:string
-    thumbnail: string
-    desc:string,
-    location:string,
-    price:number,
-    discountPrice:number
-    amentities:null | any
-    rating:number
-    reviews:null | any
-    rooms:null | any
-    date:string
-    isPublished:boolean
 
-}
 
 interface AddUpdatePropertyImagesProps {
     property:propertyProps

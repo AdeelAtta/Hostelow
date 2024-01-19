@@ -2,31 +2,14 @@ import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
 import { AmenitiesInfo } from '@/utils/data'
+import { propertyProps } from '@/types/types'
 
 type HostelCardProps = {
     listStyle: boolean
     property: propertyProps
 }
 
-type propertyProps = {
-    userId: string
-    _id: string,
-    slug: string,
-    thumbnail: string,
-    title: string,
-    desc: string,
-    location: string,
-    price: number,
-    discountPrice: number
-    amentities: null | any
-    rating: number
-    reviews: null | any
-    rooms: null | any
-    date: string
-    isPublished: boolean
-    reviewCount: number
 
-}
 
 
 
@@ -34,10 +17,10 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
 
     const { _id, thumbnail, title, rating, price, slug, reviewCount, amentities } = property;
 
-    const showAmenities = Object.keys(AmenitiesInfo).filter((key: string) => amentities && amentities[key] == true)
+    const showAmenities = amentities && Object.keys(AmenitiesInfo).filter((key: string) => amentities && amentities[key] == true)
 
     return (
-        <div key={_id} className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
+        <div key={slug} className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
             <div className=' hostel-image overflow-hidden max-w-[320px] h-auto min-h-[300px]'>
 
                 <Image
