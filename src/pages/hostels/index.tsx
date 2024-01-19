@@ -9,17 +9,25 @@ import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
 import { propertyProps } from '@/types/types';
 import { GetServerSideProps } from 'next';
+import Button from '@/components/elements/Button';
+import { RxReset } from "react-icons/rx";
+
 
 
 type HostelsProps = {
-  hostels:propertyProps[]
-  error?:string
+  hostels: propertyProps[]
+  error?: string
+  paginationData?: any
 }
+import { useRouter } from 'next/router';
 
-const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
+
+const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) => {
+  const router = useRouter();
 
   const [listStyle, setListStyle] = useState(true);
-  const [properties, setProperties] = useState<propertyProps[] | null>(hostels);
+  const [properties, setProperties] = useState<propertyProps[] | null>(null);
+  const [pagination,setPagination] = useState<any>({})
 
   const [citiesList, setCitiesList] = useState<any[]>([])
   const [filterForm, setFilterForm] = useState<any>({})
@@ -31,6 +39,11 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
     setFilterForm((prev: any) => ({ ...prev, [e.target.name]: e.target.value }))
 
   }
+
+  useEffect(()=>{
+    setProperties(hostels)
+    setPagination(paginationData)
+  },[hostels,paginationData])
 
 
   // useEffect(() => {
@@ -62,7 +75,36 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
   //   getProperties()
   // },[])
 
+  const handleFilterSubmit = async () => {
 
+    let queryParams: any = {};
+
+    if (filterForm.location.length > 0) {
+      queryParams.location = filterForm.location
+    }
+
+    if (filterForm.rating) {
+      queryParams.rating = filterForm.rating
+    }
+
+    if (filterForm.min) {
+      queryParams.min = filterForm.min
+    }
+
+    if (filterForm.max) {
+      queryParams.max = filterForm.max
+    }
+
+
+
+    router.push({
+      pathname: '/hostels',
+      query: {
+        ...queryParams,
+      },
+    });
+
+  }
 
 
 
@@ -84,7 +126,13 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
     <main className='flex border-t-2 border-gray-100 mt-2 max-w-screen-2xl'>
       <Aside>
         <div className='overflow-y-auto'>
-          <h4 className='text-2xl font-bold mb-5'>Filters</h4>
+          <h4 className='text-2xl font-bold mb-5'>Filters </h4>
+          <span className='w-full flex justify-end items-center gap-2'>
+          <Button customeStyle={`bg-gray-500 border-gray-500 text-gray-500 !hover:text-white hover:bg-gray-600`} text={`Reset`} type={'button'} handleClick={()=>setFilterForm({})} />
+          <Button customeStyle={`bg-black `} text={`Apply Filters`} type={'button'} handleClick={(handleFilterSubmit)} />
+          </span>
+
+
           <div className='mb-5'>
             <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Location</h4>
             <Select
@@ -127,19 +175,19 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
           <h4 className='text-md font-semibold border-b-2 mb-3 border-gray-100'>Rating</h4>
           <div className='mb-5'>
             <ul className='flex flex-col gap-3'>
-              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 5 }))}>
+              <li className={`${filterForm.rating == 5 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 5 }))}>
                 {starFill}{starFill}{starFill}{starFill}{starFill}
               </li>
-              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 4 }))}>
+              <li className={`${filterForm.rating == 4 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 4 }))}>
                 {starFill}{starFill}{starFill}{starFill}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
               </li>
-              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 3 }))}>
+              <li className={`${filterForm.rating == 3 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 3 }))}>
                 {starFill}{starFill}{starFill}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
               </li>
-              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 2 }))}>
+              <li className={`${filterForm.rating == 2 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 2 }))}>
                 {starFill}{starFill}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
               </li>
-              <li className='flex gap-2 cursor-pointer' onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 1 }))}>
+              <li className={`${filterForm.rating == 1 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 1 }))}>
                 {starFill}{star}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
               </li>
             </ul>
@@ -153,8 +201,8 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
 
             <header>
               <p className="mt-4 max-w-md text-gray-500">
-                133 searches for </p>
-              <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">1 Room Hostels in Jamshoro, Sindh</h2>
+                searches for </p>
+              <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">{pagination.totalItems} Hostels Found</h2>
             </header>
             <div className=" flex items-center justify-end ">
               <div className="flex order-2 ml-5 rounded border-2 border-gray-100">
@@ -213,8 +261,8 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
 
         <div className=' hostel-cards flex flex-wrap gap-5'>
           {
-            properties && properties.map((property: propertyProps,index) => {
-              return <HostelCard key={property.slug} listStyle={listStyle} property={property} />
+            properties && properties.map((property: propertyProps, index) => {
+              return <HostelCard key={property._id} listStyle={listStyle} property={property} />
             })
 
           }
@@ -224,9 +272,15 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
 
         <ol className="my-12 flex justify-center gap-1 text-xs font-medium">
           <li>
-            <a
-              href="#"
-              className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+            <button
+            disabled={pagination.currentPage <= 1}
+               onClick={()=> router.push({
+                pathname: '/hostels',
+                query: {
+                  page: pagination.currentPage-1,
+                },
+              })}
+              className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-300 bg-white text-gray-900 rtl:rotate-180 hover:text-white hover:border-blue-600 hover:bg-blue-600"
             >
               <span className="sr-only">Prev Page</span>
               <svg
@@ -241,44 +295,62 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
                   clipRule="evenodd"
                 />
               </svg>
-            </a>
+            </button>
           </li>
 
-          <li>
-            <a
-              href="#"
-              className="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
+            {pagination.currentPage > 1 && <li key={pagination.currentPage-1}>
+            <button
+              onClick={() => router.push({
+                pathname: '/hostels',
+                query: {
+                  page: pagination.currentPage-1,
+                },
+              })}
+              className={`block h-8 w-8 rounded border text-center leading-8 border-gray-300 text-gray-900 bg-white hover:text-white hover:border-blue-600 hover:bg-blue-600`}
             >
-              1
-            </a>
-          </li>
+              {pagination.currentPage-1}
+            </button>
+          </li>}
 
-          <li className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white">
-            2
-          </li>
 
-          <li>
-            <a
-              href="#"
-              className="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
+          {[...Array(pagination.totalPages),1].slice(pagination.currentPage-1,pagination.currentPage+1).map((current,index) => {
+
+            const pageNumber = pagination.currentPage + index;
+
+
+            if( pageNumber > pagination.totalPages){
+              return null
+            }
+
+            return <li key={pageNumber}>
+            <button
+              onClick={() => router.push({
+                pathname: '/hostels',
+                query: {
+                  page: pageNumber,
+                },
+              })}
+              className={`block h-8 w-8 rounded border text-center leading-8 ${(pagination.currentPage === pageNumber) ? `text-white border-blue-600 bg-blue-600` : `border-gray-300 text-gray-900 bg-white hover:text-white hover:border-blue-600 hover:bg-blue-600`}`}
             >
-              3
-            </a>
+              {pageNumber}
+            </button>
           </li>
 
-          <li>
-            <a
-              href="#"
-              className="block h-8 w-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
-            >
-              4
-            </a>
-          </li>
 
-          <li>
-            <a
-              href="#"
-              className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+          })}
+
+
+
+          <li >
+            <button
+            disabled={pagination.currentPage >= pagination.totalPages}
+              onClick={()=> router.push({
+                pathname: '/hostels',
+                query: {
+                  page: pagination.currentPage+1,
+                },
+              })}
+              className="cursor-pointer inline-flex h-8 w-8 items-center justify-center rounded border border-gray-300 bg-white text-gray-900 rtl:rotate-180 hover:text-white hover:border-blue-600 hover:bg-blue-600"
             >
               <span className="sr-only">Next Page</span>
               <svg
@@ -293,7 +365,7 @@ const Hostels:React.FC<HostelsProps> = ({ hostels,error }) => {
                   clipRule="evenodd"
                 />
               </svg>
-            </a>
+            </button>
           </li>
         </ol>
       </div>
@@ -307,11 +379,20 @@ export default Hostels
 
 export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => {
 
-  let url = `hostel/gethostels?`;
+  let url = `hostel/gethostels?limit=2`;
+
+  if(query.page){
+    url += `&page=${query.page}`;
+  }
 
   if (query.location) {
     url += `&location=${query.location}`;
   }
+
+  if (query.rating) {
+    url += `&rating=${query.rating}`;
+  }
+
   if (query.min) {
     url += `&min=${query.min}`;
   }
@@ -319,19 +400,22 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => 
     url += `&max=${query.max}`;
   }
 
-  let hostels:propertyProps[]  = [];
+  let hostels: propertyProps[] = [];
+  let paginationData = { currentPage: 0, totalPages: 0, totalItems: 0 }
 
-  try{
+  try {
     const response = await getData(url);
     hostels = response.hostels || [];
+    paginationData = response.pagination
 
     return {
       props: {
         hostels,
+        paginationData
       },
     };
 
-  }catch(err){
+  } catch (err) {
 
     return {
       props: {
