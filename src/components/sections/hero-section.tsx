@@ -6,16 +6,19 @@ import { DateRangePicker } from 'react-date-range';
 import { FaCalendarAlt } from "react-icons/fa";
 import { citiesData } from '@/utils/data';
 import Select from "react-select";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
 
 const selectionRange = {
-    // startDate: new Date(),
-    // endDate: new Date(),
+    startDate: new Date(),
+    endDate: new Date(),
     key: 'selection',
 }
 
 const HeroSection = () => {
+    const router = useRouter();
 
     const [range, setRange] = useState<any>({ ...selectionRange })
     const [location, setLocation] = useState(``);
@@ -25,6 +28,19 @@ const HeroSection = () => {
 
     const handleDateRange = (e: any) => {
         setRange({ ...selectionRange, ...e.selection })
+    }
+
+    const handleSearch = () => {
+
+        router.push({
+            pathname: '/hostels',
+            query: {
+                location,
+                startDate: range.startDate,
+                endDate: range.endDate
+            },
+        });
+
     }
 
 
@@ -59,25 +75,38 @@ const HeroSection = () => {
                     </label>
 
                     <div className='flex items-center gap-3 w-full relative'>
-                    <label htmlFor="startDate" className='flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold'>Starting Date:
-                        <span id='startDate' className='bg-white flex justify-end items-center gap-10 cursor-pointer shadow-lg border-2 rounded-md min-w-[200px] text-center py-2 px-4 font-semibold max-w-[300px]' onClick={() => setIsRange(true)}>
-                            {range.startDate ? new Date(range.startDate).toLocaleString().slice(0, 9).replaceAll(`/`, `-`) : `Start Date`} <FaCalendarAlt />
+                        <label htmlFor="startDate" className='flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold'>Starting Date:
+                            <span id='startDate' className='bg-white flex justify-end items-center gap-10 cursor-pointer shadow-lg border-2 rounded-md min-w-[200px] text-center py-2 px-4 font-semibold max-w-[300px]' onClick={() => setIsRange(true)}>
+                                {range.startDate ? new Date(range.startDate).toLocaleString().slice(0, 9).replaceAll(`/`, `-`) : `Start Date`} <FaCalendarAlt />
+                            </span>
+                        </label>
+                        <label htmlFor="endDate" className='flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold min-w-fit'>End Date:
+                            <span className='bg-white flex justify-end items-center gap-10 cursor-pointer shadow-lg border-2 rounded-md min-w-[200px] text-center py-2 px-4 font-semibold max-w-[300px]' onClick={() => setIsRange(true)}>
+                                {range.endDate ? new Date(range.endDate).toLocaleString().slice(0, 9).replaceAll(`/`, `-`) : `End Date`} <FaCalendarAlt />
+                            </span>
+                        </label>
+                        {isRange && <span className={` absolute top-20 right-0`} onMouseLeave={() => setIsRange(false)}><DateRangePicker
+                            ranges={[range]}
+                            onChange={handleDateRange}
+                            minDate={new Date()}
+                            direction='horizontal'
+                            staticRanges={[]}
+                            showPreview={false}
+                        />
                         </span>
-                    </label>
-                    <label htmlFor="endDate" className='flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold min-w-fit'>End Date:
-                        <span className='bg-white flex justify-end items-center gap-10 cursor-pointer shadow-lg border-2 rounded-md min-w-[200px] text-center py-2 px-4 font-semibold max-w-[300px]' onClick={() => setIsRange(true)}>
-                            {range.endDate ? new Date(range.endDate).toLocaleString().slice(0, 9).replaceAll(`/`, `-`) : `End Date`} <FaCalendarAlt />
-                        </span>
-                    </label>
-                    {isRange && <span className={` absolute top-20 right-0`} onMouseLeave={() => setIsRange(false)}><DateRangePicker
-                        ranges={[range]}
-                        onChange={handleDateRange}
-                        minDate={new Date()}
-                        direction='horizontal'
-                    />
-                    </span>
-                    }
-                    <span className=' ml-auto bg-black flex items-center justify-center rounded-full hover:scale-[0.97] transition cursor-pointer mt-5 p-2'><IoMdArrowRoundForward className="text-4xl text-white transition-all" /></span>
+                        }
+                        <Link
+                            href={{
+                                pathname: '/hostels',
+                                query: {
+                                    location,
+                                    startDate: range.startDate,
+                                    endDate: range.endDate,
+                                },
+                            }}
+                        >
+                            <button className=' ml-auto bg-black flex items-center justify-center rounded-full hover:scale-[0.97] transition cursor-pointer mt-5 p-2'><IoMdArrowRoundForward className="text-4xl text-white transition-all" /></button>
+                        </Link>
                     </div>
 
                 </div>

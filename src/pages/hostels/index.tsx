@@ -10,7 +10,6 @@ import { CiStar } from "react-icons/ci";
 import { propertyProps } from '@/types/types';
 import { GetServerSideProps } from 'next';
 import Button from '@/components/elements/Button';
-import { RxReset } from "react-icons/rx";
 
 
 

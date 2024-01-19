@@ -66,7 +66,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     </div >
                     <div className='min-w-fit flex flex-col justify-end items-end gap-4 mt-5'>
                         <p className='font-bold text-md lg:text-xl text-black'>Rs: {price} / month</p>
-                        <Link href={`/hostels/${slug}`}><button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-6 py-3 border-indigo-600 bg-indigo-500'>See Details</button></Link>
+                        <Link href={{pathname:`/hostels/${slug}`}}><button className='w-full border-[1px] rounded-full font-medium text-lg lg:text-xl text-white px-6 py-3 border-indigo-600 bg-indigo-500'>See Details</button></Link>
                     </div>
                 </div>
             </div>
