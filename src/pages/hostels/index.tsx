@@ -201,7 +201,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
             <header>
               <p className="mt-4 max-w-md text-gray-500">
                 searches for </p>
-              <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">{pagination.totalItems} Hostels Found</h2>
+              <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">{pagination?.totalItems} Hostels Found</h2>
             </header>
             <div className=" flex items-center justify-end ">
               <div className="flex order-2 ml-5 rounded border-2 border-gray-100">

@@ -4,6 +4,7 @@ import ProfileSettings from '@/components/dashboard-pages/profile-settings'
 import { LuHotel } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineBedroomChild } from "react-icons/md";
+import Tickets from '@/components/dashboard-pages/tickets';
 
 
 
@@ -27,6 +28,12 @@ let PropertyOwner = [{
   route: `profileSetting`,
   icon: <CgProfile />,
   displayComponent: <ProfileSettings />
+},
+{
+  name: `Tickets`,
+  route: `tickets`,
+  icon: <CgProfile />,
+  displayComponent: <Tickets />
 }
 ]
 
