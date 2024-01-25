@@ -67,7 +67,7 @@ const TicketsManagement = () => {
     const renderModalData = () => {
         switch (currentModalData.route.toLowerCase()) {
             case `add`: return <AddNewTicket closeModal={() => { setIsRefresh(!isRefresh); setIsModal(false) }} />
-            case `delete`: return <Confirmation text={`Are you Sure you want to Delete ? `} closeModal={() => setIsModal(false)} handleConfirm={() => { handleDeleteProperty(currentModalData.data); setIsRefresh(!isRefresh); setIsModal(false); }} />
+            case `delete`: return <Confirmation text={`Are you Sure you want to Delete ? `} closeModal={() => {setIsModal(false)}} handleConfirm={() => { handleDeleteProperty(currentModalData.data);  setIsModal(false); }} />
         }
     }
 
@@ -82,7 +82,7 @@ const TicketsManagement = () => {
 
     const transformData = (data: any[]) => {
         const header = [
-            { text: `Hostel Id` },
+            { text: `Hostel Name` },
             { text: `Ticket Status` },
             { text: `Ticket Issue` },
             { text: `Date Added` },
@@ -93,10 +93,10 @@ const TicketsManagement = () => {
 
         data.map((ticket: any) => {
 
-            const { _id, hostelId, ticketIssue, status } = ticket;
+            const { _id, hostelId, ticketIssue, status,hostelName } = ticket;
 
             rows.push([
-                { text: `${hostelId}`, type: `none`, name: `hostelId` },
+                { text: `${hostelName}`, type: `none`, name: `hostelName` },
                 { text: `${status}`, type: `none`, name: `status` },
                 { text: `${ticketIssue}`, type: `none`, name: `ticketIssue` },
                 { text: `1/25/2024`, type: `none`, name: `date` },

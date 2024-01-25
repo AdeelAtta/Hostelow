@@ -28,11 +28,13 @@ const AddNewTicket: React.FC<any> = ({ closeModal }) => {
             const data = {
                 ...formData,
             }
-            data.hostelId = '65a1230aabdd50a8f75f38a6'
-            data.roomId = '65a1230aabdd50a8f75f38a6'
+            data.hostelId = user.hostelId
+            data.hostelName =`AlKarim hostel` //#TODO make hostel dynamic
+            data.roomId = user.roomId
             data.userId = user._id
             data.email = user.email
 
+            console.log(data);
 
             let response = await toast.promise(postData(`hostel/ticket`, data, `${user.access.token}`), {
                 pending: `Creating...`,
@@ -62,7 +64,7 @@ const AddNewTicket: React.FC<any> = ({ closeModal }) => {
                 title="Hostel Name"
                 name="hostelId"
                 type="text"
-                value={formData.hostelId}
+                value={user.hostelId}
                 placeholder="Hostel Name"
                 onChange={(e: ChangeEvent) => handleChange(e)}
                 otherProps={{ required: true, disabled: true }}

@@ -1,10 +1,12 @@
 import PropertyManagement from '@/components/dashboard-pages/owner/property-management'
 import ProfileSettings from '@/components/dashboard-pages/profile-settings'
 
+import { FaTicket } from "react-icons/fa6";
 import { LuHotel } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineBedroomChild } from "react-icons/md";
 import Tickets from '@/components/dashboard-pages/tickets';
+import TicketsManagement from '@/components/dashboard-pages/owner/ticket-management'
 
 
 
@@ -17,22 +19,22 @@ let PropertyOwner = [{
   icon: <LuHotel />,
   displayComponent: <PropertyManagement />
 },
-// {
-//   name: `Rooms Management`,
-//   route: `manageRooms`,
-//   icon: <MdOutlineBedroomChild />  ,
-//   displayComponent: <PropertyManagement />
-// },
 {
   name: `Profile Settings`,
   route: `profileSetting`,
-  icon: <CgProfile />,
+  icon: <CgProfile /> ,
   displayComponent: <ProfileSettings />
 },
 {
-  name: `Tickets`,
-  route: `tickets`,
-  icon: <CgProfile />,
+  name: `Admin Tickets Management`,
+  route: `adminTickets`,
+  icon: <FaTicket />,
+  displayComponent: <TicketsManagement />
+},
+{
+  name: `user Tickets Management`,
+  route: `userTickets`,
+  icon: <FaTicket />,
   displayComponent: <Tickets />
 }
 ]

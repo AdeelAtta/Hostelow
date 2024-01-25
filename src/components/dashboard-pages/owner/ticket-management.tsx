@@ -17,16 +17,17 @@ import Confirmation from "@/components/common/modals/confirmation";
 import { TableData } from "@/types/types";
 import AddNewTicket from "@/components/forms/manage-ticket-forms/add-new-ticket";
 import UpdateTicket from "@/components/forms/manage-ticket-forms/update-ticket-data";
+import Select from "react-select";
 
 
-
-const TicketsManagement = () => {
+const TicketsManagement:React.FC<any> = () => {
 
     const user = useSelector(userData)
 
     const [tableData, setTableData] = useState<TableData | any>(null);
     const [propertyData, setTicketData] = useState<any>(null);
     const [hostelList, setHostelList] = useState<any>([])
+    const [hostelId,setHostelId] = useState<string>(``)
 
     const [isSideModal, setIsSideModal] = useState<boolean>(false);
     const [isModal, setIsModal] = useState<boolean>(false)
@@ -64,7 +65,7 @@ const TicketsManagement = () => {
     const renderModalData = () => {
         switch (currentModalData.route.toLowerCase()) {
             case `add`: return <AddNewTicket closeModal={() => { setIsRefresh(!isRefresh); setIsModal(false) }} />
-            case `delete`: return <Confirmation text={`Are you Sure you want to Delete ? `} closeModal={() => setIsModal(false)} handleConfirm={() => { handleDeleteProperty(currentModalData.data); setIsRefresh(!isRefresh); setIsModal(false); }} />
+            case `delete`: return <Confirmation text={`Are you Sure you want to Delete ? `} closeModal={() => setIsModal(false)} handleConfirm={() => { handleDeleteProperty(currentModalData.data);  setIsModal(false); }} />
         }
     }
 
@@ -123,9 +124,11 @@ const TicketsManagement = () => {
     }
 
     useEffect(() => {
-        const fetchHostelData = async () => {
+        const fetchTicketsData = async () => {
             try {
-                let response = await postData(`hostel/fetchTicket`, { userId: user._id }, `${user.access.token}`)
+                let response = await postData(`hostel/fetchTicket`, { 
+                    hostelId: hostelId
+                }, `${user.access.token}`)
                 setTicketData(response.data);
 
                 const data = transformData(response.data);
@@ -135,13 +138,40 @@ const TicketsManagement = () => {
             }
 
         }
-        fetchHostelData()
-    }, [isRefresh])
+        hostelId && hostelId.length > 0 && fetchTicketsData()
+    }, [isRefresh,hostelId])
+
+    useEffect(() => {
+        const fetchHostelList = async () => {
+            try {
+                let response = await getData(`hostel/gethostels?userId=${user._id}`, `${user.access.token}`)
+                setHostelList(response.hostels.map((hostel:any) => {
+                    return {value:`${hostel._id}`,label:`${hostel.title}`}
+                }
+                    ))
+            } catch (err) {
+                console.error(err);
+            }
+
+        }
+        fetchHostelList()
+    }, [])
 
     return <>
         <ToastContainer />
         <div className="w-full flex justify-end items-end">
-            <Button onClick={() => (setCurrentModalData({ route: `add`, data: null }), setIsModal(true))}>Add Ticket </Button>
+        <div className="ml-auto">
+                    <label htmlFor="hostel">Select Hostel:</label>
+                    <Select
+                        name="hostel"
+                        id="hostel"
+                        options={hostelList ?? []}
+                        className="basic-multi-select min-w-[300px]"
+                        classNamePrefix="select hostel"
+                        onChange={(e: any) => setHostelId(e.value)}
+                    />
+                </div>
+            {/* <Button onClick={() => (setCurrentModalData({ route: `add`, data: null }), setIsModal(true))}>Add Ticket </Button> */}
         </div>
 
 

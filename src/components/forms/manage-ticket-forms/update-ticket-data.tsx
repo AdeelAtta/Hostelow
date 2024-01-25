@@ -11,14 +11,16 @@ import Image from 'next/image'
 import { IoClose } from "react-icons/io5";
 import { propertyProps } from "@/types/types";
 
-
+const userStatusList = [{ value: `open`, label: `Open` }, { value: `draft`, label: `Draft` }]
+const adminStatusList = [{ value: `open`, label: `Open` }, { value: `recieved`, label: `Recieved` },{ value: `working`, label: `Working` },{ value: `hold`, label: `on Hold` },{ value: `resolved`, label: `Resolved` }]
 
 const UpdateTicket: React.FC<any> = ({ ticket, closeModal }) => {
 
     const user = useSelector(userData)
+    const [ispropertyOwner,setIsPropertyOwner] = useState(user.role == `admin`)
     const initialFormData = { ticketIssue: ticket.ticketIssue, status: ticket.status, }
     const [formData, setFormData] = useState<any>(initialFormData)
-    const [statusList, setStatusList] = useState<any[]>([{ value: `open`, label: `open` }, { value: `draft`, label: `draft` }]);
+    const [statusList, setStatusList] = useState<any[]>(ispropertyOwner ? adminStatusList : userStatusList);
 
 
     const handleChange = (e: ChangeEvent<any>) => {
@@ -31,9 +33,14 @@ const UpdateTicket: React.FC<any> = ({ ticket, closeModal }) => {
         try {
 
             let data = {
-                ...formData,
+                status:formData.status,
                 ticketId: ticket._id,
             }
+            if(!ispropertyOwner){
+                data.ticketIssue = formData.ticketIssue
+            }
+
+            
             //Update Hostel Form
 
             let response = await toast.promise(putData(`hostel/updateTicketStatus`, data, `${user.access.token}`), {
@@ -94,6 +101,7 @@ const UpdateTicket: React.FC<any> = ({ ticket, closeModal }) => {
                 id="ticketIssue"
                 value={formData.ticketIssue}
                 onChange={(e: ChangeEvent) => handleChange(e)}
+                disabled={ispropertyOwner}
             ></textarea>
         </div>
         <div>
