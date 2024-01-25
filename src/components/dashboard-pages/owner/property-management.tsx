@@ -8,11 +8,11 @@ import Table from "@/components/common/table";
 import SideModal from "@/components/common/modals/side-modal";
 import Button from "@/components/forms/form-elements/button";
 
-import UpdatePropertyData from "@/components/forms/update-property-data";
-import AddUpdatePropertyImages from "@/components/forms/add-update-property-images";
-import AddUpdatePropertyAmenities from "@/components/forms/add-update-property-amenities";
+import UpdatePropertyData from "@/components/forms/manage-property-forms/update-property-data";
+import AddUpdatePropertyImages from "@/components/forms/manage-property-forms/add-update-property-images";
+import AddUpdatePropertyAmenities from "@/components/forms/manage-property-forms/add-update-property-amenities";
 import Modal from "@/components/common/modals/modal";
-import AddNewProperty from "@/components/forms/add-new-property";
+import AddNewProperty from "@/components/forms/manage-property-forms/add-new-property";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
 import { deleteData, getData } from "@/utils/api";

@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import Button from "./form-elements/button";
-import Input from "./form-elements/input";
+import Button from "../form-elements/button";
+import Input from "../form-elements/input";
 import Select from "react-select";
 import { citiesData } from "@/utils/data";
 import { userData } from "@/redux/slices/user-slice";

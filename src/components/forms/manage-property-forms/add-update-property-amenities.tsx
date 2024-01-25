@@ -1,5 +1,5 @@
-import Button from "./form-elements/button";
-import Input from "./form-elements/input";
+import Button from "../form-elements/button";
+import Input from "../form-elements/input";
 import { FormEvent, useState } from "react";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
