@@ -182,9 +182,9 @@ const ReviewManagement = () => {
             {renderSideModalData()}
         </SideModal>
 
-        <Modal title={``} closeModal={() => setIsModal(false)} isModal={isModal}>
+        {/* <Modal title={``} closeModal={() => setIsModal(false)} isModal={isModal}>
             {renderModalData()}
-        </Modal>
+        </Modal> */}
     </>
 
 }

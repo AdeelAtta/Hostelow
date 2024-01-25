@@ -32,7 +32,7 @@ const UpdateTicket: React.FC<any> = ({ ticket, closeModal }) => {
         e.preventDefault()
         try {
 
-            let data = {
+            let data:any = {
                 status:formData.status,
                 ticketId: ticket._id,
             }
