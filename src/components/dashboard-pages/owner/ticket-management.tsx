@@ -8,9 +8,6 @@ import Table from "@/components/common/table";
 import SideModal from "@/components/common/modals/side-modal";
 import Button from "@/components/forms/form-elements/button";
 
-import UpdatePropertyData from "@/components/forms/update-property-data";
-import AddUpdatePropertyImages from "@/components/forms/add-update-property-images";
-import AddUpdatePropertyAmenities from "@/components/forms/add-update-property-amenities";
 import Modal from "@/components/common/modals/modal";
 import { userData } from "@/redux/slices/user-slice";
 import { useSelector } from "react-redux";
@@ -18,8 +15,8 @@ import { deleteData, getData, postData } from "@/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import Confirmation from "@/components/common/modals/confirmation";
 import { TableData } from "@/types/types";
-import AddNewTicket from "../forms/manage-ticket-forms/add-new-ticket";
-import UpdateTicket from "../forms/manage-ticket-forms/update-ticket-data";
+import AddNewTicket from "@/components/forms/manage-ticket-forms/add-new-ticket";
+import UpdateTicket from "@/components/forms/manage-ticket-forms/update-ticket-data";
 
 
 
