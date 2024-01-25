@@ -18,8 +18,8 @@ import { deleteData, getData, postData } from "@/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import Confirmation from "@/components/common/modals/confirmation";
 import { TableData } from "@/types/types";
-import AddNewTicket from "../forms/manage-ticket-forms/add-new-ticket";
-import UpdateTicket from "../forms/manage-ticket-forms/update-ticket-data";
+import AddNewTicket from "../../forms/manage-ticket-forms/add-new-ticket";
+import UpdateTicket from "../../forms/manage-ticket-forms/update-ticket-data";
 
 
 

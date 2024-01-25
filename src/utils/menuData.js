@@ -5,7 +5,7 @@ import { FaTicket } from "react-icons/fa6";
 import { LuHotel } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineBedroomChild } from "react-icons/md";
-import Tickets from '@/components/dashboard-pages/tickets';
+import Tickets from '@/components/dashboard-pages/customer/ticket-management';
 import TicketsManagement from '@/components/dashboard-pages/owner/ticket-management'
 
 
