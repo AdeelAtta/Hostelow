@@ -10,6 +10,8 @@ import { postData } from '@/utils/api';
 import { useDispatch } from 'react-redux';
 import router from 'next/router';
 import { setUserData } from '@/redux/slices/user-slice';
+import Modal from '../common/modals/modal';
+import ForgetPassword from './forget-password-form';
 
 const initialForm = {
     email: ``,
@@ -20,6 +22,8 @@ const LoginForm = (props: any) => {
 
     const dispatch = useDispatch()
     const [formData, setFormData] = useState(initialForm);
+
+    const [isModal,setIsModal] = useState(false)
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFormData((prev: any) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -48,7 +52,7 @@ const LoginForm = (props: any) => {
         }
     }
 
-    return (
+    return ( <>
         <form onSubmit={(e)=>handleFormSubmit(e)} className='flex flex-col gap-y-4'>
             <Input
                 icon={<FaRegUser />}
@@ -70,9 +74,13 @@ const LoginForm = (props: any) => {
                 otherProps={{required:true}}
             />
 
-            <Link className='text-right text-blue-400 font-thin text-md' href={""}>Forgot Password ?</Link>
+            <Link onClick={()=>setIsModal(true)} className='text-right text-blue-400 font-thin text-md' href={""}>Forgot Password ?</Link>
             <Button text='Login' type='submit' />
         </form>
+        <Modal title={''} isModal={isModal} closeModal={()=>setIsModal(false)} >
+            <ForgetPassword closeModal={()=>setIsModal(false)} />
+        </Modal>
+       </>
     )
 }
 
