@@ -61,7 +61,7 @@ const Reset: React.FC<ResetProps> = ({ resetHash }) => {
 
           
 
-           {isChanged ?  <>
+           {!isChanged ?  <>
 
             <div className="mx-auto max-w-lg text-left">
                 <h1 className="text-lg font-bold sm:text-2xl text-blue-400 dark:text-gray-300 "> Reset Form </h1>
