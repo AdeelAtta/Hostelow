@@ -179,7 +179,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
                       <div className='w-[70%]'>
                         <div className="w-full flex items-center justify-between">
                           <h3 className='text-2xl font-bold'>{availability > 2 ? `${availability} Bed, Mixed room` : availability == 2 ? `Double Bed Room` : availability == 1 && `Single Bed Room`} </h3>
-                          <h4 className='text-2xl font-extrabold flex items-center '>{(discountPrice && (discountPrice > 0)) ? <span><s className='text-base text-red-400'>PKR {price}</s><b className='font-bold'> PKR {discountPrice}</b></span> : price}  </h4>
+                          <h4 className='text-2xl font-extrabold flex flex-col items-center '>{(discountPrice && (discountPrice > 0)) ? <span><s className='text-base text-red-400'>PKR {price}</s><b className='font-bold'> PKR {discountPrice}</b></span> : price} <span className='font-thin text-sm ml-auto'>per month</span>  </h4>
                         </div>
                         <h4 className='flex items-center justify-start my-1'><FaRegUser className="mr-2" /> x 1</h4>
                         <h3 className='text-lg font-medium text-gray-400'>{availability > 2 ? `${availability} Bed, Mixed room` : availability == 2 ? `Double Bed Room` : availability == 1 && `Single Bed Room`} </h3>
