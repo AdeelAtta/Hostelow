@@ -198,7 +198,7 @@ export default RoomBooking
 export const getServerSideProps: GetServerSideProps<any> = async ({ params }) => {
     const roomSlug = params?.roomSlug as string;
 
-    const parts = roomSlug.split(`@`);
+    const parts = roomSlug.split(`+`);
 
 
     try {
