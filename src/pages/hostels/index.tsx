@@ -78,7 +78,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
 
     let queryParams: any = {};
 
-    if (filterForm.location.length > 0) {
+    if (filterForm.location && filterForm.location.length > 0) {
       queryParams.location = filterForm.location
     }
 
@@ -201,7 +201,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
             <header>
               <p className="mt-4 max-w-md text-gray-500">
                 searches for </p>
-              <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">{pagination?.totalItems} Hostels Found</h2>
+              <h2 className="text-xl font-bold text-gray-900 sm:text-3xl"> {pagination?.totalItems} Hostels Found</h2>
             </header>
             <div className=" flex items-center justify-end ">
               <div className="flex order-2 ml-5 rounded border-2 border-gray-100">
@@ -243,7 +243,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
                   </svg>
                 </button>
               </div>
-
+{/* 
               <div>
                 <label htmlFor="SortBy" className="sr-only">SortBy</label>
                 <select id="SortBy" className="border-2 h-10 rounded border-gray-300 text-sm">
@@ -253,7 +253,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
                   <option value="Price, DESC">Price, DESC</option>
                   <option value="Price, ASC">Price, ASC</option>
                 </select>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -378,7 +378,7 @@ export default Hostels
 
 export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => {
 
-  let url = `hostel/gethostels?limit=2`;
+  let url = `hostel/gethostels?limit=10`;
 
   if(query.page){
     url += `&page=${query.page}`;
@@ -402,6 +402,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => 
   let hostels: propertyProps[] = [];
   let paginationData = { currentPage: 0, totalPages: 0, totalItems: 0 }
 
+  console.log(url);
   try {
     const response = await getData(url);
     hostels = response.hostels || [];

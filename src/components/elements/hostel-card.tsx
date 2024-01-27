@@ -23,13 +23,13 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
         <div key={slug} className={`${listStyle ? ` flex-col lg:flex-row ` : `flex-col `} relative card flex ml-auto mr-auto p-4 border-2 border-gray-100 shadow-xl rounded-xl`}>
             <div className=' hostel-image overflow-hidden max-w-[320px] h-auto min-h-[300px]'>
 
-                <Image
+                {/* <Image
                     width={300}
                     height={300}
                     className=' rounded-xl w-full h-full min-w-[300px] max-h-[300px]'
                     src={`${thumbnail}`}
                     alt={title}
-                />
+                /> */}
             </div>
 
             <div className={`${listStyle ? ` lg:p-4 ` : ``} py-2 flex-1 details w-full flex flex-col  justify-between `}>

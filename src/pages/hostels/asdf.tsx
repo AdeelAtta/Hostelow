@@ -154,7 +154,7 @@ const HostelDetail:React.FC<HostelDetailProps> = ({hostelData}) => {
             </div>
           </div>
         </div>
-      </section>
+      </section>  
 
       {/* ROOMS CARD */}
       <section className='bg-[#f8f8f8] text-black py-4'>
