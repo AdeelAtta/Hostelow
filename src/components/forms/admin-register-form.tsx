@@ -57,6 +57,7 @@ const AdminRegisterForm = () => {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6">
                 <form onSubmit={(e) => handleNewAccountFormSubmit(e)}>
+                <h2 className='text-2xl md:text-4xl font-extrabold text-center md:mb-2'>Account for Hostel Owners</h2>
                     <div className='flex flex-col md:flex-row justify-between items-center'>
                         <Input
                             type="text"
