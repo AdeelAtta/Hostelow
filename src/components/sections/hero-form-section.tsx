@@ -5,7 +5,7 @@ import Button from '../elements/Button'
 
 const HeroFormSection = () => {
     return (
-        <section className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16 bg-black">
+        <section className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
             <div className='flex flex-col md:flex-row justify-center items-center gap-y-8'>
                 <div className=''>
                     <h1 className="max-w-2xl mb-4 text-3xl font-extrabold tracking-tight leading-none md:text-4xl xl:text-6xl dark:text-white">Built for ambitious,forward thinking investors</h1>
@@ -45,7 +45,7 @@ const HeroFormSection = () => {
                         </div>
                     </div>
                     <Link href="">
-                        <Button text='Book Now!' type='button' customeStyle='w-full my-4' />
+                        <Button text='Invest Now!' type='button' customeStyle='w-full my-4' />
                     </Link>
                 </div>
                 <div className="block rounded-lg px-4 py-2 shadow-lg shadow-indigo-100 bg-white ">
@@ -70,7 +70,7 @@ const HeroFormSection = () => {
                         </div>
                     </div>
                     <Link href="">
-                        <Button text='Book Now!' type='button' customeStyle='w-full my-4' />
+                        <Button text='Invest Now!' type='button' customeStyle='w-full my-4' />
                     </Link>
                 </div>
                 <div className="block rounded-lg px-4 py-2 shadow-lg shadow-indigo-100 bg-white ">
@@ -95,7 +95,7 @@ const HeroFormSection = () => {
                         </div>
                     </div>
                     <Link href="">
-                        <Button text='Book Now!' type='button' customeStyle='w-full my-4' />
+                        <Button text='Invest Now!' type='button' customeStyle='w-full my-4' />
                     </Link>
                 </div>
                 <div className="block rounded-lg px-4 py-2 shadow-lg shadow-indigo-100 bg-white ">
@@ -120,7 +120,7 @@ const HeroFormSection = () => {
                         </div>
                     </div>
                     <Link href="">
-                        <Button text='Book Now!' type='button' customeStyle='w-full my-4' />
+                        <Button text='Invest Now!' type='button' customeStyle='w-full my-4' />
                     </Link>
                 </div>
             </div>
