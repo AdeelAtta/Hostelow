@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '@/assets/common/HostelBazaar.svg'
 import Image from 'next/image'
 import Link from 'next/link'
+import { userData } from '@/redux/slices/user-slice'
+import { useSelector } from 'react-redux'
+import LogoutButton from './logout-button'
 
 const Header = () => {
+
+  const user = useSelector(userData)
+  const [userInfo,setUserInfo] = useState<any>(null)
+
+  useEffect(()=>{
+    setUserInfo({name:`one`})
+  },[])
+
+
   return (
     <header className="bg-white relative z-[10]">
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
@@ -87,25 +99,46 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-4">
+            {userInfo && userInfo?.name ?
             <div className="sm:flex sm:gap-4">
-
-              <div className="hidden sm:flex ">
-                <Link href={`/register`}>
-                  <span
-                    className="rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
-                    Register
-                  </span>
-                </Link>
-              </div>
-              <div className="hidden sm:flex ">
-                <Link href={`/login`}>
-                  <span
-                    className="rounded-3xl bg-stone-800 px-10 py-2.5 text-sm font-medium text-white shadow" >
-                    Login
-                  </span>
-                </Link>
-              </div>
+            {/* <div className="hidden sm:flex ">
+              <Link href={`/register`}>
+                <span
+                  className="rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
+                  Register
+                </span>
+              </Link>
+            </div> */}
+            <div className="hidden sm:flex ">
+              <LogoutButton>
+              <span
+                  className="rounded-3xl bg-stone-800 px-10 py-2.5 text-sm font-medium text-white shadow" >
+                  Logout
+                </span>
+              </LogoutButton>
             </div>
+          </div>
+          :
+          <div className="sm:flex sm:gap-4">
+          <div className="hidden sm:flex ">
+            <Link href={`/register`}>
+              <span
+                className="rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
+                Register
+              </span>
+            </Link>
+          </div>
+          <div className="hidden sm:flex ">
+            <Link href={`/login`}>
+              <span
+                className="rounded-3xl bg-stone-800 px-10 py-2.5 text-sm font-medium text-white shadow" >
+                Login
+              </span>
+            </Link>
+          </div>
+        </div>
+            
+            }
 
             <div className="block md:hidden">
               <button

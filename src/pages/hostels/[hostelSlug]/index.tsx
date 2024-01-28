@@ -368,7 +368,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ params }) =>
     const response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
     const hostelData: propertyProps = response.hostels[0] || {};
 
-    if(Object.keys(hostelData).length < 1){
+    if(hostelData && Object.keys(hostelData).length < 1){
       return {
         notFound: true,
       };
