@@ -64,7 +64,7 @@ const Header = () => {
                     <span
                       className="text-stone-700 transition hover:text-gray-500/75"
                     >
-                      Popular
+                      Hostel Owners
                     </span>
                   </Link>
                 </li>
