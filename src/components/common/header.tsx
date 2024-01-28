@@ -69,6 +69,16 @@ const Header = () => {
                   </Link>
                 </li>
 
+                <li>
+                  <Link href={'/invest'}>
+                    <span
+                      className="text-stone-700 transition hover:text-gray-500/75"
+                    >
+                      Invest
+                    </span>
+                  </Link>
+                </li>
+
                 {/* <li>
               <span
                 className="text-gray-500 transition hover:text-gray-500/75"
