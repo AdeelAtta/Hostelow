@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Logo from '@/assets/common/HostelBazaar.svg'
+import Logo from '@/assets/common/HostelBazaar.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cleanUserData, userData } from '@/redux/slices/user-slice'
@@ -26,10 +26,10 @@ const Header = () => {
               <span className="sr-only">Home</span>
               <Link href={`/`}>
                 <Image
-                  className='w-min h-auto'
+                  className='w-min h-auto min-w-[180px]'
                   src={Logo}
-                  height={56}
-                  width={56}
+                  height={31}
+                  width={272}
                   alt="Hostel Bazaar logo" />
               </Link>
             </span>

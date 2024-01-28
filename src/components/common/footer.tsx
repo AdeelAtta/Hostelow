@@ -1,18 +1,21 @@
 import React from 'react'
-import Logo from '@/assets/common/HostelBazaar.svg'
+import Logo from '@/assets/common/HostelBazaar.png'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Footer = () => {
     return (
         <footer className="bg-gray-100">
             <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="flex justify-center text-teal-600">
-                    <Image
-                        className='w-max h-auto'
-                        src={Logo}
-                        height={76}
-                        width={76}
-                        alt="Hostel Bazaar logo" />
+                <Link href={`/`}>
+                <Image
+                  className='w-min h-auto min-w-[180px]'
+                  src={Logo}
+                  height={31}
+                  width={272}
+                  alt="Hostel Bazaar logo" />
+              </Link>
                 </div>
 
                 <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
