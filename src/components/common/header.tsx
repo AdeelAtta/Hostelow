@@ -47,7 +47,7 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link href={'/popular'}>
+                  <Link href={'/joinus'}>
                     <span
                       className="text-stone-700 transition hover:text-gray-500/75"
                     >
