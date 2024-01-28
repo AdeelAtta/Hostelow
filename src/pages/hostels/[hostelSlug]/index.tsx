@@ -185,7 +185,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
                         <h3 className='text-lg font-medium text-gray-400'>{availability > 2 ? `${availability} Bed, Mixed room` : availability == 2 ? `Double Bed Room` : availability == 1 && `Single Bed Room`} </h3>
                         <div className='w-full flex items-center justify-between border-b-[1px] border-gray-200'>
                           <ul className={`flex justify-start items-center pb-4`}>
-                            {amenitities && amenitities?.slice(0, 5).map((key: string, index: number) => <li key={key} title={`${AmenitiesInfo[key].text}`} className='text-2xl m-2 font-thin '>{AmenitiesInfo[key].icon}</li>)}
+                            {amenitities && amenitities?.slice(0, 5).map((key: string, index: number) => <li key={key} title={`${AmenitiesInfo[key]?.text}`} className='text-2xl m-2 font-thin '>{AmenitiesInfo[key]?.icon}</li>)}
                             {(amenitities && amenitities?.length > 5) && <li className='text-lg font-md' >+{amenitities.length - 5}</li>}
                           </ul>
                           {availability > occupancy && <span className='font-md text-xl text-green-600'>{availability - occupancy } {(availability - occupancy) > 1 ? `beds`:`bed`} Available</span>}
