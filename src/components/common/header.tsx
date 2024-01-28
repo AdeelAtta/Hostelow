@@ -60,21 +60,21 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link href={'/joinus'}>
-                    <span
-                      className="text-stone-700 transition hover:text-gray-500/75"
-                    >
-                      Hostel Owners
-                    </span>
-                  </Link>
-                </li>
-
-                <li>
                   <Link href={'/invest'}>
                     <span
                       className="text-stone-700 transition hover:text-gray-500/75"
                     >
                       Invest
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link href={'/joinus'}>
+                    <span
+                      className="text-stone-700 transition hover:text-gray-500/75"
+                    >
+                      Hostel Owners
                     </span>
                   </Link>
                 </li>
