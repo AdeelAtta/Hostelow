@@ -59,7 +59,7 @@ const HeroSection = () => {
                     Book your Stay With Hostel Bazaar.
                 </h2>
                 <p className='text-center text-lg px-8 py-3 sm:text-3xl font-md'>14,000,000 rooms around the world are waiting for you</p>
-                <div className='rounded-xl flex flex-col items-center justify-center gap-4 lg:flex-row z-[5] w-[70%] absolute bottom-0 translate-y-[50%] left-[50%] translate-x-[-50%] px-10 pt-7 pb-9 lg:rounded-2xl bg-gray-100 text-gray-900' style={{ boxShadow: `rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px` }}>
+                <div className='rounded-xl flex flex-col items-center justify-center gap-4 md:flex-row z-[5] w-[90%]  sm:w-[70%] absolute bottom-0 translate-y-[50%] left-[50%] translate-x-[-50%] px-6 sm:px-10 pt-7 pb-9 lg:rounded-2xl bg-gray-100 text-gray-900' style={{ boxShadow: `rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px` }}>
 
                     <label htmlFor="location" className='flex flex-col w-full font-semibold'>Select Your Hostel Location:
                         <Select required={true}
@@ -74,13 +74,13 @@ const HeroSection = () => {
                         />
                     </label>
 
-                    <div className='flex items-center gap-3 w-full relative'>
-                        <label htmlFor="startDate" className='flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold'>Starting Date:
+                    <div className='flex-col sm:flex-row w-full flex items-center gap-3 relative '>
+                        <label htmlFor="startDate" className='w-full flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold'>Starting Date:
                             <span id='startDate' className='bg-white flex justify-end items-center gap-10 cursor-pointer shadow-lg border-2 rounded-md min-w-[200px] text-center py-2 px-4 font-semibold max-w-[300px]' onClick={() => setIsRange(true)}>
                                 {range.startDate ? new Date(range.startDate).toLocaleString().slice(0, 9).replaceAll(`/`, `-`) : `Start Date`} <FaCalendarAlt />
                             </span>
                         </label>
-                        <label htmlFor="endDate" className='flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold min-w-fit'>End Date:
+                        <label htmlFor="endDate" className='w-full flex-1 lg:flex-1 flex flex-col lg:min-w-fit font-semibold min-w-fit'>End Date:
                             <span className='bg-white flex justify-end items-center gap-10 cursor-pointer shadow-lg border-2 rounded-md min-w-[200px] text-center py-2 px-4 font-semibold max-w-[300px]' onClick={() => setIsRange(true)}>
                                 {range.endDate ? new Date(range.endDate).toLocaleString().slice(0, 9).replaceAll(`/`, `-`) : `End Date`} <FaCalendarAlt />
                             </span>
@@ -105,7 +105,7 @@ const HeroSection = () => {
                                 },
                             }}
                         >
-                            <button className=' ml-auto bg-black flex items-center justify-center rounded-full hover:scale-[0.97] transition cursor-pointer mt-5 p-2'><IoMdArrowRoundForward className="text-4xl text-white transition-all" /></button>
+                            <button className=' ml-auto bg-black flex items-center justify-center rounded-full hover:scale-[0.97] transition cursor-pointer mt-5 p-2'><IoMdArrowRoundForward className=" text-4xl text-white transition-all" /></button>
                         </Link>
                     </div>
 

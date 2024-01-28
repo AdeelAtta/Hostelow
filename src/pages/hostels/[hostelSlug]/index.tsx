@@ -367,7 +367,13 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ params }) =>
   try {
     const response = await getData(`hostel/getHostels?slug=${hostelSlug}`);
     const hostelData: propertyProps = response.hostels[0] || {};
-    // console.log(response.hostels[0].rooms)
+
+    if(Object.keys(hostelData).length < 1){
+      return {
+        notFound: true,
+      };
+    }
+
     return {
       props: {
         hostelData,

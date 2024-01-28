@@ -211,7 +211,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ params }) =>
       const response = await getData(`hostel/rooms/${slug}`);
       const roomData = response.rooms[0];
     //   const hostelData: propertyProps= response.hostels[0] || {};
-  
+        console.log(roomData)
       return {
         props: {
           roomData:roomData
