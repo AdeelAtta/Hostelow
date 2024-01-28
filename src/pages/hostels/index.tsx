@@ -329,7 +329,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
                   page: pageNumber,
                 },
               })}
-              className={`block h-8 w-8 rounded border text-center leading-8 ${(pagination.currentPage === pageNumber) ? `text-white border-blue-600 bg-blue-600` : `border-gray-300 text-gray-900 bg-white hover:text-white hover:border-blue-600 hover:bg-blue-600`}`}
+              className={`block h-8 w-8 rounded border text-center leading-8 ${(pagination?.currentPage === pageNumber) ? `text-white border-blue-600 bg-blue-600` : `border-gray-300 text-gray-900 bg-white hover:text-white hover:border-blue-600 hover:bg-blue-600`}`}
             >
               {pageNumber}
             </button>
@@ -342,11 +342,11 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
 
           <li >
             <button
-            disabled={pagination.currentPage >= pagination.totalPages}
+            disabled={pagination?.currentPage >= pagination?.totalPages}
               onClick={()=> router.push({
                 pathname: '/hostels',
                 query: {
-                  page: pagination.currentPage+1,
+                  page: pagination?.currentPage+1,
                 },
               })}
               className="cursor-pointer inline-flex h-8 w-8 items-center justify-center rounded border border-gray-300 bg-white text-gray-900 rtl:rotate-180 hover:text-white hover:border-blue-600 hover:bg-blue-600"
@@ -406,7 +406,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => 
   try {
     const response = await getData(url);
     hostels = response.hostels || [];
-    paginationData = response.pagination
+    paginationData = response?.pagination
 
     return {
       props: {
