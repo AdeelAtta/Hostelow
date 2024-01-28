@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react'
 import Logo from '@/assets/common/HostelBazaar.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { userData } from '@/redux/slices/user-slice'
-import { useSelector } from 'react-redux'
+import { cleanUserData, userData } from '@/redux/slices/user-slice'
+import { useDispatch, useSelector } from 'react-redux'
 import LogoutButton from './logout-button'
 
 const Header = () => {
 
-  const user = useSelector(userData)
+  const user = useSelector(userData);
+  const dispatch = useDispatch()
   const [userInfo,setUserInfo] = useState<any>(null)
 
   useEffect(()=>{
-    setUserInfo({name:`one`})
-  },[])
+    setUserInfo(user)
+  },[user])
 
 
   return (
@@ -99,24 +100,16 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            {userInfo && userInfo?.name ?
+            {userInfo && userInfo != null ?
             <div className="sm:flex sm:gap-4">
-            {/* <div className="hidden sm:flex ">
-              <Link href={`/register`}>
-                <span
-                  className="rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
-                  Register
-                </span>
-              </Link>
-            </div> */}
-            <div className="hidden sm:flex ">
-              <LogoutButton>
-              <span
-                  className="rounded-3xl bg-stone-800 px-10 py-2.5 text-sm font-medium text-white shadow" >
-                  Logout
-                </span>
-              </LogoutButton>
-            </div>
+            <div className="flex ">
+       
+              <span onClick={()=>{dispatch(cleanUserData())}}
+                className="cursor-pointer rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
+                logout
+              </span>
+            
+          </div>
           </div>
           :
           <div className="sm:flex sm:gap-4">
