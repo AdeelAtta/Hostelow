@@ -99,7 +99,7 @@ const Policies = () => {
                     <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
-                            All cancellations, if informed 7 days prior to the check-in date, shall be eligible for a 100% refund. In case cancellations happen within 7 days of the check-in date, there wouldn’t be ANY refund and will attract 100% cancellation charges. If the guest doesn’t show up they will be charged the total price of the reservation.
+                            All cancellations, if informed 7 days prior to the check-in date, shall be eligible for a 100% refund. In case cancellations happen within 7 days of the check-in date, there wouldn&quot;t be ANY refund and will attract 100% cancellation charges. If the guest doesn&quot;t show up they will be charged the total price of the reservation.
                         </p>
                     </li>
                     <li className='flex items-center gap-x-4'>
@@ -111,7 +111,7 @@ const Policies = () => {
                     <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
-                            The reservations made for hostel stays cannot be shifted from one location to another. If the reservation is eligible for free cancellation, then we'll assist in cancelling the reservation and initiate a refund for the same from our end. The guest can then proceed to make the reservation for the desired location.
+                            The reservations made for hostel stays cannot be shifted from one location to another. If the reservation is eligible for free cancellation, then we&quot;ll assist in cancelling the reservation and initiate a refund for the same from our end. The guest can then proceed to make the reservation for the desired location.
                         </p>
                     </li>
                 </ul>

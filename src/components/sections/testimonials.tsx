@@ -446,7 +446,7 @@ const Testimonials = () => {
           </div>
 
           <p className="mt-4 text-gray-700">
-          "HostelBazaar ne mujhe wo ghar dilaya jo bilkul meri vibe ka hai! Booking ke process mein itni asani aur owner se direct connect hone ka feature? Bas perfect hai! HostelBazaar ne hamare student life ko aur bhi mazay ka bana diya."
+          HostelBazaar ne mujhe wo ghar dilaya jo bilkul meri vibe ka hai! Booking ke process mein itni asani aur owner se direct connect hone ka feature? Bas perfect hai! HostelBazaar ne hamare student life ko aur bhi mazay ka bana diya.
           </p>
         </blockquote>
       </div>

@@ -145,17 +145,19 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                     <div className='flex flex-col  py-4 border-b-2'>
                         <h2 className='leading-none text-md md:text-xl font-bold'>Amenities</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 md:mt-4">
-                            {
+                            {/* {
                                 room?.amenitities.map((item: string) => {
                                     return (
                                         <div className=' text-[#7D7D7D]'>{item}</div>
                                     )
                                 })
-                            }
+                            } */}
                         </div>
                     </div>
                     <Button text='Book Now!' type='submit' customeStyle='mt-auto' />
-                    <Modal title='Select Your Payment Method' isModal={modal} closeModal={() => setModal(false)} children={<PaymentForm data={formData} />} />
+                    <Modal title='Select Your Payment Method' isModal={modal} closeModal={() => setModal(false)} >
+                    <PaymentForm data={formData} />
+                    </Modal>
                 </div>
             </form>
         </section>
