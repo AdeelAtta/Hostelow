@@ -95,6 +95,7 @@ const HeroSection = () => {
                         />
                         </span>
                         }
+                        
                         <Link
                             href={{
                                 pathname: '/hostels',
