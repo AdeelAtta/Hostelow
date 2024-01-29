@@ -16,7 +16,7 @@ type HostelCardProps = {
 
 const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
 
-    const { _id, thumbnail, title, rating, price, slug, reviewCount, amentities,location } = property;
+    const { _id, thumbnail, title, rating, price,discountPrice ,slug, reviewCount, amentities,location } = property;
 
     const showAmenities = amentities && Object.keys(AmenitiesInfo).filter((key: string) => amentities && amentities[key] == true)
 
@@ -33,12 +33,12 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                 />
             </div>
 
-            <div className={`${listStyle ? ` lg:p-4 ` : ``} py-2 flex-1 details w-full flex flex-col  justify-between `}>
+            <div className={`${listStyle ? ` lg:p-3 ` : ``} py-2 flex-1 details w-full flex flex-col  justify-between `}>
                 <div className={`${listStyle ? `flex-col lg:flex-row ` : ` flex-col `} w-full flex justify-between min-w-[320px]`}>
                     <div className='min-w-fit'>
                         <h2 className='text-2xl lg:text-3xl font-bold max-w-[300px]'>{title}</h2>
                         <p className='font-md text-sm md:text-md lg:text-lg text-gray-500 flex items-center'><CiLocationOn className="text-black" />{location}</p>
-                        <p className='font-md text-sm md:text-md lg:text-lg text-gray-500'>Free Cancellation . Breakfast Included</p>
+                        <p className='font-md text-sm md:text-md lg:text-lg text-white bg-white'>Free Cancellation . Breakfast Included</p>
                     </div>
                     <div className={`${listStyle ? `lg:static ml-20` : ` `} absolute z-[0] top-8 right-6  flex items-center justify-end lg:mr-5 gap-2 `}>
                         <span className='text-right min-w-fit'>
@@ -60,12 +60,12 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                             {(showAmenities && showAmenities.length > 5) && <li className='text-lg font-md' >+{showAmenities.length - 6}</li>}
                         </ul>
                         <div className='mt-2'>
-                            <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#Hot deals</span>
-                            <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#Popular</span>
+                            <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#New Launch</span>
+                            <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#Discounted</span>
                         </div>
                     </div >
                     <div className='min-w-fit flex flex-col justify-end items-end gap-4 mt-5'>
-                        <p className='font-bold text-md lg:text-xl text-black'>Rs: {price} / month</p>
+                        <p className='font-bold text-md lg:text-xl text-black flex items-end'>Rs: <span className='flex flex-col'><p className='font-extrabold text-2xl'>{discountPrice}</p><s className='font-thin text-red-400'>{ price }</s></span>  / month</p>
                         <Link href={{pathname:`/hostels/${slug}`}}><button className='w-full border-[1px] rounded-full font-medium text-lg  text-white px-6 py-3 border-indigo-600 bg-indigo-500'>See Details</button></Link>
                     </div>
                 </div>
