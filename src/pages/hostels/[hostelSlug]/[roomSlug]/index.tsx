@@ -7,17 +7,20 @@ import Button from '@/components/elements/Button';
 import { useRouter } from 'next/navigation';
 import { getData } from '@/utils/api';
 import { GetServerSideProps } from 'next/types';
+import BookingForm from '@/components/forms/booking-form';
+import Modal from '@/components/common/modals/modal';
+import PaymentForm from '@/components/forms/payment-form';
 
 
-const RoomBooking:React.FC<any> = ({roomData}) => {
+const RoomBooking: React.FC<any> = ({ roomData }) => {
 
 
-    const [room,setRoom] = useState<any>(roomData);
-
+    const [room, setRoom] = useState<any>(roomData);
+    const [modal, setModal] = useState(false)
     const router = useRouter();
 
     const handleClick = () => {
-        router.push('/hostels/BookingConfirmed')
+        setModal(true)
     }
 
     return (
@@ -28,8 +31,9 @@ const RoomBooking:React.FC<any> = ({roomData}) => {
                     {/* step 1 */}
                     <div className='flex flex-col gap-y-3 md:gap-y-4 border-2 p-4 md:p-8 rounded-t-lg'>
                         <h2 className='font-bold'>Book Double Standard Room</h2>
-                        <h3 className='font-bold'>Step 1:</h3>
-                        <div className='flex flex-col gap-y-3 md:gap-y-4'>
+                        <h3 className='font-bold'>Personal data</h3>
+                        <BookingForm />
+                        {/* <div className='flex flex-col gap-y-3 md:gap-y-4'>
                             <label>Property amenities</label>
                             <ul className='grid grid-cols-1 gap-3 md:gap-4  my-2'>
                                 <li className='flex items-center gap-x-4'>
@@ -54,10 +58,10 @@ const RoomBooking:React.FC<any> = ({roomData}) => {
                         <div className='relative'>
                             <label htmlFor="first_name" className="block mb-2 text-sm font-medium ">Choose room options</label>
                             <input type="text" id="first_name" className="border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="3 separate beds with 1 attached bathroom" required />
-                        </div>
+                        </div> */}
                     </div>
                     {/* step 2 */}
-                    <div className='flex flex-col gap-y-3 md:gap-y-4 border-2 border-y-0 p-4 md:p-8'>
+                    {/* <div className='flex flex-col gap-y-3 md:gap-y-4 border-2 border-y-0 p-4 md:p-8'>
                         <h3 className=' font-bold'>Step 2: Personal data</h3>
                         <div className='relative'>
                             <label htmlFor="first_name" className="block mb-2 text-sm font-medium ">First and Last name</label>
@@ -71,9 +75,9 @@ const RoomBooking:React.FC<any> = ({roomData}) => {
                             <label htmlFor="number" className="block mb-2 text-sm font-medium ">Phone number</label>
                             <input type="number" id="number" className="border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="+92-0123456789" required />
                         </div>
-                    </div>
+                    </div> */}
                     {/* step 3 */}
-                    <div className='flex flex-col gap-y-3 md:gap-y-4 border-2 p-4 md:p-8'>
+                    {/* <div className='flex flex-col gap-y-3 md:gap-y-4 border-2 border-y-0 p-4 md:p-8'>
                         <h3 className='font-bold'>Step 3: Payment details</h3>
                         <div className='relative'>
                             <label htmlFor="first_name" className="block mb-2 text-sm font-medium ">Name on card</label>
@@ -93,7 +97,7 @@ const RoomBooking:React.FC<any> = ({roomData}) => {
                                 <input type="text" id="first_name" className="border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*" required />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     {/* step 4 */}
                     <div className='flex flex-col gap-y-2 md:gap-y-4 border-2 p-4 md:p-8 rounded-b-lg'>
                         <h3 className='font-bold'>Hostel rules</h3>
@@ -186,6 +190,7 @@ const RoomBooking:React.FC<any> = ({roomData}) => {
                     <Button text='Book Now!' type='button' customeStyle='mt-auto'
                         handleClick={() => handleClick()}
                     />
+                    <Modal title='Modal' isModal={modal} closeModal={() => setModal(false)} children={<PaymentForm />} />
                 </div>
             </div>
         </section>
@@ -203,24 +208,24 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ params }) =>
 
     try {
         const slug = parts[1]
-        if(parts.length < 2){
+        if (parts.length < 2) {
             return {
                 notFound: true,
-              };
+            };
         }
-      const response = await getData(`hostel/rooms/${slug}`);
-      const roomData = response.rooms[0];
-    //   const hostelData: propertyProps= response.hostels[0] || {};
+        const response = await getData(`hostel/rooms/${slug}`);
+        const roomData = response.rooms[0];
+        //   const hostelData: propertyProps= response.hostels[0] || {};
         console.log(roomData)
-      return {
-        props: {
-          roomData:roomData
-        },
-      };
+        return {
+            props: {
+                roomData: roomData
+            },
+        };
     } catch (error) {
-      console.error(error);
-      return {
-        notFound: true,
-      };
+        console.error(error);
+        return {
+            notFound: true,
+        };
     }
-  };
+};
