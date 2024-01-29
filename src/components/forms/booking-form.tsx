@@ -34,7 +34,7 @@ const BookingForm = (props: any) => {
     }
 
     return (
-        <div>
+        <div className='space-y-4'>
             <div className='flex justify-center items-center gap-4'>
                 <Input type='text' name='firstName' handleChange={handleInputChange} placeHolder='First Name' value={props.formData.firstName} otherProps={{ required: true }}/>
                 <Input type='text' name='lastName' handleChange={handleInputChange} placeHolder='Last Name' value={props.formData.lastName} otherProps={{ required: true }}/>
