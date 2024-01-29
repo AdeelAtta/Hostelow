@@ -19,7 +19,7 @@ const Footer = () => {
                 </div>
 
                 <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
-                Your Favourite Hostel Searching &  Booking Experience in 2023
+                Your Favourite Hostel Searching &  Booking Experience in 2024
                 </p>
 
                 <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
@@ -128,7 +128,7 @@ const Footer = () => {
                         </span>
                     </li>
 
-                    <li>
+                    {/* <li>
                         <span
 
                             rel="noreferrer"
@@ -149,9 +149,9 @@ const Footer = () => {
                                 />
                             </svg>
                         </span>
-                    </li>
+                    </li> */}
 
-                    <li>
+                    {/* <li>
                         <span
 
                             rel="noreferrer"
@@ -172,7 +172,7 @@ const Footer = () => {
                                 />
                             </svg>
                         </span>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </footer>

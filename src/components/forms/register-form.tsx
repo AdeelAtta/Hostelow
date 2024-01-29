@@ -12,7 +12,7 @@ const initialForm = {
     email: ``,
     password: ``,
     phoneNumber: undefined,
-    role: `admin`
+    role: `user`
     // admin: true
 
 }

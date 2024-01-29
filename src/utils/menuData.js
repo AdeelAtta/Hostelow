@@ -9,14 +9,57 @@ import Tickets from '@/components/dashboard-pages/customer/ticket-management';
 import TicketsManagement from '@/components/dashboard-pages/owner/ticket-management'
 import ReviewManagement from '@/components/dashboard-pages/customer/review-management'
 import AdminReviewManagement from '@/components/dashboard-pages/owner/review-management'
+import { SiCodereview } from "react-icons/si";
 
 
 
+let user = [{
+  name: `Hostel Reviews`,
+  route: `userhostelsReview`,
+  icon: <SiCodereview />,
+  displayComponent: <ReviewManagement />
+}, {
+  name: `Tickets Management`,
+  route: `userTickets`,
+  icon: <FaTicket />,
+  displayComponent: <Tickets />
+}, {
+  name: `Profile Settings`,
+  route: `profileSetting`,
+  icon: <CgProfile />,
+  displayComponent: <ProfileSettings />
+},]
+
+let propertyOwner = [{
+  name: `Hostels Management`,
+  route: `manageProperty`,
+  icon: <LuHotel />,
+  displayComponent: <PropertyManagement />
+},
+{
+  name: `Tickets Management`,
+  route: `adminTickets`,
+  icon: <FaTicket />,
+  displayComponent: <TicketsManagement />
+},
+{
+  name: `Hostel Reviews`,
+  route: `adminhostelsReview`,
+  icon: <CgProfile />,
+  displayComponent: <AdminReviewManagement />
+},
+{
+  name: `Profile Settings`,
+  route: `profileSetting`,
+  icon: <CgProfile />,
+  displayComponent: <ProfileSettings />
+},
+
+]
 
 
 
-
-let PropertyOwner = [{
+let ProperOwner = [{
   name: `Hostels Management`,
   route: `manageProperty`,
   icon: <LuHotel />,
@@ -25,19 +68,19 @@ let PropertyOwner = [{
 {
   name: `user Hostel Reviews`,
   route: `userhostelsReview`,
-  icon: <CgProfile /> ,
+  icon: <CgProfile />,
   displayComponent: <ReviewManagement />
 },
 {
   name: `admin Hostel Reviews`,
   route: `adminhostelsReview`,
-  icon: <CgProfile /> ,
+  icon: <CgProfile />,
   displayComponent: <AdminReviewManagement />
 },
 {
   name: `Profile Settings`,
   route: `profileSetting`,
-  icon: <CgProfile /> ,
+  icon: <CgProfile />,
   displayComponent: <ProfileSettings />
 },
 {
@@ -59,8 +102,9 @@ let PropertyOwner = [{
 export function createMenu(text) {
 
   if (text == `admin`) {
-    return PropertyOwner;
-
+    return propertyOwner;
+  } else if (text == `user`) {
+    return user;
   }
 
   return []
