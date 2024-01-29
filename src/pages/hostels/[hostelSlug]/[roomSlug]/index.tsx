@@ -124,7 +124,7 @@ const RoomBooking:React.FC<any> = ({roomData}) => {
                 </div>
                 {/* Hostel Detail */}
                 <div className='flex-1 border-2 shadow-lg rounded-lg p-4 flex flex-col order-1 md:order-2'>
-                    <img src={room?.images[0]} alt="" />
+                    <img src={room?.images[0] ? room?.images[0] : `/assets/hostel_large.png`} alt="" />
                     <div className='flex flex-col gap-y-2 md:gap-y-3 py-4 border-b-2'>
                         <h2 className='leading-none text-md md:text-xl font-bold'>Double Standard Room **</h2>
                         <p className='text-[#7D7D7D] text-sm'>4-star hostel room located at jamshoro near Sindh University</p>

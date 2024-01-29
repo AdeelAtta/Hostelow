@@ -99,7 +99,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-1 lg:gap-8 ">
             <div className="relative rounded-lg flex border-[1px] border-gray-300 hover:opacity-60 cursor-pointer">
                 {images.img0 && <IoClose className="z-[11] absolute right-0 text-red-600 text-3xl transition-all text-semibold" onClick={() => handleReset(`img0`)} />}
-                <img src={images.img0} alt=" Hostel Main Image" className='w-full min-h-[200px]' />
+                <img src={images.img0 ? images.img0 : `/assets/hostel_large.png`} alt=" Hostel Main Image" className='w-full min-h-[200px]' />
                 <input
                     className="z-[10] w-full absolute rounded-lg h-full text-center flex items-center pt-10 opacity-0 "
                     type="file"
@@ -110,7 +110,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
             <div className="grid grid-cols-4 gap-4 md:grid-cols-2">
                 <div className="relative rounded-lg flex border-[1px] border-gray-300 max-h-[150px] hover:opacity-60 cursor-pointer">
                     {images.img1 && <IoClose className="z-[11] absolute right-0 text-red-600 text-3xl transition-all text-semibold" onClick={() => handleReset(`img1`)} />}
-                    <img src={images.img1} alt=" upload Image 2" className='w-full ' />
+                    <img src={images.img1 ? images.img1 : `/assets/hostel_large.png`} alt=" upload Image 2" className='w-full ' />
                     <input
                         className="z-[10] w-full absolute rounded-lg h-full text-center flex items-center opacity-0 "
                         type="file"
@@ -120,7 +120,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
                 </div>
                 <div className="relative rounded-lg flex border-[1px] border-gray-300 max-h-[150px] hover:opacity-60 cursor-pointer">
                     {images.img2 && <IoClose className="z-[11] absolute right-0 text-red-600 text-3xl transition-all text-semibold" onClick={() => handleReset(`img2`)} />}
-                    <img src={images.img2} alt="upload Image 3" className='w-full ' />
+                    <img src={images.img2 ? images.img2 : `/assets/hostel_large.png`} alt="upload Image 3" className='w-full ' />
                     <input
                         className="z-[10] w-full absolute rounded-lg h-full text-center flex items-center pt-10 opacity-0 "
                         type="file"
@@ -130,7 +130,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
                 </div>
                 <div className="relative rounded-lg flex border-[1px] border-gray-300 max-h-[150px] hover:opacity-60 cursor-pointer">
                     {images.img3 && <IoClose className="z-[11] absolute right-0 text-red-600 text-3xl transition-all text-semibold" onClick={() => handleReset(`img3`)} />}
-                    <img src={images.img3} alt=" Hostel Image 4" className='w-full ' />
+                    <img src={images.img3 ? images.img3 : `/assets/hostel_large.png`} alt=" Hostel Image 4" className='w-full ' />
                     <input
                         className="z-[10] w-full absolute rounded-lg h-full text-center flex items-center pt-10 opacity-0 "
                         type="file"
@@ -140,7 +140,7 @@ const AddUpdatePropertyImages:React.FC<AddUpdatePropertyImagesProps> = ({propert
                 </div>
                 <div className="relative rounded-lg flex border-[1px] border-gray-300 max-h-[150px] hover:opacity-60 cursor-pointer">
                     {images.img4 && <IoClose className="z-[11] absolute right-0 text-red-600 text-3xl transition-all text-semibold" onClick={() => handleReset(`img4`)} />}
-                    <img src={images.img4} alt=" Upload Image 5" className='w-full ' />
+                    <img src={images.img4 ? images.img4 : `/assets/hostel_large.png`} alt=" Upload Image 5" className='w-full ' />
                     <input
                         className="z-[10] w-full absolute rounded-lg h-full text-center flex items-center pt-10 opacity-0 "
                         type="file"

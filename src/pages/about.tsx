@@ -1,13 +1,23 @@
 import Button from "@/components/elements/Button"
 import NewsLettersSignupForm from "@/components/sections/news-letters-signup-form"
+import Image from 'next/image'
+import Logo from '@/assets/common/HostelBazaar.png'
 
 const about = () => {
     return (
         <section>
             <div className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16 bg-white dark:bg-gray-900">
-                <div className="container relative flex flex-col justify-between h-full max-w-6xl mx-auto">
+                <div className=" relative flex flex-col justify-between h-full max-w-6xl mx-auto">
+                    <div className="w-full flex items-center justify-center py-20 my-10 bg-[#7f7f7f4c] relative">
+                        <div className="w-full h-full absolute backdrop:blur-xl"></div>
+                          <Image
+                  className='w-min h-auto min-w-[280px]'
+                  src={Logo}
+                  height={30}
+                  width={220}
+                  alt="Hostel Bazaar logo" /></div>
                     <h2 className="mb-1 text-3xl font-extrabold leading-tight text-gray-900 dark:text-white">About Us</h2>
-                    <p className="mb-12 text-lg text-gray-500 dark:text-gray-300">At HostelBazar, we understand that the journey of migration or seeking new job opportunities can be both thrilling and challenging. That's why we're not just a platform; we're your reliable ally in the realm of affordable and convenient living spaces. Our mission is clear - to transform your transitions into unforgettable experiences, one hostel stay at a time.</p>
+                    <p className="mb-12 text-xl text-gray-500 dark:text-gray-300 text-justify">Welcome to <strong>HostelBazaar</strong>, where the journey to finding your ideal student accommodation becomes seamless and stress-free. At HostelBazaar, we understand the challenges that students and young professionals face when it comes to securing suitable living spaces. Our mission is to revolutionize the way you search for and connect with private hostels, ensuring that your accommodation experience is nothing short of exceptional.</p>
                     <div className="w-full">
                         <div className="flex flex-col w-full mb-10 sm:flex-row">
                             <div className="w-full mb-10 sm:mb-0 sm:w-1/2">
@@ -18,7 +28,7 @@ const about = () => {
                                             <h3 className="my-2 ml-3 text-lg font-bold text-gray-800">Seamless Relocation</h3>
                                         </div>
                                         <p className="mt-3 mb-1 text-xs font-medium text-indigo-500 uppercase">------------</p>
-                                        <p className="mb-2 text-gray-600">Whether you're moving for studies, work, or a new adventure, our user-friendly interface ensures a smooth booking process, allowing you to focus on settling into your new city.</p>
+                                        <p className="mb-2 text-gray-600">Whether you are moving for studies, work, or a new adventure, our user-friendly interface ensures a smooth booking process, allowing you to focus on settling into your new city.</p>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +79,7 @@ const about = () => {
                                         </div>
                                         <p className="mt-3 mb-1 text-xs font-medium text-green-500 uppercase">------------</p>
                                         <p className="mb-2 text-gray-600">
-                                            Discover ease in every step with our platform's integrated features: smart search filters for tailored results, an effortless booking system, insightful reviews, and a responsive ticket issue resolution – all in one place.</p>
+                                            Discover ease in every step with our platform integrated features: smart search filters for tailored results, an effortless booking system, insightful reviews, and a responsive ticket issue resolution – all in one place.</p>
                                     </div>
                                 </div>
                             </div>

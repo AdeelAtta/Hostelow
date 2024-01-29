@@ -28,8 +28,8 @@ const Header = () => {
                 <Image
                   className='w-min h-auto min-w-[180px]'
                   src={Logo}
-                  height={31}
-                  width={272}
+                  height={30}
+                  width={220}
                   alt="Hostel Bazaar logo" />
               </Link>
             </span>
