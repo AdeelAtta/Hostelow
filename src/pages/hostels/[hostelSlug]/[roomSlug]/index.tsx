@@ -104,24 +104,27 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                         <div className='flex flex-wrap justify-start gap-2 md:gap-4'>
                             <div className="grid grid-cols-2 gap-2 md:gap-4">
                                 <div className='...'>
-                                    <span>Check-in Time :</span>
+                                    <span>Availability</span>
                                 </div>
-                                <div className='text-[#7D7D7D]'>From 6 AM</div>
+                                <div className='text-[#7D7D7D]'>{room?.availability}</div>
                             </div>
                             <div className="grid grid-cols-2 gap-2 md:gap-4">
                                 <div className='...'>
-                                    <span>Check-out Time :</span>
+                                    <span>Occupancy</span>
                                 </div>
-                                <div className=' text-[#7D7D7D]'>Until 12 AM</div>
+                                <div className=' text-[#7D7D7D]'>{room?.occupancy}</div>
                             </div>
                         </div>
                         <div className='relative'>
-                            <h3 className='font-bold'>Beware</h3>
+                            <h3 className='font-bold'>Amenities</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-2 md:mt-4">
-                                <div className=' text-[#7D7D7D]'>No pets Allowed</div>
-                                <div className=' text-[#7D7D7D]'>No smoking</div>
-                                <div className=' text-[#7D7D7D]'>No partying</div>
-                                <div className=' text-[#7D7D7D]'>No Fighting</div>
+                                {
+                                    room?.amenitities.map((item: string) => {
+                                        return (
+                                            <div className=' text-[#7D7D7D]'>{item}</div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>
@@ -130,25 +133,25 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                 <div className='flex-1 border-2 shadow-lg rounded-lg p-4 flex flex-col order-1 md:order-2'>
                     <img src={room?.images[0] ? room?.images[0] : `/assets/hostel_large.png`} alt="" />
                     <div className='flex flex-col gap-y-2 md:gap-y-3 py-4 border-b-2'>
-                        <h2 className='leading-none text-md md:text-xl font-bold'>Double Standard Room **</h2>
+                        <h2 className='leading-none text-md md:text-xl font-bold'>Room Type {room?.type}</h2>
                         <p className='text-[#7D7D7D] text-sm'>4-star hostel room located at jamshoro near Sindh University</p>
                         <div className='flex flex-col gap-y-2 lg:gap-y-3'>
                             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
                                 <div className='...'>
-                                    <span>Allotment</span>
+                                    <span>Total Price</span>
                                 </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>Friday, 28th july 2023</div>
+                                <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.price}</div>
                             </div>
                             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
                                 <div>
-                                    <span>Allowed Till </span>
+                                    <span>Total Beds </span>
                                 </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>Monday, 28th oct 2023</div>
+                                <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.beds}</div>
                             </div>
                         </div>
                     </div>
 
-                    <div className='flex flex-col gap-y-3 md:gap-y-4 py-4 border-b-2'>
+                    {/* <div className='flex flex-col gap-y-3 md:gap-y-4 py-4 border-b-2'>
                         <h2 className='leading-none text-md md:text-xl font-bold'>Double Standard Room plus</h2>
                         <div className='flex flex-col gap-y-2 md:gap-y-3'>
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -185,7 +188,7 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                             <span>TOTAL</span>
                         </div>
                         <div className='lg:col-span-3'>RS. 8100/=</div>
-                    </div>
+                    </div> */}
 
                     <Button text='Book Now!' type='button' customeStyle='mt-auto'
                         handleClick={() => handleClick()}
