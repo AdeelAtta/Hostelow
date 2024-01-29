@@ -173,7 +173,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
                     <div key={_id} className="flex rounded-lg p-4 shadow-lg shadow-gray-200 bg-white gap-5">
                       <img
                         alt="Home"
-                        src={images[0]}
+                        src={(images && images.length > 0) ? images[0] : `/assets/hostel_large.png`}
                         className=" w-[30%] rounded-md object-cover"
                       />
                       <div className='w-[70%]'>
