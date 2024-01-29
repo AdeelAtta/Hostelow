@@ -48,10 +48,10 @@ const PropertyManagement = () => {
                 userId: `${user._id}`
             }
             const response = await toast.promise(deleteData(`hostel/deleteHostel`, data, `${user.access.token}`), {
-                pending:`Deleting...`,
+                pending: `Deleting...`,
             })
 
-            if(response.message){
+            if (response.message) {
                 toast.success(response.message);
                 setIsRefresh(!isRefresh)
             }
@@ -68,7 +68,7 @@ const PropertyManagement = () => {
     const renderModalData = () => {
         switch (currentModalData.route.toLowerCase()) {
             case `add`: return <AddNewProperty closeModal={() => { setIsRefresh(!isRefresh); setIsModal(false) }} />
-            case `delete`: return <Confirmation text={`Are you Sure you want to Delete "${currentModalData.data.title}" ? `} closeModal={()=>setIsModal(false)} handleConfirm={()=>{handleDeleteProperty(currentModalData.data._id); setIsRefresh(!isRefresh);setIsModal(false);}}/>
+            case `delete`: return <Confirmation text={`Are you Sure you want to Delete "${currentModalData.data.title}" ? `} closeModal={() => setIsModal(false)} handleConfirm={() => { handleDeleteProperty(currentModalData.data._id); setIsRefresh(!isRefresh); setIsModal(false); }} />
         }
     }
 
@@ -99,7 +99,7 @@ const PropertyManagement = () => {
 
         data.map((property: any) => {
 
-            const { _id, thumbnail, title, desc, price, location, rating, amenities, date, rooms, discountPrice } = property;
+            const { _id, thumbnail, title, desc, price, location, rating, amenities, date, roomCount, discountPrice } = property;
 
             rows.push([
                 // { imgUrl: thumbnail },
@@ -109,7 +109,7 @@ const PropertyManagement = () => {
                 { text: `${price}`, type: `none`, name: `price` },
                 { text: `${discountPrice}`, type: `none`, name: `discountPrice` },
                 { text: `${location}`, type: `none`, name: `location` },
-                { text: `${rooms}`, type: `none`, name: `rooms` },
+                { text: `${roomCount ? roomCount : 0}`, type: `none`, name: `roomCount` },
                 { text: `${date.slice(0, 10)}`, type: `none`, name: `date` },
                 {
                     text: ``, type: "Manage", features: [
@@ -145,8 +145,8 @@ const PropertyManagement = () => {
             try {
                 let response = await getData(`hostel/gethostels?userId=${user._id}`, `${user.access.token}`)
                 setPropertyData(response.hostels);
-                setHostelList(response.hostels.map((hostel:any) => {
-                    return {value:`${hostel._id}`,label:`${hostel.title}`}
+                setHostelList(response.hostels.map((hostel: any) => {
+                    return { value: `${hostel._id}`, label: `${hostel.title}` }
                 }
                     ))
                 const data = transformData(response.hostels);
@@ -161,33 +161,28 @@ const PropertyManagement = () => {
 
     return <>
         <ToastContainer />
+        
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl p-6">
+            <span className="flex items-center">
+            
+                <span className="text-transparent bg-clip-text bg-gradient-to-tr to-stone-600 from-stone-700 border-b-4">
+                    Hostels
+                </span>
+             
+            </span>
+        </h1>
+         
         <div className="w-full flex justify-end items-end">
             <Button onClick={() => (setCurrentModalData({ route: `add`, data: null }), setIsModal(true))}>Add New Hostel + </Button>
         </div>
 
 
-
-
-
-
-
         {tableData && <Table tableData={tableData} />}
-
-
 
 
         {/* Rooms setting */}
 
         <RoomsManagement hostelList={hostelList} />
-
-
-
-
-
-
-
-
-
 
 
         <SideModal title={``} closeModal={() => setIsSideModal(false)} isModal={isSideModal}  >
@@ -197,6 +192,7 @@ const PropertyManagement = () => {
         <Modal title={``} closeModal={() => setIsModal(false)} isModal={isModal}>
             {renderModalData()}
         </Modal>
+        
     </>
 
 }

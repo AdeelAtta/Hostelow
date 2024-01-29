@@ -27,7 +27,7 @@ const UpdateRoomData: React.FC<any> = ({ closeModal, hostelList,room }) => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            //Add New Hostel Form
+         
 
 
 
