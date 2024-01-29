@@ -21,12 +21,12 @@ type HostelsProps = {
 import { useRouter } from 'next/router';
 
 
-const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) => {
+const Hostels: React.FC<HostelsProps> = ({ hostels, error, paginationData }) => {
   const router = useRouter();
 
   const [listStyle, setListStyle] = useState(true);
   const [properties, setProperties] = useState<propertyProps[] | null>(null);
-  const [pagination,setPagination] = useState<any>({})
+  const [pagination, setPagination] = useState<any>({})
 
   const [citiesList, setCitiesList] = useState<any[]>([])
   const [filterForm, setFilterForm] = useState<any>({})
@@ -39,10 +39,10 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
 
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     setProperties(hostels)
     setPagination(paginationData)
-  },[hostels,paginationData])
+  }, [hostels, paginationData])
 
 
   // useEffect(() => {
@@ -124,72 +124,73 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
   return (<>
     <main className='flex border-t-2 border-gray-100 mt-2 max-w-screen-2xl'>
       <Aside>
-        <div className='overflow-y-auto'>
+        <div className=' '>
           <h4 className='text-2xl font-bold mb-5'>Filters </h4>
           <span className='w-full flex justify-end items-center gap-2'>
-          <Button customeStyle={`bg-gray-500 border-gray-500 text-gray-500 !hover:text-white hover:bg-gray-600`} text={`Reset`} type={'button'} handleClick={()=>setFilterForm({})} />
-          <Button customeStyle={`bg-black `} text={`Apply Filters`} type={'button'} handleClick={(handleFilterSubmit)} />
+            <Button customeStyle={`bg-gray-500 border-gray-500 text-gray-500 !hover:text-white hover:bg-gray-600`} text={`Reset`} type={'button'} handleClick={() => setFilterForm({})} />
+            <Button customeStyle={`bg-black `} text={`Apply Filters`} type={'button'} handleClick={(handleFilterSubmit)} />
           </span>
 
+          <div className='overflow-hidden'>
+            <div className='mb-5'>
+              <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Location</h4>
+              <Select
+                name="location"
+                id="location"
+                options={citiesList ?? []}
+                className="basic-multi-select w-full mt-3 "
+                classNamePrefix="select city"
+                onChange={(e: any) => setFilterForm((prev: any) => ({ ...prev, location: `${e.value}` }))}
+              />
+            </div>
+            <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Promotion & Services</h4>
+            <div className='my-5 flex flex-col items-start justify-start gap-2'>
+              <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Discounted</span>
+              <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Free Stay</span>
+              {/* <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Deals</span> */}
+            </div>
+            <h4 className='text-md font-semibold mb-3 border-b-2 border-gray-100'>Price</h4>
+            <div className='flex gap-2 max-w-[320px] mb-5'>
+              <Input
+                title='Min'
+                type={`number`}
+                name={'min'}
+                placeholder='Minimum price'
+                value={filterForm.min}
+                onChange={handleChange}
+                otherProps={{ min: 0, style: { maxWidth: `150px` } }}
 
-          <div className='mb-5'>
-            <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Location</h4>
-            <Select
-              name="location"
-              id="location"
-              options={citiesList ?? []}
-              className="basic-multi-select w-full mt-3 "
-              classNamePrefix="select city"
-              onChange={(e: any) => setFilterForm((prev: any) => ({ ...prev, location: `${e.value}` }))}
-            />
-          </div>
-          <h4 className='text-md font-semibold pb-2 border-b-2 border-gray-100'>Promotion & Services</h4>
-          <div className='my-5 flex flex-col items-start justify-start gap-2'>
-            <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Discounted</span>
-            <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Free Stay</span>
-            {/* <span className='text-sm rounded-md border-[2px] border-gray-300 p-2 text-gray-600 font-md cursor-pointer hover:bg-gray-100 transition-all'>Deals</span> */}
-          </div>
-          <h4 className='text-md font-semibold mb-3 border-b-2 border-gray-100'>Price</h4>
-          <div className='flex gap-2 max-w-[320px] mb-5'>
-            <Input
-              title='Min'
-              type={`number`}
-              name={'min'}
-              placeholder='Minimum price'
-              value={filterForm.min}
-              onChange={handleChange}
-              otherProps={{ min: 0, style: { maxWidth: `150px` } }}
-
-            />
-            <Input
-              title='Max'
-              type={`number`}
-              name={'max'}
-              placeholder='Maximum price'
-              value={filterForm.max}
-              onChange={handleChange}
-              otherProps={{ min: `${filterForm.min ?? 0}`, style: { maxWidth: `150px` } }}
-            />
-          </div>
-          <h4 className='text-md font-semibold border-b-2 mb-3 border-gray-100'>Rating</h4>
-          <div className='mb-5'>
-            <ul className='flex flex-col gap-3'>
-              <li className={`${filterForm.rating == 5 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 5 }))}>
-                {starFill}{starFill}{starFill}{starFill}{starFill}
-              </li>
-              <li className={`${filterForm.rating == 4 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 4 }))}>
-                {starFill}{starFill}{starFill}{starFill}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
-              </li>
-              <li className={`${filterForm.rating == 3 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 3 }))}>
-                {starFill}{starFill}{starFill}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
-              </li>
-              <li className={`${filterForm.rating == 2 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 2 }))}>
-                {starFill}{starFill}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
-              </li>
-              <li className={`${filterForm.rating == 1 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 1 }))}>
-                {starFill}{star}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
-              </li>
-            </ul>
+              />
+              <Input
+                title='Max'
+                type={`number`}
+                name={'max'}
+                placeholder='Maximum price'
+                value={filterForm.max}
+                onChange={handleChange}
+                otherProps={{ min: `${filterForm.min ?? 0}`, style: { maxWidth: `150px` } }}
+              />
+            </div>
+            <h4 className='text-md font-semibold border-b-2 mb-3 border-gray-100'>Rating</h4>
+            <div className='mb-5'>
+              <ul className='flex flex-col gap-3'>
+                <li className={`${filterForm.rating == 5 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 5 }))}>
+                  {starFill}{starFill}{starFill}{starFill}{starFill}
+                </li>
+                <li className={`${filterForm.rating == 4 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 4 }))}>
+                  {starFill}{starFill}{starFill}{starFill}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+                </li>
+                <li className={`${filterForm.rating == 3 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 3 }))}>
+                  {starFill}{starFill}{starFill}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+                </li>
+                <li className={`${filterForm.rating == 2 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 2 }))}>
+                  {starFill}{starFill}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+                </li>
+                <li className={`${filterForm.rating == 1 && `bg-gray-200 border-gray-400 `} border-2 border-transparent rounded-xl  p-2 flex gap-2 cursor-pointer`} onClick={(e: any) => setFilterForm((prev: any) => ({ ...prev, rating: 1 }))}>
+                  {starFill}{star}{star}{star}{star} <span className='text-md font-thin text-gray-300'>and Up</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </Aside>
@@ -243,7 +244,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
                   </svg>
                 </button>
               </div>
-{/* 
+              {/* 
               <div>
                 <label htmlFor="SortBy" className="sr-only">SortBy</label>
                 <select id="SortBy" className="border-2 h-10 rounded border-gray-300 text-sm">
@@ -272,11 +273,11 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
         {pagination && <ol className="my-12 flex justify-center gap-1 text-xs font-medium">
           <li>
             <button
-            disabled={pagination.currentPage <= 1}
-               onClick={()=> router.push({
+              disabled={pagination.currentPage <= 1}
+              onClick={() => router.push({
                 pathname: '/hostels',
                 query: {
-                  page: pagination.currentPage-1,
+                  page: pagination.currentPage - 1,
                 },
               })}
               className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-300 bg-white text-gray-900 rtl:rotate-180 hover:text-white hover:border-blue-600 hover:bg-blue-600"
@@ -297,43 +298,43 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
             </button>
           </li>
 
-            {pagination.currentPage > 1 && <li key={pagination.currentPage-1}>
+          {pagination.currentPage > 1 && <li key={pagination.currentPage - 1}>
             <button
               onClick={() => router.push({
                 pathname: '/hostels',
                 query: {
-                  page: pagination.currentPage-1,
+                  page: pagination.currentPage - 1,
                 },
               })}
               className={`block h-8 w-8 rounded border text-center leading-8 border-gray-300 text-gray-900 bg-white hover:text-white hover:border-blue-600 hover:bg-blue-600`}
             >
-              {pagination.currentPage-1}
+              {pagination.currentPage - 1}
             </button>
           </li>}
 
 
-          {[...Array(pagination.totalPages),1].slice(pagination.currentPage-1,pagination.currentPage+1).map((current,index) => {
+          {[...Array(pagination.totalPages), 1].slice(pagination.currentPage - 1, pagination.currentPage + 1).map((current, index) => {
 
             const pageNumber = pagination.currentPage + index;
 
 
-            if( pageNumber > pagination.totalPages){
+            if (pageNumber > pagination.totalPages) {
               return null
             }
 
             return <li key={pageNumber}>
-            <button
-              onClick={() => router.push({
-                pathname: '/hostels',
-                query: {
-                  page: pageNumber,
-                },
-              })}
-              className={`block h-8 w-8 rounded border text-center leading-8 ${(pagination?.currentPage === pageNumber) ? `text-white border-blue-600 bg-blue-600` : `border-gray-300 text-gray-900 bg-white hover:text-white hover:border-blue-600 hover:bg-blue-600`}`}
-            >
-              {pageNumber}
-            </button>
-          </li>
+              <button
+                onClick={() => router.push({
+                  pathname: '/hostels',
+                  query: {
+                    page: pageNumber,
+                  },
+                })}
+                className={`block h-8 w-8 rounded border text-center leading-8 ${(pagination?.currentPage === pageNumber) ? `text-white border-blue-600 bg-blue-600` : `border-gray-300 text-gray-900 bg-white hover:text-white hover:border-blue-600 hover:bg-blue-600`}`}
+              >
+                {pageNumber}
+              </button>
+            </li>
 
 
           })}
@@ -342,11 +343,11 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
 
           <li >
             <button
-            disabled={pagination?.currentPage >= pagination?.totalPages}
-              onClick={()=> router.push({
+              disabled={pagination?.currentPage >= pagination?.totalPages}
+              onClick={() => router.push({
                 pathname: '/hostels',
                 query: {
-                  page: pagination?.currentPage+1,
+                  page: pagination?.currentPage + 1,
                 },
               })}
               className="cursor-pointer inline-flex h-8 w-8 items-center justify-center rounded border border-gray-300 bg-white text-gray-900 rtl:rotate-180 hover:text-white hover:border-blue-600 hover:bg-blue-600"
@@ -380,7 +381,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => 
 
   let url = `hostel/gethostels?limit=10`;
 
-  if(query.page){
+  if (query.page) {
     url += `&page=${query.page}`;
   }
 
@@ -406,7 +407,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => 
   try {
     const response = await getData(url);
     hostels = response.hostels || [];
-    paginationData = response?.pagination
+    paginationData = response?.pagination || { totalItems: 0, totalPages: 1, currentPage: 1 }
 
     return {
       props: {
