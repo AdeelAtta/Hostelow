@@ -91,6 +91,7 @@ const AddNewProperty:React.FC<any> = ({closeModal}) => {
                 defaultValue={[]}
                 name="location"
                 id="location"
+                placeholder="Select Location"
                 options={citiesList ?? []}
                 className="basic-multi-select w-full z-[1] "
                 classNamePrefix="select user"

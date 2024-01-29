@@ -165,6 +165,7 @@ const TicketsManagement:React.FC<any> = () => {
                     <Select
                         name="hostel"
                         id="hostel"
+                        placeholder="Select Hostel"
                         options={hostelList ?? []}
                         className="basic-multi-select min-w-[300px]"
                         classNamePrefix="select hostel"

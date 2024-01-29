@@ -167,6 +167,7 @@ const RoomsManagement: React.FC<any> = ({ hostelList }) => {
                     <Select
                         name="hostel"
                         id="hostel"
+                        placeholder="Select Hostel"
                         options={hostels ?? []}
                         className="basic-multi-select min-w-[300px]"
                         classNamePrefix="select hostel"
