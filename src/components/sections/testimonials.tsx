@@ -76,15 +76,12 @@ const Testimonials = () => {
                 </svg>
               </div>
 
-              <p className="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+              <p className="mt-0.5 text-lg font-medium text-gray-900">Ali, Engineering</p>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit
-            rerum incidunt, a consequuntur recusandae ab saepe illo est quia
-            obcaecati neque quibusdam eius accusamus error officiis atque
-            voluptates magnam!
+          HostelBazaar ne scene he kardiya! Found a chill spot near my uni, and booking? Full paisa wasool. Direct baat kar hostel owner se – ab maze hai sath rehne mein!
           </p>
         </blockquote>
       </div>
@@ -152,14 +149,12 @@ const Testimonials = () => {
                 </svg>
               </div>
 
-              <p className="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+              <p className="mt-0.5 text-lg font-medium text-gray-900">Ayesha, - Art & Culture</p>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad
-            mollitia rerum quo unde neque atque molestias quas pariatur! Sint,
-            maxime?
+          HostelBazaar ke sath, accommodation ka scene on hai! Cool jagah mili, aur app use karna bhi asaan hai. Student life mein yeh zaroor try karo!
           </p>
         </blockquote>
       </div>
@@ -227,15 +222,12 @@ const Testimonials = () => {
                 </svg>
               </div>
 
-              <p className="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+              <p className="mt-0.5 text-lg font-medium text-gray-900">Ahmed, BBA Student </p>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Reprehenderit esse delectus, maiores fugit, reiciendis culpa
-            inventore sint accusantium libero dolore eos quasi a ex aliquam
-            molestiae. Tenetur hic delectus maxime.
+          HostelBazaar, bhai tu kamal kar diya! Ek click se ghar mil gaya, reviews padhke confidence bhi aa gaya. Ab life set hai, hostel hunt mein no more tension!
           </p>
         </blockquote>
       </div>
@@ -303,13 +295,12 @@ const Testimonials = () => {
                 </svg>
               </div>
 
-              <p className="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+              <p className="mt-0.5 text-lg font-medium text-gray-900">Usman, Computer Science</p>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit,
-            fuga?
+          HostelBazaar ne game hi badal di hai. Spot mil gaya jahan coding ka maza le sakta hoon. Itna easy aur smooth process maine pehli bar dekha hai. Hostel life ka king!
           </p>
         </blockquote>
       </div>
@@ -377,23 +368,17 @@ const Testimonials = () => {
                 </svg>
               </div>
 
-              <p className="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+              <p className="mt-0.5 text-lg font-medium text-gray-900">Saba, Commerce</p>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate
-            officia natus blanditiis rerum incidunt ex autem repudiandae
-            doloribus eveniet quia? Culpa commodi quae atque perspiciatis?
-            Provident, magni beatae saepe porro aspernatur facere neque sunt
-            possimus assumenda perspiciatis aperiam quisquam animi libero
-            voluptatem fuga. Repudiandae, facere? Nemo reprehenderit quas
-            ratione quis.
+          HostelBazaar – sy Mili meri woh perfect jagah, aur ab koi bhi tension nahi. Booking bhi easy, aur owner se direct connect – kamaal hai yaar!
           </p>
         </blockquote>
       </div>
 
-      <div className="mb-8 sm:break-inside-avoid">
+       <div className="mb-8 sm:break-inside-avoid">
         <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
           <div className="flex items-center gap-4">
             <img
@@ -456,17 +441,16 @@ const Testimonials = () => {
                 </svg>
               </div>
 
-              <p className="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+              <p className="mt-0.5 text-lg font-medium text-gray-900">Bilal, Economics</p>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, rerum.
-            Nobis laborum praesentium necessitatibus vero.
+          "HostelBazaar ne mujhe wo ghar dilaya jo bilkul meri vibe ka hai! Booking ke process mein itni asani aur owner se direct connect hone ka feature? Bas perfect hai! HostelBazaar ne hamare student life ko aur bhi mazay ka bana diya."
           </p>
         </blockquote>
       </div>
-
+{/*
       <div className="mb-8 sm:break-inside-avoid">
         <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
           <div className="flex items-center gap-4">
@@ -687,7 +671,7 @@ const Testimonials = () => {
             numquam, unde molestiae commodi temporibus dicta.
           </p>
         </blockquote>
-      </div>
+      </div> */}
     </div>
   </div>
 </section>
