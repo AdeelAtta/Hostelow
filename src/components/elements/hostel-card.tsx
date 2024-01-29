@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { AmenitiesInfo } from '@/utils/data'
 import { propertyProps } from '@/types/types'
+import { CiLocationOn } from 'react-icons/ci'
 
 type HostelCardProps = {
     listStyle: boolean
@@ -15,7 +16,7 @@ type HostelCardProps = {
 
 const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
 
-    const { _id, thumbnail, title, rating, price, slug, reviewCount, amentities } = property;
+    const { _id, thumbnail, title, rating, price, slug, reviewCount, amentities,location } = property;
 
     const showAmenities = amentities && Object.keys(AmenitiesInfo).filter((key: string) => amentities && amentities[key] == true)
 
@@ -36,7 +37,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                 <div className={`${listStyle ? `flex-col lg:flex-row ` : ` flex-col `} w-full flex justify-between min-w-[320px]`}>
                     <div className='min-w-fit'>
                         <h2 className='text-2xl lg:text-3xl font-bold max-w-[300px]'>{title}</h2>
-                        <p className='font-md text-sm md:text-md lg:text-lg text-gray-500'>0.4 km from city center</p>
+                        <p className='font-md text-sm md:text-md lg:text-lg text-gray-500 flex items-center'><CiLocationOn className="text-black" />{location}</p>
                         <p className='font-md text-sm md:text-md lg:text-lg text-gray-500'>Free Cancellation . Breakfast Included</p>
                     </div>
                     <div className={`${listStyle ? `lg:static ml-20` : ` `} absolute z-[0] top-8 right-6  flex items-center justify-end lg:mr-5 gap-2 `}>
@@ -44,7 +45,6 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                             {
                                 <p className={`text-xl font-bold  ${rating < 4 ? `text-gray-400` : rating < 6.5 ? `text-yellow-600` : `text-green-600`} `}>{rating == 0 ? `New Hostel` : rating < 2 ? `Not Good` : rating < 4 ? `Normal` : rating < 6.5 ? `Good` : `Excellent`}</p>
                             }
-
                             <p className={`${listStyle ? `lg:text-gray-500 ` : `  `} text-white text-lg min-w-fit`}> {reviewCount > 0 ? reviewCount < 10 ? `0${reviewCount} reviews` : `${reviewCount} reviews` : `no reviews yet`} </p>
 
                             {/* {(reviewCount && reviewCount > 0) && <p className={`${listStyle ? `lg:text-gray-500 ` : `  `} text-white text-lg min-w-fit`}> {(reviewCount > 0 && reviewCount < 10) ? `0${reviewCount}` : reviewCount} reviews</p>} */}
