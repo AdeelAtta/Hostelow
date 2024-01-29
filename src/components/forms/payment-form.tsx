@@ -1,12 +1,9 @@
+import Button from "../elements/Button"
 
 const PaymentForm = () => {
     return (
-        <div>
-            <div className="grid grid-cols-1 divide-y">
-                <div>01</div>
-                <div>02</div>
-                <div>03</div>
-            </div>
+        <div className="">
+            <Button text="Bank" type="button" customeStyle="w-full " />
         </div>
     )
 }

@@ -190,7 +190,7 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                     <Button text='Book Now!' type='button' customeStyle='mt-auto'
                         handleClick={() => handleClick()}
                     />
-                    <Modal title='Modal' isModal={modal} closeModal={() => setModal(false)} children={<PaymentForm />} />
+                    <Modal title='Select Your Payment Method' isModal={modal} closeModal={() => setModal(false)} children={<PaymentForm />} />
                 </div>
             </div>
         </section>
