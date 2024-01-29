@@ -128,7 +128,7 @@ const Footer = () => {
                         </span>
                     </li>
 
-                    <li>
+                    {/* <li>
                         <span
 
                             rel="noreferrer"
@@ -149,9 +149,9 @@ const Footer = () => {
                                 />
                             </svg>
                         </span>
-                    </li>
+                    </li> */}
 
-                    <li>
+                    {/* <li>
                         <span
 
                             rel="noreferrer"
@@ -172,7 +172,7 @@ const Footer = () => {
                                 />
                             </svg>
                         </span>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </footer>
