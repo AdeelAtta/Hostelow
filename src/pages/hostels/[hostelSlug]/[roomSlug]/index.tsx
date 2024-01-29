@@ -1,8 +1,4 @@
 import React, { useState } from 'react'
-import { FaWifi } from "react-icons/fa";
-import { WiSandstorm } from "react-icons/wi";
-import { FaAddressCard } from "react-icons/fa";
-import { LuParkingSquare } from "react-icons/lu";
 import Button from '@/components/elements/Button';
 import { useRouter } from 'next/navigation';
 import { getData } from '@/utils/api';
@@ -10,29 +6,37 @@ import { GetServerSideProps } from 'next/types';
 import BookingForm from '@/components/forms/booking-form';
 import Modal from '@/components/common/modals/modal';
 import PaymentForm from '@/components/forms/payment-form';
+import Policies from '@/components/sections/policies';
 
 
+const initialForm = {
+    firstName: ``,
+    lastName: ``,
+    email: ``,
+    phoneNumber: undefined,
+}
 const RoomBooking: React.FC<any> = ({ roomData }) => {
 
-
+    const [formData, setFormData] = useState<BookingForm>(initialForm)
     const [room, setRoom] = useState<any>(roomData);
     const [modal, setModal] = useState(false)
     const router = useRouter();
 
-    const handleClick = () => {
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
         setModal(true)
     }
 
     return (
         <section className='max-w-screen-xl mx-auto text-black py-4 px-4 xl:px-0 xl:py-8'>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+            <form className='grid grid-cols-1 md:grid-cols-2 gap-4' onSubmit={handleSubmit}>
                 {/* Bookig Steps */}
                 <div className=' flex-1 shadow-lg order-2 md:order-1'>
                     {/* step 1 */}
                     <div className='flex flex-col gap-y-3 md:gap-y-4 border-2 p-4 md:p-8 rounded-t-lg'>
                         <h2 className='font-bold'>Book Double Standard Room</h2>
                         <h3 className='font-bold'>Personal data</h3>
-                        <BookingForm />
+                        <BookingForm formData={formData} setFormData={setFormData} />
                         {/* <div className='flex flex-col gap-y-3 md:gap-y-4'>
                             <label>Property amenities</label>
                             <ul className='grid grid-cols-1 gap-3 md:gap-4  my-2'>
@@ -99,36 +103,9 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                         </div>
                     </div> */}
                     {/* step 4 */}
-                    <div className='flex flex-col gap-y-2 md:gap-y-4 border-2 p-4 md:p-8 rounded-b-lg'>
-                        <h3 className='font-bold'>Hostel rules</h3>
-                        <div className='flex flex-wrap justify-start gap-2 md:gap-4'>
-                            <div className="grid grid-cols-2 gap-2 md:gap-4">
-                                <div className='...'>
-                                    <span>Availability</span>
-                                </div>
-                                <div className='text-[#7D7D7D]'>{room?.availability}</div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 md:gap-4">
-                                <div className='...'>
-                                    <span>Occupancy</span>
-                                </div>
-                                <div className=' text-[#7D7D7D]'>{room?.occupancy}</div>
-                            </div>
-                        </div>
-                        <div className='relative'>
-                            <h3 className='font-bold'>Amenities</h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 mt-2 md:mt-4">
-                                {
-                                    room?.amenitities.map((item: string) => {
-                                        return (
-                                            <div className=' text-[#7D7D7D]'>{item}</div>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                    </div>
+                    <Policies />
                 </div>
+
                 {/* Hostel Detail */}
                 <div className='flex-1 border-2 shadow-lg rounded-lg p-4 flex flex-col order-1 md:order-2'>
                     <img src={room?.images[0] ? room?.images[0] : `/assets/hostel_large.png`} alt="" />
@@ -140,7 +117,7 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                                 <div className='...'>
                                     <span>Total Price</span>
                                 </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.price}</div>
+                                <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.price}<span className='text-xs'>RS</span> </div>
                             </div>
                             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
                                 <div>
@@ -150,52 +127,37 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                             </div>
                         </div>
                     </div>
-
-                    {/* <div className='flex flex-col gap-y-3 md:gap-y-4 py-4 border-b-2'>
-                        <h2 className='leading-none text-md md:text-xl font-bold'>Double Standard Room plus</h2>
-                        <div className='flex flex-col gap-y-2 md:gap-y-3'>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div className='...'>
-                                    <span>Price Per Month</span>
-                                </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>Rs. 6000/=</div>
+                    <div className='flex flex-col gap-y-2 md:gap-y-3'>
+                        <h2 className='leading-none text-md md:text-xl font-bold'>Room Space</h2>
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div className='...'>
+                                <span >Availability</span>
                             </div>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div>
-                                    <span>3 Months</span>
-                                </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>Rs. 18000/=</div>
-                            </div>
+                            <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.availability}</div>
                         </div>
-                        <div className='flex flex-col gap-y-2 md:gap-y-3'>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div className='...'>
-                                    <span>Hostel Food</span>
-                                </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>Rs. 1300/=</div>
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div>
+                                <span>Occupancy</span>
                             </div>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div>
-                                    <span>Maintainance</span>
-                                </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>Rs. 800/=</div>
-                            </div>
+                            <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.occupancy}</div>
                         </div>
                     </div>
-
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 font-bold py-4">
-                        <div className='...'>
-                            <span>TOTAL</span>
+                    <div className='flex flex-col  py-4 border-b-2'>
+                        <h2 className='leading-none text-md md:text-xl font-bold'>Amenities</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 md:mt-4">
+                            {
+                                room?.amenitities.map((item: string) => {
+                                    return (
+                                        <div className=' text-[#7D7D7D]'>{item}</div>
+                                    )
+                                })
+                            }
                         </div>
-                        <div className='lg:col-span-3'>RS. 8100/=</div>
-                    </div> */}
-
-                    <Button text='Book Now!' type='button' customeStyle='mt-auto'
-                        handleClick={() => handleClick()}
-                    />
-                    <Modal title='Select Your Payment Method' isModal={modal} closeModal={() => setModal(false)} children={<PaymentForm />} />
+                    </div>
+                    <Button text='Book Now!' type='submit' customeStyle='mt-auto' />
+                    <Modal title='Select Your Payment Method' isModal={modal} closeModal={() => setModal(false)} children={<PaymentForm data={formData} />} />
                 </div>
-            </div>
+            </form>
         </section>
     )
 }

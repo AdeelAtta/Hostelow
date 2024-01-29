@@ -1,11 +1,14 @@
 import { useState } from "react"
 import Button from "../elements/Button"
 
-const PaymentForm = () => {
+const PaymentForm = (props: any) => {
     const [method, setMethod] = useState<string>()
     const handleClick = (e: string) => {
         setMethod(e)
     }
+    const data = props.data;
+    console.log(data);
+    
     return (
         <section>
             {
@@ -36,6 +39,7 @@ const PaymentForm = () => {
                     )
                 ) : (
                     <ul className="space-y-4">
+                        <span>{data.firstName}</span>
                         <li className="border-2 px-4 py-2 rounded cursor-pointer hover:bg-gray-300" onClick={() => handleClick("bank")}>
                             <span className="text-xl">Bank</span>
                         </li>
