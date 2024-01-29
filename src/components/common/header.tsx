@@ -10,11 +10,11 @@ const Header = () => {
 
   const user = useSelector(userData);
   const dispatch = useDispatch()
-  const [userInfo,setUserInfo] = useState<any>(null)
+  const [userInfo, setUserInfo] = useState<any>(null)
 
-  useEffect(()=>{
+  useEffect(() => {
     setUserInfo(user)
-  },[user])
+  }, [user])
 
 
   return (
@@ -111,36 +111,45 @@ const Header = () => {
 
           <div className="flex items-center gap-4">
             {userInfo && userInfo != null ?
-            <div className="sm:flex sm:gap-4">
-            <div className="flex ">
-       
-              <span onClick={()=>{dispatch(cleanUserData())}}
-                className="cursor-pointer rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
-                logout
-              </span>
-            
-          </div>
-          </div>
-          :
-          <div className="sm:flex sm:gap-4">
-          <div className="hidden sm:flex ">
-            <Link href={`/register`}>
-              <span
-                className="rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
-                Register
-              </span>
-            </Link>
-          </div>
-          <div className="hidden sm:flex ">
-            <Link href={`/login`}>
-              <span
-                className="rounded-3xl bg-stone-800 px-10 py-2.5 text-sm font-medium text-white shadow" >
-                Login
-              </span>
-            </Link>
-          </div>
-        </div>
-            
+              <div className="sm:flex sm:gap-4">
+           
+                  <div className="hidden sm:flex my-2">
+                    <Link href={`/dashboard`}>
+                      <span
+                        className="rounded-3xl bg-stone-800 px-10 py-2.5 text-sm font-medium text-white shadow" >
+                        Dashboard
+                      </span>
+                    </Link>
+                  </div>
+                  <div className="hidden sm:flex ">
+
+                    <span onClick={() => { dispatch(cleanUserData()) }}
+                      className="cursor-pointer rounded-3xl bg-stone-100 px-10 py-2.5 text-sm font-medium text-stone-800 shadow" >
+                      logout
+                    </span>
+                  </div>
+
+              </div>
+              :
+              <div className="sm:flex sm:gap-4">
+                <div className="hidden sm:flex ">
+                  <Link href={`/register`}>
+                    <span
+                      className="rounded-3xl bg-gray-100 px-8 py-2.5 text-sm font-medium text-stone-800">
+                      Register
+                    </span>
+                  </Link>
+                </div>
+                <div className="hidden sm:flex ">
+                  <Link href={`/login`}>
+                    <span
+                      className="rounded-3xl bg-stone-800 px-10 py-2.5 text-sm font-medium text-white shadow" >
+                      Login
+                    </span>
+                  </Link>
+                </div>
+              </div>
+
             }
 
             <div className="block md:hidden">

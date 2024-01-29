@@ -269,7 +269,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
 
         </div>
 
-        <ol className="my-12 flex justify-center gap-1 text-xs font-medium">
+        {pagination && <ol className="my-12 flex justify-center gap-1 text-xs font-medium">
           <li>
             <button
             disabled={pagination.currentPage <= 1}
@@ -366,7 +366,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error,  paginationData }) =>
               </svg>
             </button>
           </li>
-        </ol>
+        </ol>}
       </div>
     </main>
   </>

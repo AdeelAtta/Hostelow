@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 import Input from './form-elements/input'
 import Button from '../elements/Button'
@@ -53,12 +53,13 @@ const AdminRegisterForm = () => {
             console.error(err)
         }
     }
-    return (
+    return (<>
+        <ToastContainer position="top-center" />
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6">
                 <form onSubmit={(e) => handleNewAccountFormSubmit(e)}>
                 <h2 className='text-2xl md:text-4xl font-extrabold text-center md:mb-2'>Account for Hostel Owners</h2>
-                    <div className='flex flex-col md:flex-row justify-between items-center'>
+                    <div className='flex flex-col md:flex-row justify-between items-center gap-2'>
                         <Input
                             type="text"
                             name="firstName"
@@ -86,7 +87,7 @@ const AdminRegisterForm = () => {
                             otherProps={{ required: true }}
                         />
                     </div>
-                    <div className='flex flex-col md:flex-row justify-between items-center'>
+                    <div className='flex flex-col md:flex-row justify-between items-center gap-2'>
                         <Input
                             type="password"
                             name="password"
@@ -107,7 +108,7 @@ const AdminRegisterForm = () => {
                     <div>
                         <Input
                             type="number"
-                            name="number"
+                            name="phoneNumber"
                             value={formData.phoneNumber}
                             placeholder='Number'
                             onChange={handleInputChange}
@@ -115,11 +116,12 @@ const AdminRegisterForm = () => {
                         />
                     </div>
                     <div className='mt-4'>
-                        <Button text='Sign Up' type='submit' customeStyle='w-full' />
+                        <Button text='Create Account' type='submit' customeStyle='w-full' />
                     </div>
                 </form>
             </div>
         </div>
+        </>
     )
 }
 

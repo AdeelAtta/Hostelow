@@ -13,7 +13,7 @@ const invest = () => {
                 <div className="block rounded-lg px-4 py-2 shadow-lg shadow-indigo-100 bg-white ">
                     <img
                         alt="Home"
-                        src='/assets/hostel_small.png'
+                        src='/assets/invest/hostel1.jpeg'
                         className="h-48 w-full rounded-md object-cover"
                     />
                     <h3 className='text-2xl font-bold'>Prince Boys Hostel</h3>
@@ -42,7 +42,7 @@ const invest = () => {
                 <div className="block rounded-lg px-4 py-2 shadow-lg shadow-indigo-100 bg-white ">
                     <img
                         alt="Home"
-                        src='/assets/hostel_small.png'
+                        src='/assets/invest/hostel2.jpeg'
                         className="h-48 w-full rounded-md object-cover"
                     />
                     <h3 className='text-2xl font-bold'>2nd Home Boys Hostel</h3>
@@ -71,7 +71,7 @@ const invest = () => {
                 <div className="block rounded-lg px-4 py-2 shadow-lg shadow-indigo-100 bg-white ">
                     <img
                         alt="Home"
-                        src='/assets/hostel_small.png'
+                        src='/assets/invest/hostel3.jpeg'
                         className="h-48 w-full rounded-md object-cover"
                     />
                     <h3 className='text-2xl font-bold'>Iqbal Boys Hostel, Jamshoro</h3>
