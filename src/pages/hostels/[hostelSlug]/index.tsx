@@ -204,7 +204,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
             <div className='col-span-4 flex flex-col gap-6'>
               {/* CARD */}
               {
-                rooms && rooms.length > 0 ? rooms.map((room: any) => {
+                (rooms && rooms.length > 0) ? rooms.map((room: any) => {
 
                   const { _id, images, availability, occupancy, price, amenitities, discountPrice } = room
                   return <>
