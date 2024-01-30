@@ -65,7 +65,7 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property,closeMod
 
             let response = await toast.promise(postData(`hostel/updateHostel`, data, `${user.access.token}`), {
                 pending: `Creating...`,
-                success: `New Hostel updated`
+                success: `Hostel updated`
 
             })
 
