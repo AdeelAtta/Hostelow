@@ -148,6 +148,7 @@ const ReviewManagement = () => {
                     <label htmlFor="hostel">Select Hostel:</label>
                     <Select
                         name="hostel"
+                        placeholder="Select Hostel"
                         id="hostel"
                         options={hostelList ?? []}
                         className="basic-multi-select min-w-[300px]"

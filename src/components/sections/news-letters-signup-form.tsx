@@ -54,9 +54,9 @@ const NewsLettersSignupForm = () => {
 
                         <button
                             type="submit"
-                            className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-orange-600 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
+                            className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-stone-800 px-5 py-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
                         >
-                            <span className="text-sm font-medium"> Subscribe </span>
+                            <span className="text-sm font-medium "> Subscribe </span>
 
                             <svg
                                 className="h-5 w-5 rtl:rotate-180"

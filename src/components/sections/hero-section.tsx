@@ -58,7 +58,7 @@ const HeroSection = () => {
                 <h2 className="text-center text-4xl font-bold tracking-tight sm:text-6xl">
                     Book your Stay With Hostel Bazaar.
                 </h2>
-                <p className='text-center text-lg px-8 py-3 sm:text-3xl font-md'>14,000,000 rooms around the world are waiting for you</p>
+                <p className='text-center text-lg px-8 py-3 sm:text-3xl font-md'>70 rooms around the world are waiting for you</p>
                 <div className='rounded-xl flex flex-col items-center justify-center gap-4 md:flex-row z-[5] w-[90%]  sm:w-[70%] md:w-[90%] lg:w-[70%] absolute bottom-0 translate-y-[50%] left-[50%] translate-x-[-50%] px-6 sm:px-10 pt-7 pb-9 lg:rounded-2xl bg-gray-100 text-gray-900' style={{ boxShadow: `rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px` }}>
 
                     <label htmlFor="location" className='flex flex-col w-full whitespace-nowrap font-semibold'>Select Your Hostel Location:

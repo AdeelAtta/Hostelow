@@ -84,6 +84,7 @@ const UpdateTicket: React.FC<any> = ({ ticket, closeModal }) => {
                 defaultValue={[{ value: `${formData.status}`, label: `${formData.status}` }]}
                 name="status"
                 id="status"
+                placeholder="Status..."
                 options={statusList ?? []}
                 className="basic-multi-select w-full z-[1] "
                 classNamePrefix="select user"

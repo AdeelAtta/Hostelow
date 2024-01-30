@@ -27,7 +27,7 @@ const AddNewRoom: React.FC<any> = ({ closeModal, hostelList }) => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            //Add New Hostel Form
+
 
 
 
@@ -77,6 +77,7 @@ const AddNewRoom: React.FC<any> = ({ closeModal, hostelList }) => {
                 <Select required={true}
                     defaultValue={[]}
                     name="hostelId"
+                    placeholder="Select Hostel"
                     id="hostel"
                     options={hostelList ?? []}
                     className="basic-multi-select w-full z-[1] "
@@ -90,6 +91,7 @@ const AddNewRoom: React.FC<any> = ({ closeModal, hostelList }) => {
                     defaultValue={[]}
                     name="hostelId"
                     id="hostel"
+                    placeholder="Room type"
                     options={[...types] ?? []}
                     className="basic-multi-select w-full z-[1] "
                     classNamePrefix="select hostel"

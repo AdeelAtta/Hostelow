@@ -125,6 +125,7 @@ const UpdatePropertyData:React.FC<UpdatePropertyDataProps> = ({property,closeMod
                 defaultValue={[{id:formData.location,label:formData.location}]}
                 name="location"
                 id="location"
+                placeholder="Select Location"
                 options={citiesList ?? []}
                 className="basic-multi-select w-full z-[1] "
                 classNamePrefix="select user"

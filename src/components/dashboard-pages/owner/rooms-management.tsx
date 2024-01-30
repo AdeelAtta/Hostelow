@@ -160,13 +160,23 @@ const RoomsManagement: React.FC<any> = ({ hostelList }) => {
 
     return <>
     <ToastContainer />
-        <div className="w-full">
-            <div className="w-full flex justify-center items-center gap-10 ">
+        <div className="w-full min-h-[300px]">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl p-6">
+            <span className="flex items-center">
+            
+                <span className="text-transparent bg-clip-text bg-gradient-to-tr to-stone-600 from-stone-700 border-b-4">
+                    Rooms
+                </span>
+             
+            </span>
+        </h1>
+            <div className="w-full flex justify-center items-start gap-10 ">
                 <div className="ml-auto">
                     <label htmlFor="hostel">Select Hostel:</label>
                     <Select
                         name="hostel"
                         id="hostel"
+                        placeholder="Select Hostel"
                         options={hostels ?? []}
                         className="basic-multi-select min-w-[300px]"
                         classNamePrefix="select hostel"

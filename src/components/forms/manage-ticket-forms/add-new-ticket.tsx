@@ -21,7 +21,7 @@ const AddNewTicket: React.FC<any> = ({ closeModal }) => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            //Add New Hostel Form
+   
 
 
 
@@ -77,6 +77,7 @@ const AddNewTicket: React.FC<any> = ({ closeModal }) => {
                 defaultValue={[{ value: `open`, label: `open` }]}
                 name="status"
                 id="status"
+                placeholder="status..."
                 options={statusList ?? []}
                 className="basic-multi-select w-full z-[1] "
                 classNamePrefix="select user"

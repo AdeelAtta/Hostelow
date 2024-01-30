@@ -66,7 +66,7 @@ const ForgetPassword:React.FC<VerifyEmailProps> = ({closeModal}) => {
     }
 
     return <>
-        <ToastContainer position="top-center" />
+        {/* <ToastContainer position="top-center" /> */}
         <form onSubmit={(e: FormEvent) => handleFormSubmit(e)} className='flex flex-col gap-y-4'>
              
             <div className="mx-auto max-w-lg text-left">

@@ -27,7 +27,7 @@ const UpdateRoomData: React.FC<any> = ({ closeModal, hostelList,room }) => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            //Add New Hostel Form
+         
 
 
 
@@ -92,6 +92,7 @@ const UpdateRoomData: React.FC<any> = ({ closeModal, hostelList,room }) => {
                     defaultValue={[{value:`${formData.type}`,label:`${formData.type}`}]}
                     name="hostelId"
                     id="hostel"
+                    placeholder="Room Type"
                     options={[...types] ?? []}
                     className="basic-multi-select w-full z-[1] "
                     classNamePrefix="select hostel"
