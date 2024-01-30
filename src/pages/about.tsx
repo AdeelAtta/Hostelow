@@ -40,7 +40,7 @@ const about = () => {
                                             <h3 className="my-2 ml-3 text-lg font-bold text-gray-800">Transitional Living Solutions</h3>
                                         </div>
                                         <p className="mt-3 mb-1 text-xs font-medium text-purple-500 uppercase">------------</p>
-                                        <p className="mb-2 text-gray-600">Designed with the unique needs of hostellers and job seekers in mind, our platform offers a diverse array of accommodations in cities across the globe.</p>
+                                        <p className="mb-2 text-gray-600">Designed with the unique needs of students and job seekers in mind, our platform offers a diverse array of accommodations in cities across the globe.</p>
                                     </div>
                                 </div>
                             </div>

@@ -33,12 +33,12 @@ const Policies = () => {
                             All guests must be at least 18 years of age to be able to check in at any of our hostels.
                         </p>
                     </li>
-                    <li className='flex items-center gap-x-4'>
+                    {/* <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
                             The Hosteller is a chain of backpacker hostels and is well suited for young backpacking travellers. As a brand, we do not recommend families and do not allow all those below 18 years of age to stay with us
                         </p>
-                    </li>
+                    </li> */}
                     <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
@@ -96,12 +96,12 @@ const Policies = () => {
                             All guests must be at least 18 years of age to be able to check in at any of our hostels.
                         </p>
                     </li>
-                    <li className='flex items-center gap-x-4'>
+                    {/* <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
                             All cancellations, if informed 7 days prior to the check-in date, shall be eligible for a 100% refund. In case cancellations happen within 7 days of the check-in date, there wouldn&quot;t be ANY refund and will attract 100% cancellation charges. If the guest doesn&quot;t show up they will be charged the total price of the reservation.
                         </p>
-                    </li>
+                    </li> */}
                     <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
@@ -145,7 +145,7 @@ const Policies = () => {
                     <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
-                            Any and all cancellation requests are attended to by the central reservations team. To cancel your booking, kindly write to them at booking@thehosteller.com. Please make sure to mention your reservation ID and all relevant details in the same email.
+                            Any and all cancellation requests are attended to by the central reservations team. To cancel your booking, kindly write to them at booking@hostelbazaar.com. Please make sure to mention your reservation ID and all relevant details in the same email.
                         </p>
                     </li>
                     <li className='flex items-center gap-x-4'>
@@ -157,7 +157,7 @@ const Policies = () => {
                     <li className='flex items-center gap-x-4'>
                         <span><MdOutlineDoubleArrow /></span>
                         <p className="leading-relaxed text-gray-700">
-                            For all communications related to cancellations, write to us on booking@thehosteller.com with details such as Booking ID and Guest name.
+                            For all communications related to cancellations, write to us on booking@hostelbazaar.com with details such as Booking ID and Guest name.
                         </p>
                     </li>
                 </ul>

@@ -28,7 +28,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     width={300}
                     height={300}
                     className=' rounded-xl w-full h-full min-w-[300px] max-h-[300px]'
-                    src={`${thumbnail}`}
+                    src={`${thumbnail ? thumbnail :  `/assets/hostel_large.png`}`}
                     alt={title}
                 />
             </div>
@@ -61,11 +61,22 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                         </ul>
                         <div className='mt-2'>
                             <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#New Launch</span>
-                            <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#Discounted</span>
+                            {discountPrice && discountPrice > 0 && <span className='text-sm lg:text-md py-2 px-3 mr-3 rounded-full border-[1px] border-purple-400 text-purple-400 hover:bg-purple-100 cursor-default transition-colors'>#Discounted</span>}
                         </div>
                     </div >
                     <div className={`min-w-fit flex ${listStyle ? `flex-col`: ``}  justify-end items-end gap-4 mt-5 `}>
-                        <p className='font-bold text-md lg:text-xl text-black flex items-end'>Rs: <span className='flex flex-col'><p className='font-extrabold text-2xl text-stone-700'>{discountPrice}</p><s className='font-thin text-red-400'>{ price }</s></span>  / month</p>
+                        <p className='font-bold text-md lg:text-xl text-black flex items-end'>Rs: 
+                        <span className='flex flex-col'>
+                            {discountPrice && discountPrice > 0 ? <>
+                            <p className='font-extrabold text-2xl text-stone-700'>{discountPrice}</p>
+                            <s className='font-thin text-red-400'>{ price }</s>
+                            </>
+                            :
+                            <p className='font-extrabold text-2xl text-stone-700'>{price}</p>}
+                            
+                        </span>
+                        
+                        / month</p>
                         <Link href={{pathname:`/hostels/${slug}`}}><button className='w-full border-[1px] rounded-full font-medium text-lg  text-white px-6 py-3 border-indigo-600 bg-indigo-500'>See Details</button></Link>
                     </div>
                 </div>

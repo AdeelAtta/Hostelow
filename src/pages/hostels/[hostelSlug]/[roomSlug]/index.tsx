@@ -108,7 +108,7 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
 
                 {/* Hostel Detail */}
                 <div className='flex-1 border-2 shadow-lg rounded-lg p-4 flex flex-col order-1 md:order-2'>
-                    <img src={room?.images[0] ? room?.images[0] : `/assets/hostel_large.png`} alt="" />
+                    <img className='rounded-lg' src={room?.images[0] ? room?.images[0] : `/assets/hostel_large.png`} alt="" />
                     <div className='flex flex-col gap-y-2 md:gap-y-3 py-4 border-b-2'>
                         <h2 className='leading-none text-md md:text-xl font-bold'>Room Type {room?.type}</h2>
                         <p className='text-[#7D7D7D] text-sm'>4-star hostel room located at jamshoro near Sindh University</p>
@@ -117,7 +117,7 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                                 <div className='...'>
                                     <span>Total Price</span>
                                 </div>
-                                <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.price}<span className='text-xs'>RS</span> </div>
+                                <div className='lg:col-span-3 text-[#7D7D7D]'><span className='text-base'>RS</span> {room?.price} </div>
                             </div>
                             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
                                 <div>
@@ -142,21 +142,21 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                             <div className='lg:col-span-3 text-[#7D7D7D]'>{room?.occupancy}</div>
                         </div>
                     </div>
-                    <div className='flex flex-col  py-4 border-b-2'>
+                    {/* <div className='flex flex-col  py-4 border-b-2'>
                         <h2 className='leading-none text-md md:text-xl font-bold'>Amenities</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 md:mt-4">
-                            {/* {
+                            {
                                 room?.amenitities.map((item: string) => {
                                     return (
                                         <div className=' text-[#7D7D7D]'>{item}</div>
                                     )
                                 })
-                            } */}
+                            }
                         </div>
-                    </div>
-                    <Button text='Book Now!' type='submit' customeStyle='mt-auto' />
-                    <Modal title='Select Your Payment Method' isModal={modal} closeModal={() => setModal(false)} >
-                    <PaymentForm data={formData} />
+                    </div> */}
+                    <Button text='Book Now' type='submit' customeStyle=' mt-10' />
+                    <Modal title='' isModal={modal} closeModal={() => setModal(false)} >
+                    <PaymentForm data={formData} roomData={roomData} />
                     </Modal>
                 </div>
             </form>

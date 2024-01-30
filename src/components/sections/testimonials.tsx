@@ -154,7 +154,7 @@ const Testimonials = () => {
           </div>
 
           <p className="mt-4 text-gray-700">
-          HostelBazaar ke sath, accommodation ka scene on hai! Cool jagah mili, aur app use karna bhi asaan hai. Student life mein yeh zaroor try karo!
+          HostelBazaar ke sath, accommodation ka scene on hai! Cool jagah mili, aur website use karna bhi asaan hai. Student life mein yeh zaroor try karo!
           </p>
         </blockquote>
       </div>

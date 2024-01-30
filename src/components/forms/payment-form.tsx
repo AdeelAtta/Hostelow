@@ -1,10 +1,13 @@
+import { useRouter } from "next/router";
 import { useState } from "react"
 import { IoWalletSharp } from "react-icons/io5";
 
 const PaymentForm = (props: any) => {
+    const router = useRouter();
     const [method, setMethod] = useState<string>()
     const handleClick = (e: string) => {
         setMethod(e)
+        router.push(`/hostels/BookingConfirmed?room=${props.roomData._id}`)
     }
     const data = props.data;
     console.log(data);
@@ -14,8 +17,8 @@ const PaymentForm = (props: any) => {
             {
                 method ? (
                     method === "bank" ? (
-                        <div className="w-full max-w-lg mx-auto p-8">
-                            <div className="bg-white rounded-lg shadow-lg p-6">
+                        <div className="w-full max-w-lg mx-auto ">
+                            <div className=" rounded-lg ">
                                 <h2 className="text-lg font-medium mb-6">Payment Information</h2>
                                 <form>
                                     <div className="grid grid-cols-2 gap-6">
@@ -37,7 +40,7 @@ const PaymentForm = (props: any) => {
                                         </div>
                                     </div>
                                     <div className="mt-8">
-                                        <button type="submit" className="w-full bg-green-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Submit</button>
+                                        <button type="submit" className="w-full bg-green-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Add Details</button>
                                     </div>
                                 </form>
                             </div>
@@ -63,7 +66,7 @@ const PaymentForm = (props: any) => {
                         //     </div>
                         // </div>
                     ) : (
-                        <h1>other</h1>
+                        <h1>--</h1>
                     )
                 ) : (
                     <ul className="space-y-4">
