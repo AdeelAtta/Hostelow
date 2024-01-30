@@ -51,13 +51,13 @@ const BookingConfirmed: React.FC<HostelDetailProps> = ({ hostelData }) => {
               <div className='...'>
                 <span className='font-bold'>Allotment</span>
               </div>
-              <div className='lg:col-span-3 text-[#7D7D7D]'>Friday, 28th july 2023</div>
+              <div className='lg:col-span-3 text-[#7D7D7D]'>Tuesday, 30th Feb 2024</div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
               <div>
                 <span className='font-bold'>Allowed Till </span>
               </div>
-              <div className='lg:col-span-3 text-[#7D7D7D]'>Monday, 28th oct 2023</div>
+              <div className='lg:col-span-3 text-[#7D7D7D]'>Wednesday, 30th March 2024</div>
             </div>
           </div>
         </div>
@@ -69,13 +69,13 @@ const BookingConfirmed: React.FC<HostelDetailProps> = ({ hostelData }) => {
             <div className='...'>
               <span className='font-bold'>Hotel Address</span>
             </div>
-            <div className='lg:col-span-3 text-[#7D7D7D]'>Norrebrogade 9, 10178 Copenhagen, Denmark</div>
+            <div className='lg:col-span-3 text-[#7D7D7D]'>Boys Hostel Jamshoro</div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
             <div>
               <span className='font-bold'>E-mail </span>
             </div>
-            <div className='lg:col-span-3 text-[#7D7D7D]'>mail@gmail.com</div>
+            <div className='lg:col-span-3 text-[#7D7D7D]'>boyshostel@gmail.com</div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
             <div>

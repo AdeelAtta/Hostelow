@@ -70,7 +70,7 @@ const TableRow: React.FC<DataRowProps> = ({ indexKey, row, noOfColumns, disable 
                                         value={currentTask[`${name}`]}
                                         onChange={(e) => handleChange(e)}
                                         className={`rounded-md text-gray-700 dark:text-gray-300 focus-within:border-gray-500 dark:border-gray-400 dark:bg-gray-800 sm:text-sm p-2 w-full ${(disableRowLength || !isDisabled) ? `border-2 bg-white` : `border-none`}`}
-                                        placeholder='type'
+                                        // placeholder='type'
                                     >
                                         <option value={`${text.length > 0 ? text : ``}`}> {text?.length > 0 ? text : `-- Select -- `}</option>
                                         {options && options.length > 0 && options.map((option: any) => {
