@@ -1,8 +1,15 @@
-import Button from '@/components/elements/Button';
 import React from 'react'
+import { GetServerSideProps } from 'next/types';
+import Button from '@/components/elements/Button';
+import { propertyProps } from '@/types/types';
 import { FaCheckCircle } from "react-icons/fa";
+import { getData } from '@/utils/api';
 
-const BookingConfirmed = () => {
+type HostelDetailProps = {
+  hostelData: propertyProps
+}
+
+const BookingConfirmed: React.FC<HostelDetailProps> = ({ hostelData }) => {
   return (
     <section className='max-w-screen-xl mx-auto text-black py-4 px-4 xl:px-0 xl:py-8'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -44,13 +51,13 @@ const BookingConfirmed = () => {
               <div className='...'>
                 <span className='font-bold'>Allotment</span>
               </div>
-              <div className='lg:col-span-3 text-[#7D7D7D]'>Friday, 28th july 2023</div>
+              <div className='lg:col-span-3 text-[#7D7D7D]'>Tuesday, 30th Feb 2024</div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
               <div>
                 <span className='font-bold'>Allowed Till </span>
               </div>
-              <div className='lg:col-span-3 text-[#7D7D7D]'>Monday, 28th oct 2023</div>
+              <div className='lg:col-span-3 text-[#7D7D7D]'>Wednesday, 30th March 2024</div>
             </div>
           </div>
         </div>
@@ -62,13 +69,13 @@ const BookingConfirmed = () => {
             <div className='...'>
               <span className='font-bold'>Hotel Address</span>
             </div>
-            <div className='lg:col-span-3 text-[#7D7D7D]'>Norrebrogade 9, 10178 Copenhagen, Denmark</div>
+            <div className='lg:col-span-3 text-[#7D7D7D]'>Boys Hostel Jamshoro</div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
             <div>
               <span className='font-bold'>E-mail </span>
             </div>
-            <div className='lg:col-span-3 text-[#7D7D7D]'>mail@gmail.com</div>
+            <div className='lg:col-span-3 text-[#7D7D7D]'>boyshostel@gmail.com</div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
             <div>
@@ -78,8 +85,8 @@ const BookingConfirmed = () => {
           </div>
         </div>
       </div>
-     
-     
+
+
       <div className='p-6'>
         <div className='flex flex-col gap-y-2 lg:gap-y-3'>
           <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-4">
@@ -89,8 +96,8 @@ const BookingConfirmed = () => {
             <div className='lg:col-span-3 text-[#7D7D7D]'>Rs. 8100/=</div>
           </div>
           <div className='flex flex-col md:flex-row gap-6 mt-3'>
-            <Button text='Contact Warden' type='button' customeStyle='p-4 px-8'/>
-            <Button text='Cancel Allotment' type='button' customeStyle='bg-transparent text-[blue] border-blue-500 border p-4 px-8'/>
+            <Button text='Contact Warden' type='button' customeStyle='p-4 px-8' />
+            <Button text='Cancel Allotment' type='button' customeStyle='bg-transparent text-[blue] border-blue-500 border p-4 px-8' />
           </div>
         </div>
       </div>
@@ -99,3 +106,30 @@ const BookingConfirmed = () => {
 }
 
 export default BookingConfirmed
+
+
+export const getServerSideProps: GetServerSideProps<any> = async ({ query }) => {
+  const roomSlug = query?.room as string;
+
+
+
+
+  try {
+    console.log(roomSlug);
+
+    const response = await getData(`hostel/rooms/${roomSlug}`);
+    const roomData = response.rooms[0];
+    //   const hostelData: propertyProps= response.hostels[0] || {};
+    console.log(roomData)
+    return {
+      props: {
+        roomData: roomData
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      notFound: true,
+    };
+  }
+};
