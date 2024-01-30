@@ -266,7 +266,7 @@ const Hostels: React.FC<HostelsProps> = ({ hostels, error, paginationData }) => 
             })
 
           }
-
+        
 
         </div>
 
