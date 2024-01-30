@@ -13,6 +13,7 @@ import { getData } from '@/utils/api';
 import { AmenitiesInfo } from '@/utils/data';
 import { GetServerSideProps } from 'next/types';
 import { propertyProps } from '@/types/types';
+import { MdOutlineDoubleArrow } from 'react-icons/md';
 
 
 
@@ -98,7 +99,44 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
     {
       title: 'Policies',
       content: (
-        <h3 className='text-lg text-black font-bold leading-normal'>Policies</h3>
+        <ul className='space-y-4'>
+        <li className='flex items-center gap-x-4'>
+            <span><MdOutlineDoubleArrow /></span>
+            <p className="leading-relaxed text-gray-700">
+                All guests must be at least 18 years of age to be able to check in at any of our hostels.
+            </p>
+        </li>
+        {/* <li className='flex items-center gap-x-4'>
+            <span><MdOutlineDoubleArrow /></span>
+            <p className="leading-relaxed text-gray-700">
+                The Hostellow is a chain of  hostels and is well suited for young backpacking travellers. As a brand, we do not recommend families and do not allow all those below 18 years of age to stay with us
+            </p>
+        </li> */}
+        <li className='flex items-center gap-x-4'>
+            <span><MdOutlineDoubleArrow /></span>
+            <p className="leading-relaxed text-gray-700">
+                Payment modes accepted at our hostels: Cash, Debit card, Jazz cash.
+            </p>
+        </li>
+        <li className='flex items-center gap-x-4'>
+            <span><MdOutlineDoubleArrow /></span>
+            <p className="leading-relaxed text-gray-700">
+                We cannot guarantee accommodation in the same room in the case of 3 or 4 people are together. That will strictly be subject to availability until the time of check-in.
+            </p>
+        </li>
+        <li className='flex items-center gap-x-4'>
+            <span><MdOutlineDoubleArrow /></span>
+            <p className="leading-relaxed text-gray-700">
+                Should any action by a guest be deemed inappropriate by the hostel or if any inappropriate behaviour is brought to the attention of the hostel, the hostel reserves the right to take action against the guest. Rest assured, proper investigations will be undertaken by the administration to ensure that the affair is dealt with in complete fairness.
+            </p>
+        </li>
+        <li className='flex items-center gap-x-4'>
+            <span><MdOutlineDoubleArrow /></span>
+            <p className="leading-relaxed text-gray-700">
+                Right to admission is reserved.
+            </p>
+        </li>
+    </ul>
       ),
     },
     // {
@@ -166,7 +204,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
             <div className='col-span-4 flex flex-col gap-6'>
               {/* CARD */}
               {
-                rooms && rooms.length > 0 && rooms.map((room: any) => {
+                rooms && rooms.length > 0 ? rooms.map((room: any) => {
 
                   const { _id, images, availability, occupancy, price, amenitities, discountPrice } = room
                   return <>
@@ -243,8 +281,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
                   // </div>
                   // </>
 
-                })
-
+                }):<h1>No Rooms Available</h1>
               }
 
             </div>
@@ -311,7 +348,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
 
 
             {
-              reviews && reviews.length > 0 && reviews.map((review: any, index: number) => {
+              reviews && reviews.length > 0 ? reviews.map((review: any, index: number) => {
                 const amentity = AmenitiesInfo[review[0]]
                 return <>
                   <div key={review[0]} className='flex flex-col gap-4 mt-4'>
@@ -321,7 +358,7 @@ const HostelDetail: React.FC<HostelDetailProps> = ({ hostelData }) => {
                   </div>
                 </>
 
-              })
+              }):<h1>No reviews yet</h1>
             }
             {/* <div className='flex flex-col gap-4 mt-4'>
               <label htmlFor="file" className='text-[#7D7D7D] font-lg'>Cleanliness</label>

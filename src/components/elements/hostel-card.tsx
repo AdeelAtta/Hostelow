@@ -28,7 +28,7 @@ const HostelCard: React.FC<HostelCardProps> = ({ listStyle, property }) => {
                     width={300}
                     height={300}
                     className=' rounded-xl w-full h-full min-w-[300px] max-h-[300px]'
-                    src={`${thumbnail}`}
+                    src={`${thumbnail ? thumbnail :  `/assets/hostel_large.png`}`}
                     alt={title}
                 />
             </div>
