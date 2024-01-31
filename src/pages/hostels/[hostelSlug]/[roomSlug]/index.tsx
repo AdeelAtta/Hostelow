@@ -34,7 +34,7 @@ const RoomBooking: React.FC<any> = ({ roomData }) => {
                 <div className=' flex-1 shadow-lg order-2 md:order-1'>
                     {/* step 1 */}
                     <div className='flex flex-col gap-y-3 md:gap-y-4 border-2 p-4 md:p-8 rounded-t-lg'>
-                        <h2 className='font-bold'>Book Double Standard Room</h2>
+                        <h2 className='font-bold'>Book {room.type} Room</h2>
                         <h3 className='font-bold'>Personal data</h3>
                         <BookingForm formData={formData} setFormData={setFormData} />
                         {/* <div className='flex flex-col gap-y-3 md:gap-y-4'>
@@ -182,7 +182,6 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ params }) =>
         }
         const response = await getData(`hostel/rooms/${slug}`);
         const roomData = response.rooms[0];
-        //   const hostelData: propertyProps= response.hostels[0] || {};
         console.log(roomData)
         return {
             props: {
