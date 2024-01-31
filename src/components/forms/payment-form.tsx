@@ -1,17 +1,25 @@
 import { useRouter } from "next/router";
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { IoWalletSharp } from "react-icons/io5";
 
 const PaymentForm = (props: any) => {
     const router = useRouter();
     const [method, setMethod] = useState<string>()
     const handleClick = (e: string) => {
+
         setMethod(e)
-        router.push(`/hostels/BookingConfirmed?room=${props.roomData._id}`)
+
     }
     const data = props.data;
-    console.log(data);
 
+    const handleBooking = (e: FormEvent) => {
+        e.preventDefault()
+        router.push(`/hostels/BookingConfirmed?room=${props.roomData._id}`)
+    }
+
+    const changeRoute = () => {
+
+    }
     return (
         <section>
             {
@@ -20,7 +28,7 @@ const PaymentForm = (props: any) => {
                         <div className="w-full max-w-lg mx-auto ">
                             <div className=" rounded-lg ">
                                 <h2 className="text-lg font-medium mb-6">Payment Information</h2>
-                                <form>
+                                <form onSubmit={(e: FormEvent) => { e.preventDefault(), handleBooking(e) }}>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="col-span-2 sm:col-span-1">
                                             <label htmlFor="card-number" className="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
@@ -40,7 +48,7 @@ const PaymentForm = (props: any) => {
                                         </div>
                                     </div>
                                     <div className="mt-8">
-                                        <button type="submit" className="w-full bg-green-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Add Details</button>
+                                        <button type="button" onClick={(e: any) => {  handleBooking(e) }} className="w-full bg-green-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Pay</button>
                                     </div>
                                 </form>
                             </div>
@@ -66,8 +74,30 @@ const PaymentForm = (props: any) => {
                         //     </div>
                         // </div>
                     ) : (
-                        <h1>--</h1>
-                    )
+
+                        <form>
+                            {/* <div className="grid grid-cols-2 gap-6">
+                                <div className="col-span-2 sm:col-span-1">
+                                    <label htmlFor="card-number" className="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                                    <input type="text" name="card-number" id="card-number" placeholder="0000 0000 0000 0000" className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" />
+                                </div>
+                                <div className="col-span-2 sm:col-span-1">
+                                    <label htmlFor="expiration-date" className="block text-sm font-medium text-gray-700 mb-2">Expiration Date</label>
+                                    <input type="text" name="expiration-date" id="expiration-date" placeholder="MM / YY" className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" />
+                                </div>
+                                <div className="col-span-2 sm:col-span-1">
+                                    <label htmlFor="cvv" className="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                    <input type="text" name="cvv" id="cvv" placeholder="000" className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" />
+                                </div>
+                                <div className="col-span-2 sm:col-span-1">
+                                    <label htmlFor="card-holder" className="block text-sm font-medium text-gray-700 mb-2">Card Holder</label>
+                                    <input type="text" name="card-holder" id="card-holder" placeholder="Full Name" className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" />
+                                </div>
+                            </div> */}
+                            <div className="mt-8">
+                                <button type="button" onClick={(e: any) => { handleBooking(e)}}  className="w-full bg-green-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Pay</button>
+                            </div>
+                        </form>)
                 ) : (
                     <ul className="space-y-4">
                         <span>{data.firstName}</span>
@@ -82,6 +112,10 @@ const PaymentForm = (props: any) => {
                         <li className="border-2 px-4 py-2 rounded cursor-pointer hover:bg-gray-300 flex items-center gap-x-4" onClick={() => handleClick("jazzcash")}>
                             <span className="text-xl"><IoWalletSharp /></span>
                             <span className="text-xl">JazzCash</span>
+                        </li>
+                        <li className="border-2 px-4 py-2 rounded cursor-pointer hover:bg-gray-300 flex items-center gap-x-4" onClick={() => changeRoute}>
+                            <span className="text-xl"></span>
+                            <span className="text-xl">Pay Later</span>
                         </li>
                     </ul>
                 )
